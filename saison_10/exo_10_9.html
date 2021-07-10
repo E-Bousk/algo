@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 10.9</title>
+	<?php include "../commun/head_php_only.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 151px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 10.9</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Les enregistrements d’un fichier contiennent les deux champs Nom (chaîne de caractères) et Montant (Entier).
+					<br>Chaque enregistrement correspond à une vente conclue par un commercial d’une société.
+					<br>On veut mémoriser dans un tableau, puis afficher à l'écran, le total de ventes par vendeur. Pour simplifier, on suppose que le fichier de départ est déjà trié alphabétiquement par vendeur. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_10_9
+
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_10_9
+
+Une fois de plus, le passage par un tableau de structures est une stratégie commode. Attention toutefois, comme il s'agit d'un fichier texte, tout est stocké en caractère. Il faudra donc convertir en numérique les caractères représentant les ventes, pour pouvoir effectuer les calculs demandés. Pour le traitement, il y a deux possibilités. Soit on recopie le fichier à l'identique dans un premier tableau, et on traite ensuite ce tableau pour faire la somme par vendeur. Soit on fait le traitement directement, dès la lecture du fichier. C'est cette option qui est choisie dans ce corrigé.
+
+Structure Vendeur
+  Nom en Caractère * 20
+  Montant en Numérique
+Fin Structure
+Tableau MesVendeurs() en Vendeur
+Variables NomPrec * 20, Lig, Nom en caractère
+Variables Somme, Vente en Numérique
+
+On balaye le fichier en faisant nos additions.
+Dès que le nom a changé (on est passé au vendeur suivant), on range le résultat et on remet tout à zéro
+
+Debut
+Ouvrir "Ventes.txt” sur 1 pour Lecture
+i ← -1
+Somme ← 0
+NomPréc ← ""
+Tantque Non EOF(1)
+  LireFichier 1, Lig
+  Nom ← Mid(Lig, 1, 20)
+  Vente ← CNum(Mid(Lig, 21, 10)
+  Si Nom = NomPrec Alors
+    Somme ← Somme + Vente
+  Sinon
+    i ← i + 1
+    Redim MesVendeurs(i)
+    MesVendeurs(i).Nom ← NomPrec
+    MesVendeurs(i).Montant ← Somme
+    Somme ← 0
+    NomPrec ← Nom
+  FinSi
+FinTantQue
+
+Et n'oublions pas un petit tour de plus pour le dernier de ces messieurs-dames…
+
+i ← i + 1
+Redim MesVendeurs(i)
+MesVendeurs(i).Nom ← NomPrec
+MesVendeurs(i).Montant ← Somme
+Fermer 1
+
+Pour terminer, on affiche le tableau à l'écran
+
+Pour j ← 0 à i
+  Ecrire MesVendeurs(j)
+j suivant
+FinSi				</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_10_9 PHP
+if (isset($_POST["btn_php"]))
+{
+    $sMessage= "";
+    // Ouverture du fichier .TXT
+    $sReferenceFichier = fopen("./Fichiers/Exercice10_9.txt", "r");
+
+    // Si bien ouvert
+    if ($sReferenceFichier)
+    {
+        // Tant que PAS fin de fichier
+        while (!feof($sReferenceFichier))
+        {
+            // FGETS lit une ligne à chaque boucle et l'attribue à la variable $buffer
+            $buffer = fgets($sReferenceFichier);
+
+            // explode la ligne en tableau $data
+            $datas = explode("::",$buffer);
+
+            // crée un tableau associatif avec pour index chaque nom récupéré
+            // depuis l'index 0 du tableau précédent
+            $aOfLigneFichier[$datas[0]]["ventes"]=0;
+
+        // Fin TANTQUE 
+        }
+    }
+
+    fclose($sReferenceFichier);
+
+    
+    // Ouverture du fichier .TXT
+    $sReferenceFichier = fopen("./Fichiers/Exercice10_9.txt", "r");
+    // Si bien ouvert
+    if ($sReferenceFichier)
+    {
+        // Tant que PAS fin de fichier
+        while (!feof($sReferenceFichier))
+        {
+            // FGETS lit une ligne à chaque boucle et l'attribue à la variable $buffer
+            $buffer = fgets($sReferenceFichier);
+
+            // explode la ligne en tableau $data
+            $datas = explode("::",$buffer);
+
+            // rempli le tableau associatif en additionnant les nombres récupérés
+            // depuis l'index 1 du tableau précédent
+            $datas[1]= intval($datas[1]);
+            $aOfLigneFichier[$datas[0]]["ventes"]+=$datas[1];
+             
+        // Fin TANTQUE 
+        }   
+        // Pour chaque index dans le tableau $aOfLigneFichier
+        foreach ($aOfLigneFichier as $vendeur => $value)
+        {
+            // affiche sa valeur (son nom)
+            $sMessage.= "Vendeur : $vendeur<br>";
+            
+            // Pour chaque index dans cet index
+            foreach ($value as $ventes)
+            {
+                // affiche sa valeur
+                $sMessage.= " Total des ventes : $ventes €<br><br>";
+            }
+            
+        // Fin FOR EACH
+        }
+        
+
+    // Fin SI
+    }
+// FIN
+}
+
+else
+{
+    $sMessage= "";
+}
+
+require "exo_10_9.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_10_9.php" method="POST" name="formPHP">
+								<p>Cliquez pour afficher le total de chaque vendeur</p>
+								<p>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 10.8</title>
+	<?php include "../commun/head_php_only.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 162px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 10.8</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrire un algorithme qui supprime dans notre carnet d'adresses tous les individus dont le mail est invalide (pour employer un critère simple, on considèrera que sont invalides les mails ne comportant aucune arobase, ou plus d'une arobase). &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_10_8
+Variable sArobas, sArobasX2, sTexte en caractère
+Début
+	Ouvrir "Exercice10_5.txt" sur 5 en Ecriture
+	sArobas ← @
+	sArobasX2 ← @@
+	chercher PAS sArobas OU sArobasX2
+	SINON écrire ligne
+	Fermer 5
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_10_8
+On va éliminer les mauvaises entrées dès la recopie : si l'enregistrement ne présente pas un mail valide, on l'ignore, sinon on le copie dans le tableau.
+
+Structure Bottin
+  Nom en Caractère * 20
+  Prénom en Caractère * 15
+  Tel en caractère * 10
+  Mail en Caractère * 20
+Fin Structure
+Tableau Mespotes() en Bottin
+Variable MonPote en Bottin
+Variables i, j en Numérique
+Debut	
+
+On recopie "Adresses" dans MesPotes en testant le mail...	
+
+Ouvrir "Adresse.txt" sur 1 pour Lecture
+i ← -1
+Tantque Non EOF(1)
+  LireFichier 1, MonPote
+  nb ← 0
+  Pour i ← 1 à Len(MonPote.Mail)
+    Si Mid(MonPote.Mail, i, 1) = "@" Alors
+      nb ← nb + 1
+    FinSi
+  i suivant
+  Si nb = 1 Alors
+    i ← i + 1
+    Redim MesPotes(i)
+    MesPotes(i) ← MonPote
+  FinSi
+FinTantQue
+Fermer 1
+
+On recopie ensuite l'intégralité de Fic dans "Adresse"
+
+Ouvrir "Adresse.txt" sur 1 pour Ecriture
+Pour j ← 0 à i
+  EcrireFichier 1, MesPotes(j)
+j Suivant
+Fermer 1
+FinSi				</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_10_8 PHP
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Traduction du pseudo-code http://cours.pise.info/algo/corriges10.htm#C10.8 //
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+if (isset($_POST["btn_php"]))
+{
+	// ouvre fichier "Exercice10_8.txt" en LECTURE et attribut son contenu à la variable $sReferenceFichier
+	$sReferenceFichier = fopen("./Fichiers/Exercice10_8.txt", "r");
+
+	// Si $sReferenceFichier rempli (fichier trouvé et ouvert)
+	if ($sReferenceFichier)
+	{
+		// pour pouvoir faire un i++ ligne 38
+		$i = -1;
+
+		while (!feof($sReferenceFichier))
+		{
+			// fgets lit une ligne à chaque appel et l'attribue à la variable $buffer
+			$buffer = fgets($sReferenceFichier);
+
+			// On attribut chaque champ à une variable structurée ($variable ["nom du champ"])
+			// exemple ligne suivante : récupère les 15 caractères à partir du caractère 0 de la chaine
+			$aOfLigneFichier["nom"]= substr($buffer, 0, 15);
+			$aOfLigneFichier["prenom"]= substr($buffer, 15, 15);
+			$aOfLigneFichier["tel"]= substr($buffer, 30, 12);
+			$aOfLigneFichier["mail"]= substr($buffer, 42, 20);
+			// initialise le décompte d'@ à zero
+			$nb = 0;
+			for ($j=1; $j<strlen($aOfLigneFichier["mail"]); $j++)
+			{
+				// décompte des arobases
+				if (substr($aOfLigneFichier["mail"], $j, 1) ==="@")
+				{
+					$nb++;
+				}
+			}
+
+			if ($nb===1)
+			{
+				$i++;
+				$aOfMesPersonnes[$i]["sNom"]= $aOfLigneFichier["nom"];
+				$aOfMesPersonnes[$i]["sPrenom"]= $aOfLigneFichier["prenom"];
+				$aOfMesPersonnes[$i]["sTel"]= $aOfLigneFichier["tel"];
+				$aOfMesPersonnes[$i]["sMail"]= $aOfLigneFichier["mail"];
+			}
+		}
+		/*On ferme le fichier*/
+		fclose($sReferenceFichier);
+	}
+
+	// Ecrire mon nouveau contenu dans carnet
+	// Ouvrir "Exercice10_8.txt" pour Ecriture
+	$sTextFinal= "";
+	for ($i= 0; $i<count($aOfMesPersonnes); $i++)	
+	{
+		$sTextFinal.= $aOfMesPersonnes[$i]["sNom"] . $aOfMesPersonnes[$i]["sPrenom"] . $aOfMesPersonnes[$i]["sTel"] . $aOfMesPersonnes[$i]["sMail"] . "\n";
+	}
+
+	$handle = fopen('./Fichiers/Exercice10_8.txt', 'w');
+	if ($handle)	
+	{
+		fputs($handle, $sTextFinal);
+		fclose($handle);
+		$sMessage= "Carnet nettoyé des mauvaises adresses mail";
+	}
+}
+
+
+else
+{
+	$sMessage= "";
+}
+
+require "exo_10_8.html";
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+//                 1er JET					 //
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+if (isset($_POST["btn_php"]))
+{
+
+
+
+    // ouvre fichier "Exercice10_5.txt" en LECTURE et attribut son contenu à la variable $sReferenceFichier
+    $sReferenceFichier = fopen("./Fichiers/Exercice10_8.txt", "r");
+
+    // Si $sReferenceFichier rempli (fichier trouvé et ouvert)
+    if ($sReferenceFichier)
+    {
+        // pour pouvoir concatener sans erreur
+        $texte="";
+
+        while (!feof($sReferenceFichier))
+        {
+            // fgets lit une ligne à chaque appel et l'attribue à la variable $buffer
+            $buffer = fgets($sReferenceFichier);
+
+            $sArobas="@";
+            $sArobasX2="@@";
+            // recherche de double @ ou d'@ manquant
+            if (strpos($buffer, $sArobas) === false || strpos($buffer, $sArobasX2)) 
+            {
+                $sMessage="Erreur trouvée --> ligne effacée";
+            } 
+
+            else 
+            {
+                $sMessage= "Aucune erreur trouvée";
+                $texte .=$buffer;
+            }
+        //FIN TANT QUE
+        }
+        // fermeture du fichier à traiter
+        fclose($sReferenceFichier);
+    //FIN SI
+    }
+        // ouvre fichier "Exercice10_5.txt" en ECRITURE et attribut son contenu à la variable $sReferenceFichier
+        $sReferenceFichier = fopen("./Fichiers/Exercice10_8.txt", "w");
+        if ($sReferenceFichier) 
+		{
+            // ecrit les données
+            fwrite($sReferenceFichier, $texte);
+			fclose($sReferenceFichier);
+		}
+
+
+}
+
+else
+{
+    $sMessage= "";
+}
+
+require "exo_10_8.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_10_8.php" method="POST" name="formPHP">
+								<p>Cliquez pour charger le fichier</p>
+								<!-- <p><input type="number" name="iNbre" id="iNbre" min="" max="" value=""></p> -->
+								<p>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 10.5</title>
+	<?php include "../commun/head_php_only.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 247px;
+		}
+		input {
+			background-color: black;
+			color: white
+		}
+		.div_formulaire p {
+			background-color: rgba(0,0,0,.5);
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 10.5</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrivez un algorithme qui permette de modifier un renseignement (pour simplifier, disons uniquement le nom de famille) d’un membre du carnet d’adresses. Il faut donc demander à l’utilisateur quel est le nom à modifier, puis quel est le nouveau nom, et mettre à jour le fichier. Si le nom recherché n'existe pas, le programme devra le signaler. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_10_5
+	Variable sTitre, sReplace*50, sTexte en caractère
+Début
+	Ecrire "Entrez le titre à remplacer (50 caractères max.)"
+	lire sTitre
+	Ecrire "Entrez le nouveau titre (50 caractères max.)"
+	lire sReplace
+
+	Ouvrir "Exercice10_5.txt" sur 5 en Ecriture
+	chercher sTitre
+	ecrire sReplace
+	Fermer 5
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_10_5	
+Structure Bottin
+  Nom en Caractère * 20
+  Prénom en Caractère * 15
+  Tel en caractère * 10
+  Mail en Caractère * 20
+Fin Structure
+Tableau Mespotes() en Bottin
+Variables MonPote en Bottin
+Variables Ancien, Nouveau en Caractère*20
+Variables i, j en Numérique
+Variable Trouvé en Booléen
+Debut
+Ecrire "Entrez le nom à modifier : "
+Lire Ancien
+Ecrire "Entrez le nouveau nom : "
+Lire Nouveau
+
+On recopie l'intégralité de "Adresses" dans Fic, tout en recherchant le clampin. Si on le trouve, on procède à la modification.
+				
+Ouvrir “Adresse.txt” sur 1 pour Lecture
+i ← -1
+Trouvé ← Faux
+Tantque Non EOF(1)
+  i ← i + 1
+  Redim MesPotes(i)
+  LireFichier 1, MonPote
+  Si MonPote.Nom = Ancien.Nom Alors
+    Trouvé ← Vrai
+    MonPote.Nom ← Nouveau
+  FinSi
+  MesPotes(i) ← MonPote
+FinTantQue
+Fermer 1
+
+On recopie ensuite l'intégralité de Fic dans "Adresse"
+
+Ouvrir "Adresse.txt" sur 1 pour Ecriture
+Pour j ← 0 à i
+  EcrireFichier 1, MesPotes(j)
+j Suivant
+Fermer 1
+
+Et un petit message pour finir !
+
+Si Trouvé Alors
+  Ecrire "Modification effectuée"
+Sinon
+  Ecrire "Nom inconnu. Aucune modification effectuée"
+FinSi
+Fin                 </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_10_5 PHP
+if (isset($_POST["btn_php"]))
+{
+    // lire imput et ajoute les espaces manquant après les données
+    $sTitre=$_POST["sTitre"];
+    $sReplace=$_POST["sReplace"];
+     
+    // verifie si champ "Titre" est rempli
+    if (empty($sTitre) || empty($sReplace) )
+    {
+        $sMessage= "Rien à modifier.<br>";
+    }
+
+    // verifie si nombre de caractère $sTitre < 50
+    else if (strlen($sTitre)>50)
+    {
+        $sMessage="50 caractères max.";
+        $sMessage.="<br> Vous avez entré ". strlen($sTitre)." caractères";
+    }
+    // verifie si nombre de caractère $sReplace < 50
+    else if (strlen($sReplace)>50)
+    {
+        $sMessage="Le nouveau titre est trop long. (50 caractères max.)";
+        $sMessage.="<br> Vous avez entré ". strlen($sReplace)." caractères";
+    }
+    
+    // si tout est ok
+    else
+    {     
+        // ouvre fichier "Exercice10_5.txt" en LECTURE et attribut son contenu à la variable $sReferenceFichier
+        $sReferenceFichier = fopen("./Fichiers/Exercice10_5.txt", "r");
+
+        // Si $sReferenceFichier rempli (fichier trouvé et ouvert)
+        if ($sReferenceFichier)
+        {
+            // pour pouvoir concatener sans erreur
+            $texte="";
+            /// pour maintenir affichage si trouvé (risque d'écrasement avec message "pas trouvé" suivant)
+            $bFlag = false;
+
+            while (!feof($sReferenceFichier))
+            {
+                // fgets lit une ligne à chaque appel et l'attribue à la variable $buffer
+                $buffer = fgets($sReferenceFichier);
+
+                // attribut à la variable $pos la position de la chaine de charactère recherchée
+                $pos = strpos($buffer, $sTitre);
+
+                // chaine de charactère de $sTitre n'existe pas
+                if ($pos === false && $bFlag === false) 
+                {
+                    $sMessage="le titre : ". $sTitre ." ne se trouve pas dans ce fichier";
+                    $texte .=$buffer;
+                } 
+                else 
+                {
+                    // $bFlag à VRAI pour ne pas ecraser $sMessage avec "pas trouvé" suivant
+                    $bFlag = true;
+                    // pour gérer les espacements
+                    $sTitre=str_pad($sTitre,50);
+                    $sReplace=str_pad($sReplace,50);
+
+                    $sMessage= "le titre :<br>  $sTitre <br> a été trouvée dans ce fichier,";
+                    $sMessage.= "<br><br>il est remplacé par le titre : <br> $sReplace";
+                    
+                    // remplace les données
+                    $buffer= str_ireplace($sTitre, $sReplace, $buffer);
+                    $texte .=$buffer;
+                }
+            //FIN TANT QUE
+            }
+            // fermeture du fichier à traiter
+            fclose($sReferenceFichier);
+        //FIN SI
+        }
+
+        // ouvre fichier "Exercice10_5.txt" en ECRITURE et attribut son contenu à la variable $sReferenceFichier
+        $sReferenceFichier = fopen("./Fichiers/Exercice10_5.txt", "w");
+        if ($sReferenceFichier) 
+		{
+            // ecrit les données
+            fwrite($sReferenceFichier, $texte);
+			fclose($sReferenceFichier);
+		}
+    //FIN SINON
+    }
+//FIN
+}
+
+else
+{
+    $sMessage= "";
+}
+
+require "exo_10_5.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_10_5.php" method="POST" name="formPHP">
+								<p>Entrez le titre à remplacer</p>
+								<p><input type="text" name="sTitre" id="sTitre" min="" max="" value=""></p>
+								<p>Entrez le nouveau titre</p>
+								<p><input type="text" name="sReplace" id="sReplace" min="" max="" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>
