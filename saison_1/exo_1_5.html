@@ -1,0 +1,200 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 1.5</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+	
+	<style type="text/css">
+		.txt_pseudocode {
+			width: 100%;
+			height: 141px;
+		}
+		/* .txt_jsprompt, .txt_jsform, .txt_jquery, .txt_php  {
+			width: 100%;
+			height: 276px;
+		} */
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 1.5</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Enoncé</h3>
+                    <p>&laquo; Quelles seront les valeurs des variables A et B après exécution des instructions suivantes ? &raquo;</p>
+                
+				</div>
+				<div>
+					<h3>PSEUDO-CODE</h3>
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_1_5
+Variables A, B en Entier
+Début
+A ← 14
+B ← 29
+A ← B
+B ← A
+Fin
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsprompt">
+						<!-- <textarea class="txt_jsprompt tarea_blue"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_5 JSPROMPT
+function Exo_1_5() 
+// DEBUT
+{
+	//VALEUR A, B
+	var A, B;
+
+	//attribution des valeurs
+	A = 14;
+	B = 29;
+	A = B;
+	B = A;
+
+	//Ecrire valeur A, B
+	alert ("A = " + A + '\n' + "B = " + B + '\n' + "C = " + C);
+//Fin
+}							</code></pre>
+						</section>
+						<!-- </textarea> -->
+					</div>
+					
+					<div id="div_jsform">
+						<!-- <textarea class="txt_jsform tarea_green"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_5 JSFORM
+function Exo_1_5_jsform()
+// DEBUT
+{
+	//VALEUR A, B
+	var A, B;
+
+	//attribution des valeurs
+	A = 14;
+	B = 29;
+	A = B;
+	B = A;
+
+	//Ecrire valeur A, B
+	document.getElementById("sp_resultat_code").innerHTML= ("A = " + A + "</br>" + "B = " + B + "</br>" + "C = " + C);
+//Fin
+}							</code></pre>
+						</section>
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_jquery">
+						<!-- <textarea class="txt_jquery tarea_pink"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_5 JQUERY
+function Exo_1_5_jquery() 
+// DEBUT
+{
+	//VALEUR A, B
+	var A, B;
+
+	//attribution des valeurs
+	A = 14;
+	B = 29;
+	A = B;
+	B = A;
+
+	//Ecrire valeur A, B
+	$("#sp_resultat_code").html("A = " + A + "<br/>" + "B = " + B);
+//Fin
+}							</code></pre>
+						</section>
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_php">
+						<!-- <textarea class="txt_php tarea_black"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_1_5 PHP
+
+							</code></pre>
+						</section>
+						<!-- </textarea> -->
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_1_5.php" method="POST" name="formPHP">
+								<p>Afficher le résultat</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_1_5(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_1_5_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_1_5_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="return false;"></button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison1.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+/**
+* ------------------------------------
+* ----  À PARTIR DE LA SAISON 10  ----
+* ------------------------------------
+*
+* ------------------------------------
+* ---                              ---
+* ------------ SECTION ---------------
+* ---                              ---
+* ------------------------------------ */
+
+.choix_langage {
+	grid-template-columns: 1fr;
+}
+
+
+.choix_langage :nth-child(n+2) button{
+	font-family: 'Wendy One', sans-serif;
+	background-color: transparent;
+	color: white;
+	font-size: 17px;
+	text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em white;
+	border: none;
+	width: 146px; 
+	height: 41px;
+}
+
+.btn_choix {
+    background-size:90%;
+    width:102px;
+    height:100px;
+    border-radius:50em;
+    background-position:50% 50%;
+    background-repeat:no-repeat;
+	background-color: white;
+}
+
+.btn_choix_3{
+	background-image: url('../img/php-logo.png');
+}
+
+#div_php {
+	display: block;
+}
+#btn_php {
+	display: block;
+}
+#div_form_resultat {
+	display: block;
+}

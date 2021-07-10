@@ -1,0 +1,80 @@
+<div id="welcome" class="welcome">
+    <img class="earth" src="../img/earth_trans.gif" alt="earth">
+    <h1>SITE D'ALGORITHME</h1>
+    <p id="p_header" class="p_header">Pseudo, Javascript, Jquery & PHP</p>
+</div>
+
+<script type="text/javascript" src="../js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../js/jquery.arctext.js"></script>
+<!-- <script type="text/javascript" src="http://www.google.com/jsapi"></script> -->
+<script type="text/javascript">
+var $word1, $word2;
+$(document).ready(function() {
+    $word1		= $('#welcome').find('h1').hide();
+    $word2		= $('#welcome').find('p').hide();
+    $word1.show().arctext();
+    $word2.show().arctext({radius: 150, dir: -1});
+});
+</script>
+
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.html">Mon site d'ALGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="../index.html">Saisons algorithme</a>
+        <a class="nav-link active" href="/TP_maquette_audit_conseil">Maquette Audit conseil</a>
+        <a class="nav-link active" href="/TP_CRUD">TP C.R.U.D.</a>
+        <a class="nav-link active" href="/TP_bootstrap_bou">TP Bootstrap 01</a>
+        <a class="nav-link active" href="/TP_bootstrap_fl">TP Bootstrap 02</a>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.html">Mon site d'ALGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse me-auto" id="navbarScroll">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/CV">C.V. VSCode</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/TP_maquette_audit_conseil">Maquette Audit conseil</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            TP Bootstrap
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="nav-link active" href="/TP_bootstrap_bou">Maquette Boucherie</a></li>
+            <li><a class="nav-link active" href="/TP_bootstrap_fl">Maquette Fruits & Légumes</a></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            TP C.R.U.D.
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="nav-link active" href="/TP_CRUD">TP C.R.U.D. en JS local</a></li>
+            <li><a class="nav-link active" href="/TP_CRUD_PHP">TP C.R.U.D. en PHP</a></li>
+            <li><a class="nav-link active" href="/TP_CRUD_PHP_Modal">TP C.R.U.D. en PHP avec MODAL</a></li>
+            <li><a class="nav-link active" href="/ghibli">TP C.R.U.D. (Framework)</a></li>
+            <!-- <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

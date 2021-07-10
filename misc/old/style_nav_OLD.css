@@ -1,0 +1,55 @@
+.menu {
+	padding-top: 50px;
+	width: 100px;
+	text-align: center;
+}
+
+.saison {
+	padding: .5em;
+	border-bottom: 2px solid black;
+	background-color: yellow;
+	position:relative;
+}
+  
+.saison:hover {
+	background-color: orangered;
+	cursor: pointer;
+}
+
+.saison:hover .submenu {
+	display: block;
+} 
+
+.submenu {
+	position: absolute;
+	top: 0;
+	left: 100px;
+	margin: 0;
+	padding: 0;
+	width: 150px;
+	display: none;
+}
+
+.submenu:hover .sub_submenu {
+	display: block;
+} 
+
+.sub_submenu {
+	position: absolute;
+	/* top: 0px; <-------- inutile ? --------- < */
+	left: 150px;
+	margin: 0;
+	padding: 0;
+	width: 150px;
+	display: none;
+}
+
+.exercice, .sub_exercice {
+	padding: .5em;
+	background-color:yellowgreen;
+	border-bottom: 2px solid black;
+}
+
+.exercice:hover, .sub_exercice:hover {
+	background-color: pink;
+}

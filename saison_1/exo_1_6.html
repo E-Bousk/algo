@@ -1,0 +1,220 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 1.6</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+	
+	<style type="text/css">
+		.txt_pseudocode {
+			width: 100%;
+			height: 111px;
+		}
+		/* .txt_jsprompt, .txt_jsform, .txt_jquery, .txt_php  {
+			width: 100%;
+			height: 381px;
+		} */
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 1.6</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Enoncé</h3>
+                    <p>&laquo; Ecrire un pseudo-code permettant d’échanger les valeurs de deux variables A et B, et ce quel que soit leur contenu préalable. &raquo;</p>
+                
+				</div>
+				<div>
+					<h3>PSEUDO-CODE</h3>
+					<textarea class="txt_pseudocode">
+Variables A, B, Temp en alphanumérique
+Début
+Temp <- A
+A <- B
+B <- Temp
+FIN
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+						<!-- <textarea class="txt_jsprompt tarea_blue"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_6 JSPROMPT
+function Exo_1_6() 
+// DEBUT
+{
+	//VALEUR sVarA, sVarB, sTemp
+	var sVarA, sVarB, sTemp;
+
+	// ECRIRE "Entrez la valeur A"
+	// LIRE sVarA
+	sVarA= prompt("Entrez la valeur A :");
+
+	// ECRIRE "Entrez la valeur B"
+	// LIRE sVarB
+	sVarB= prompt("Entrez la valeur B :");
+
+	//Inversion des valeurs
+	sTemp=sVarA;
+	sVarA=sVarB;
+	sVarB=sTemp;
+
+	//Ecrire valeur A, B
+	alert ("Inversion des valeurs :" + '\n' + "A = " + sVarA + '\n' + "B = " + sVarB);
+//Fin
+}							</code></pre>
+						</section>	
+						<!-- </textarea> -->
+					</div>
+					<div id="div_jsform">
+						<!-- <textarea class="txt_jsform tarea_green"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_6 JSFORM
+function Exo_1_6_jsform() 
+// DEBUT
+{
+	//VALEUR sVarA, sVarB, sTemp
+	var sVarA, sVarB, sTemp;
+
+	// ECRIRE "Entrez la valeur A"
+	// LIRE sVarA
+	sVarA= document.getElementById("sVarA").value;
+
+	// ECRIRE "Entrez la valeur B"
+	// LIRE sVarB
+	sVarB= document.getElementById("sVarB").value;
+
+	//Inversion des valeurs
+	sTemp=sVarA;
+	sVarA=sVarB;
+	sVarB=sTemp;
+
+	//Ecrire valeur A, B
+	document.getElementById("sp_resultat_code").innerHTML=("Inversion des valeurs :" + "</br>" + "A = " + sVarA + "</br>" + "B = " + sVarB);
+//Fin
+}							</code></pre>
+						</section>	
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_jquery">
+						<!-- <textarea class="txt_jquery tarea_pink"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_1_6 JQUERY
+function Exo_1_6_jquery() 
+// DEBUT
+{
+	//VALEUR sVarA, sVarB, sTemp
+	var sVarA, sVarB, sTemp;
+
+	// ECRIRE "Entrez la valeur A"
+	// LIRE sVarA
+	sVarA= $("#sVarA").val();
+
+	// ECRIRE "Entrez la valeur B"
+	// LIRE sVarB
+	sVarB= $("#sVarB").val();
+	
+	//Inversion des valeurs
+	sTemp=sVarA;
+	sVarA=sVarB;
+	sVarB=sTemp;
+
+	//Ecrire valeur A, B
+	$("#sp_resultat_code").html("Inversion des valeurs :" + "</br>" + "A = " + sVarA + "</br>" + "B = " + sVarB);
+//Fin
+}							</code></pre>
+						</section>	
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_php">
+						<!-- <textarea class="txt_php tarea_black"> -->
+						<section class="language-markup ">
+							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_1_6 PHP
+					
+							</code></pre>
+						</section>	
+						<!-- </textarea> -->
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_1_6.php" method="POST" name="formPHP">
+								<p>Entrez la valeur A</p>
+								<p><input type="text" name="sVarA" id="sVarA"></p>
+								<p>Entrez la valeur B</p>
+								<p><input type="text" name="sVarB" id="sVarB"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_1_6(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_1_6_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_1_6_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="return false;"></button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison1.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>
