@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 7.4</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 141px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 7.4</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrivez un algorithme qui permette à l’utilisateur de supprimer une valeur d’un tableau préalablement saisi.
+					<br>L’utilisateur donnera l’indice de la valeur qu’il souhaite supprimer. Attention, il ne s’agit pas de remettre une valeur à zéro, mais bel et bien de la supprimer du tableau lui-même !
+					<br>Si le tableau de départ était : 
+					<pre>
+| 12 | 8 | 4 | 45 | 64 | 9 | 2 |</pre> 
+					Et que l’utilisateur souhaite supprimer la valeur d’indice 4, le nouveau tableau sera :
+					<pre>
+| 12 | 8 | 4 | 45 | 9 | 2 | &raquo;</pre></p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_7_4
+	Variable aTab, iNbre en entier
+Début
+	Ecrire "Quel indice voulez-vous effacer ?"
+	Lire iNbre
+	Pour i= iNbre à aTab.length-1
+		aTab(i) ← aTab(i+1)
+	i suivant
+fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_7_4
+	Variables i, S, N en Entier
+	Tableau T() en Entier
+Debut
+	Ecrire "Rang de la valeur à supprimer ?"
+	Lire S
+	Pour i ← S à N-2
+		T(i) ← T(i+1)
+	i suivant
+	Redim T(N–1)
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_4 JSFORM
+function Exo_7_4_jsform()
+//Début
+{	
+	// déclaration des variables
+	var aTab, i, iNbre;
+
+	//Création d'un tableau de 11 entrées
+	aTab = [11];
+	// Pour i de 0 à 10
+	for (i=0;i<=10;i++)
+	{
+		// Remplissage du tableau de 0 à 10
+		aTab[i]=i;
+	// i suivant 
+	}
+
+	//affichage tableau original
+	document.getElementById("sp_result").innerHTML="Tableau original :<br>"+aTab.join(" | ")+"<br><br>";
+
+	//Lire iNbre (index de l'élément à supprimer)
+	iNbre=+document.getElementById("iNbre").value;
+
+	//pour ne pas accepter une valeur plus grande que le tableau
+	// SI iNbre <0 ou iNbre > 10 ALORS
+	if (iNbre <0 || iNbre > 10)
+	{
+		//Ecrire "Pas plus de 10. Merci"
+		document.getElementById("sp_result").innerHTML+="Votre demande n'est pas comprise entre 0 et 10<br>Veuillez recommencer !";
+	//Fin SI
+	}
+	//SINON
+	else
+	{
+		//boucle de l'index choisi à la fin du tableau
+		for (i=iNbre; i<aTab.length-1;i++)
+		{	
+			//déplace les éléments d'un index depuis celui choisi
+			aTab[i]=aTab[i+1];
+		//Fin de la boucle
+		}
+
+		//Ecrire l'indice a effacer
+		document.getElementById("sp_result").innerHTML+="Indice à effacer : "+ iNbre +"<br><br>";
+		//redimension du tableau (supprime le dernier index)
+		aTab.length--;
+		//affichage du tableau modifié
+		document.getElementById("sp_result").innerHTML+="Tableau modifié :<br>"+aTab.join(" | ");
+	//Fin SINON	
+	}
+//Fin
+} 	                 		</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_4 JQUERY
+function Exo_7_4_jquery()
+//Début
+{	
+	// déclaration des variables
+	var aTab, i, iNbre;
+
+	//Création d'un tableau de 11 entrées
+	aTab = [11];
+	// Pour i de 0 à 10
+	for (i=0;i<=10;i++)
+	{
+		// Remplissage du tableau de 0 à 10
+		aTab[i]=i;
+	// i suivant 
+	}
+
+	//affichage tableau original
+	$("#sp_result").html("Tableau original :<br>"+aTab.join(" | ")+"<br><br>");
+
+	//Lire iNbre (index de l'élément à supprimer)
+	iNbre=+$("#iNbre").val();
+
+	//pour ne pas accepter une valeur plus grande que le tableau
+	// SI iNbre <0 ou iNbre > 10 ALORS
+	if (iNbre <0 || iNbre > 10)
+	{
+		//Ecrire "Pas plus de 10. Merci"
+		$("#sp_result").append("Votre demande n'est pas comprise entre 0 et 10<br>Veuillez recommencer !");
+	//Fin SI
+	}
+	//SINON
+	else
+	{
+		//boucle de l'index choisi à la fin du tableau
+		for (i=iNbre; i<aTab.length-1;i++)
+		{	
+			//déplace les éléments d'un index depuis celui choisi
+			aTab[i]=aTab[i+1];
+		//Fin de la boucle
+		}
+
+		//Ecrire l'indice a effacer
+		$("#sp_result").append("Indice à effacer : "+ iNbre +"<br><br>");
+		//redimension du tableau (supprime le dernier index)
+		aTab.length--;
+		//affichage du tableau modifié
+		$("#sp_result").append("Tableau modifié :<br>"+aTab.join(" | "));
+	//Fin SINON	
+	}
+//Fin
+} 							</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_7_4 PHP
+if (isset($_POST["btn_php"]) and isset($_POST["iNbre"]))
+{
+    //Création d'un tableau de 11 entrées
+	$aTab = [11];
+	// Pour i de 0 à 10
+	for ($i=0;$i<=10;$i++)
+	{
+		// Remplissage du tableau de 0 à 10
+		$aTab[$i]=$i;
+	// i suivant 
+	}
+
+	//affichage tableau original
+	$sMessage="Tableau original :<br>". implode(" | ",$aTab)."<br><br>";
+
+    //Lire iNbre (index de l'élément à supprimer)
+    $iNbre=$_POST["iNbre"];
+
+    //pour ne pas accepter une valeur plus grande que le tableau
+    // SI iNbre <0 ou iNbre > 10 ALORS
+    if ($iNbre <0 || $iNbre > 10)
+    {
+        //Ecrire "Pas plus de 10. Merci"
+        $sMessage.="Votre demande n'est pas comprise entre 0 et 10<br>Veuillez recommencer !";
+    //Fin SI
+    }
+    //SINON
+    else
+	{
+		//boucle de l'index choisi à la fin du tableau
+		for ($i=$iNbre; $i<count($aTab)-1;$i++)
+		{	
+			//déplace les éléments d'un index depuis celui choisi
+			$aTab[$i]=$aTab[$i+1];
+		//Fin de la boucle
+		}
+
+        //Ecrire l'indice a effacer
+        $sMessage.="Indice à effacer : $iNbre <br><br>";
+		//redimension du tableau (supprime le dernier index)
+		array_splice($aTab, -1);
+		//affichage du tableau modifié
+		$sMessage.="Tableau modifié :<br>". implode(" | ",$aTab);
+	//Fin SINON	
+	}
+//Fin 
+}
+
+else
+{
+    $sMessage= "";
+}
+
+require "exo_7_4.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_7_4.php" method="POST" name="formPHP">
+								<p>Quel indice voulez-vous effacer ? :<br>(de 0 à 10)</p>
+								<p><input type="number" name="iNbre" id="iNbre" min="0" max="10" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_7_4_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_7_4_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison7.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

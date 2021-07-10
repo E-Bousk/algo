@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.9</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 169px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 6.9</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrivez un algorithme calculant la somme des valeurs d’un tableau (on suppose que le tableau a été préalablement saisi). &raquo;</p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ ALGORITHME Exo_6_9
+ 	(Tableau Tab(x-1) de x éléments)
+	i, iTotal en numerique
+Début
+	iTotal ← 0
+	Pour i ← 0 à x-1
+		iTotal ← iTotal + Tab(i)
+	i suivant
+	Ecrire "le total est : " & iTotal
+ Fin                </textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_9
+Variables i, Som, N en Numérique
+	Tableau T() en Numérique
+Debut
+	//… (on ne programme pas la saisie du tableau, dont on suppose qu’il compte N éléments)
+	Som ← 0
+	Pour i ← 0 à N - 1
+		Som ← Som + T(i)
+	i Suivant
+	Ecrire "Somme des éléments du tableau : ", Som
+Fin	                </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_9 JSFORM
+function Exo_6_9_jsform()
+//Début
+{	
+    var TabExo9 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+    var i, iTotal;
+    iTotal = 0;
+    i = 0;
+    for (i;i&lt;=9;i++)
+    {
+        iTotal = iTotal+TabExo9[i];
+    }
+    document.getElementById("sp_result").innerHTML="Le total des valeurs est de : "	+ iTotal;
+//Fin
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_9 JQUERY
+function Exo_6_9_jquery()
+//Début
+{	
+    var TabExo9 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+    var i, iTotal;
+    iTotal = 0;
+    i = 0;
+    for (i;i&lt;=9;i++)
+    {
+        iTotal = iTotal+TabExo9[i];
+    }
+    $("#sp_result").html("Le total des valeurs est de : "	+ iTotal);
+//Fin
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_9 PHP
+$sMessage= "";
+
+//Début
+// pour ne pas afficher le resultat avant d'avoir cliqué sur boutton
+if (isset($_POST["iTrick"]))
+{
+	$Tab = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+	$iTotal = 0;
+	$i=0;
+	//Pour i ← 0 à 6
+	for ($i;$i&lt;=9;$i++)
+	{
+		$iTotal = $iTotal+$Tab[$i];	
+	}
+	$sMessage="Le total des valeurs est de : "	. $iTotal;
+//Fin
+} 
+
+require "exo_6_9.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_9.php" method="POST" name="formPHP">
+                                <p>Valeurs du tableau : [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</p>
+								<p>Cliquez pour effectuer le calcul :</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_9_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_9_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

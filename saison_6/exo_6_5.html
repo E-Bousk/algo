@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.5</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 261px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 6.5</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Que produit l’algorithme suivant ?</p>
+
+                        <textarea class="txt_pseudocode">
+    Tableau N(6) en Entier
+    Variables i, k en Entier
+Début
+    N(0) ← 1
+    Pour k ← 1 à 6
+        N(k) ← N(k-1) + 2
+    k Suivant
+    Pour i ← 0 à 6
+        Ecrire N(i)
+    i suivant
+Fin                      </textarea>
+                    <p>Peut-on simplifier cet algorithme avec le même résultat ?  &raquo;</p>
+
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+Crée un tableau avec les valeurs [1],[3],[5],[7],[9],[11],[13] puis les affiche.
+
+Simplification :
+
+ALGORITHME Exo_6_5
+    Tableau Tab(6) en Numérique
+    Variable i en Numérique
+Début
+    Tab(0)=1
+    Ecrire Tab(0)
+    Pour i ← 1 à 6
+        Tab(i) ← Tab(i-1)+2
+    	Ecrire Tab(i)
+    i Suivant
+Fin
+					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+Cet algorithme remplit un tableau avec les sept valeurs : 1, 3, 5, 7, 9, 11, 13. Il les écrit ensuite à l’écran. 
+
+Simplification :
+
+ALGORITHME Exo_6_5
+    Tableau N(6) en Numérique
+    Variables k en Numérique
+Début
+    N(0) ← 1
+    Ecrire N(0)
+    Pour k ← 1 à 6
+        N(k) ← N(k-1) + 2
+        Ecrire N(k)
+    k Suivant
+Fin                           
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_5 JSFORM
+function Exo_6_5_jsform()
+//Début
+{
+    var Tab, i;
+    i=1;
+    Tab = [6];
+    Tab[0]=1;
+
+    // Ecrire Tab(0)
+    document.getElementById("sp_result").innerHTML=Tab[0] + " , ";
+
+    // Pour i ← 1 à 6
+    for (i;i&lt;=6;i++)
+    {
+        Tab[i]=Tab[i-1]+2;
+        // Ecrire Tab(i)
+        document.getElementById("sp_result").innerHTML+=Tab[i] + ((i&lt;6) ? " , " :"");
+    // i Suivant	
+    }
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_5 JQUERY
+function Exo_6_5_jquery()
+//Début
+{
+    var Tab, i;
+    i=1;
+    Tab = [6];
+    Tab[0]=1;
+
+    // Ecrire Tab(0)
+    $("#sp_result").html(Tab[0]+" , ");
+
+    // Pour i ← 1 à 6
+    for (i;i&lt;=6;i++)
+    {
+        Tab[i]=Tab[i-1]+2;
+        // Ecrire Tab(i)
+        $("#sp_result").append(Tab[i] + ((i&lt;6) ? " , " :""));
+    // i Suivant	
+    }
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_5 PHP
+//Début
+// pour ne pas afficher le resultat avant d'avoir cliqué sur boutton
+if (isset($_POST["btn_php"]))
+{
+    $i=1;
+    $Tab = [6];
+    $Tab[0] = 1;
+
+    // Ecrire Tab(0)
+    $sMessage=$Tab[0]." / ";
+
+    //Pour i ← 0 à 6
+    for ($i;$i&lt;=6;$i++)
+    {
+        $Tab[$i] = $Tab[$i-1]+2;
+        // Ecrire Tab(i)
+        $sMessage.=$Tab[$i] . (($i&lt;6) ? " / " :"");
+    }
+//Fin
+}
+else
+{
+    $sMessage= "";
+}
+require "exo_6_5.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_5.php" method="POST" name="formPHP">
+								<p>Cliquez pour générer le tableau :</p>
+                                <p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_5_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_5_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

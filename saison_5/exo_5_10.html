@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 5.10</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_5_10_php
+		function Exo_5_10_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 381px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 5.10</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Lire la suite des prix (en euros entiers et terminée par zéro) des achats d’un client. Calculer la somme qu’il doit, lire la somme qu’il paye, et simuler la remise de la monnaie en affichant les textes "10 Euros", "5 Euros" et "1 Euro" autant de fois qu’il y a de coupures de chaque sorte à rendre. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_5_10
+Variable iTotalPrix, iMonnaie, iB10, iB5  en numérique
+Début
+    iTotal_Prix ← 0
+	iB10 ← 0
+	iB5 ← 0
+
+	Ecrire "Entrez les prix"
+	Lire les iTotalPrix
+    Ecrire "Somme payée :"
+	Lire 
+    iMonnaie ← Lire "somme payée" - itotalPrix
+
+	TantQue iMonnaie >= 10
+		iB10 ← iB10 + 1
+		iMonnaie ← iMonnaie - 10
+	Fin TantQue
+	Si iMonnaie >= 5
+		iB5 ← iB5 + 1
+		iMonnaie ← iMonnaie - 5
+	Fin Si
+	Ecrire "La monnaie rendue est de " & (lire "somme payée" - iTotalPrix) & "€" & "et se décompose en :" & iB10 & " billet(s) de 10€ " & iB5 & " billet(s) de 5€ " & iMonnaie & " pièce(s) de 1€""
+FIN
+					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_5_10
+	Variables E, somdue, M, Reste, Nb10E, Nb5E En Entier
+Debut
+	E ← 1
+	somdue ← 0
+	TantQue E &lt;> 0
+		Ecrire "Entrez le montant : "
+		Lire E
+		somdue ← somdue + E
+	FinTantQue
+	Ecrire "Vous devez :", somdue, " euros"
+	Ecrire "Montant versé :"
+	Lire M
+	Reste ← M - somdue
+	Nb10E ← 0
+	TantQue Reste >= 10
+		Nb10E ← Nb10E + 1
+		Reste ← Reste – 10
+	FinTantQue
+	Nb5E ← 0
+	Si Reste >= 5
+		Nb5E ← 1
+		Reste ← Reste – 5
+	FinSi
+	Ecrire "Rendu de la monnaie :"
+	Ecrire "Billets de 10 E : ", Nb10E
+	Ecrire "Billets de 5 E : ", Nb5E
+	Ecrire "Pièces de 1 E : ", reste
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_10 JSFORM
+function constructFormulaire()
+{
+	var i;
+	// construction d'un formulaire dynamique
+	var sHTML= "";
+	// Je boucle de 1 à iNbreSaisiePrix (nombre de champs à créer)
+	for (i=1; i&lt;=$('#iNbreSaisiePrix').val(); i++)	{
+		// Au passage, pour m'éviter de saisir des nombres pour tester, 
+		// je fais en sorte que le JS m'en donne aléatoirement
+		var iRandom= Math.floor(Math.random() * 100) + 1;
+		// Je concatène ma liste de champs dans ma variable sHTML
+		sHTML+= "&lt;p>" + i + ".] &lt;input type=\"number\" name=\"iNombre" + i + "\" id=\"iNombre" + i + "\" value=\"" + iRandom + "\">&lt;/p>";
+	}
+	// Je remplis mon formulaire dans la div ID p_formulaire
+	$('#p_formulaire').html(sHTML);
+}
+
+function Exo_5_10_jsform()
+// DEBUT
+{
+	var iMonnaie, iB10, iB5;
+	iB10=0;
+	iB5=0;
+
+	//Lire iTotalPrix
+	var iTotalPrix= 0;
+
+	var i;
+	// je boucle de 1 à iNbreSaisiePrix, et pour cela j'ai le nombre dans ma saisie "nombre de prix à saisir"
+	for (i=1; i&lt;=document.getElementById("iNbreSaisiePrix").value; i++)
+	{
+		/*
+			je récupére les valeurs de tous mes champs iNombre1, iNombre2, iNombre3
+			Qui revient à faire iNombre+i à chaque tour
+			Je cumule pour en avoir la somme
+		*/
+		iTotalPrix+= parseInt(document.getElementById("iNombre"+i).value);
+	}
+	// Ecrire total prix au premier clique
+	document.getElementById("sp_total_prix").innerHTML="Le montant total s'élève à : " + iTotalPrix +  "€";
+
+
+	// calculer somme à rendre
+	iMonnaie = document.getElementById("iSomme").value - iTotalPrix;
+	
+	//Afficher le détail rendu monnaie si iSomme différent de zero
+	if (document.getElementById("iSomme").value !="0")
+	{
+		//Tant que monnaie >= 10
+		while (iMonnaie>=10)
+		{
+			iB10++;
+			iMonnaie=iMonnaie-10;
+		}
+		//Tant que monnaie >= 5
+		if (iMonnaie>=5)
+		{
+			iB5++;
+			iMonnaie=iMonnaie-5;
+		}
+		
+		//Ecrire devises rendues
+		document.getElementById("sp_resultat_code").innerHTML="La monnaie rendue est de " + (document.getElementById("iSomme").value - iTotalPrix) + "€<br>" + "et se décompose en :<br>" + iB10 + " billet(s) de 10€ <br>" + iB5 + " billet(s) de 5€ <br>" + iMonnaie + " pièce(s) de 1€"; 
+
+	}
+//Fin
+}                  		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_10 JQUERY
+function constructFormulaire()
+{
+	var i;
+	// construction d'un formulaire dynamique 
+	var sHTML= "";
+	// Je boucle de 1 à iNbreSaisiePrix (nombre de champs à créer)
+	for (i=1; i&lt;=$('#iNbreSaisiePrix').val(); i++)	{
+		// Au passage, pour m'éviter de saisir des nombres pour tester, 
+		// je fais en sorte que le JS m'en donne aléatoirement
+		var iRandom= Math.floor(Math.random() * 100) + 1;
+		// Je concatène ma liste de champs dans ma variable sHTML
+		sHTML+= "&lt;p>" + i + ".] &lt;input type=\"number\" name=\"iNombre" + i + "\" id=\"iNombre" + i + "\" value=\"" + iRandom + "\">&lt;/p>";
+	}
+	// Je remplis mon formulaire dans la div ID p_formulaire
+	$('#p_formulaire').html(sHTML);
+}
+function Exo_5_10_jquery()
+// DEBUT
+{
+	var iMonnaie, iB10, iB5;
+	iB10=0;
+	iB5=0;
+
+	//Lire iTotalPrix
+	var iTotalPrix= 0;
+
+	var i;
+	// je boucle de 1 à iNbreSaisiePrix, et pour cela j'ai le nombre dans ma saisie "nombre de prix à saisir"
+	for (i=1; i&lt;=$('#iNbreSaisiePrix').val(); i++)
+	{
+		/*
+			je récupére les valeurs de tous mes champs iNombre1, iNombre2, iNombre3
+			Qui revient à faire iNombre+i à chaque tour
+			Je cumule pour en avoir la somme
+		*/
+		iTotalPrix+= parseInt($('#iNombre'+i).val());
+	}
+	// Ecrire total prix
+	$("#sp_total_prix").html("Le montant total s'élève à : " + iTotalPrix +  "€");
+
+	// calculer somme à rendre
+	iMonnaie = $("#iSomme").val() - iTotalPrix;
+
+	//Afficher le détail rendu monnaie si iSomme différent de zero
+	if ($("#iSomme").val() !="0")
+	{
+		//Tant que monnaie >= 10
+		while (iMonnaie>=10)
+		{
+			iB10++;
+			iMonnaie=iMonnaie-10;
+		}
+		//Tant que monnaie >= 5
+		if (iMonnaie>=5)
+		{
+			iB5++;
+			iMonnaie=iMonnaie-5;
+		}
+
+		//Ecrire devises rendues
+		$("#sp_resultat_code").html("La monnaie rendue est de " + (document.getElementById("iSomme").value - iTotalPrix) + "€<br>" + "et se décompose en :<br>" + iB10 + " billet(s) de 10€ <br>" + iB5 + " billet(s) de 5€ <br>" + iMonnaie + " pièce(s) de 1€"); 
+	}
+
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_5_10 PHP
+function constructFormulaire()
+{
+	var i;
+	// construction d'un formulaire dynamique 
+	var sHTML= "";
+	// Je boucle de 1 à iNbreSaisiePrix (nombre de champs à créer)
+	for (i=1; i&lt;=$('#iNbreSaisiePrix').val(); i++)	{
+		// Au passage, pour m'éviter de saisir des nombres pour tester, 
+		// je fais en sorte que le JS m'en donne aléatoirement
+		var iRandom= Math.floor(Math.random() * 100) + 1;
+		// Je concatène ma liste de champs dans ma variable sHTML
+		sHTML+= "&lt;p>" + i + ".] &lt;input type=\"number\" name=\"iNombre" + i + "\" id=\"iNombre" + i + "\" value=\"" + iRandom + "\">&lt;/p>";
+	}
+	// Je remplis mon formulaire dans la div ID p_formulaire
+	$('#p_formulaire').html(sHTML);
+}
+
+// LE PHP COMMENCE ICI
+
+$sMessage= "";
+$sTotal= "";
+// DEBUT
+if (isset($_POST["iNbreSaisiePrix"]))
+{
+	$iB10=0;
+	$iB5=0;
+
+	//Lire iTotalPrix
+	$iTotalPrix= 0;
+
+	// je boucle de 1 à nombre_de_champs, et pour cela j'ai le nombre dans ma saisie "nombre de prix à saisir"
+	for ($i=1; $i&lt;=$iNbre=$_POST["iNbreSaisiePrix"]; $i++)
+	{
+		/*
+			je récupére les valeurs de tous mes champs iNombre1, iNombre2, iNombre3
+			Qui revient à faire iNombre+i à chaque tour
+			Je cumule pour en avoir la somme
+		*/
+		$iTotalPrix += $_POST["iNombre".$i];
+	}
+	// Ecrire total prix
+	$sTotal="Le montant total s'élève à : " . $iTotalPrix . "€";
+
+		
+	if ($_POST["iSomme"] !=0)
+	{
+		$iTotalPrix= $_POST["iTotalPrix"];
+
+		// calculer somme à rendre
+		$iMonnaie = $_POST["iSomme"] - $iTotalPrix;
+
+		//Tant que monnaie >= 10
+		while ($iMonnaie>=10)
+		{
+			$iB10++;
+			$iMonnaie=$iMonnaie-10;
+		}
+		//Tant que monnaie >= 5
+		if ($iMonnaie>=5)
+		{
+			$iB5++;
+			$iMonnaie=$iMonnaie-5;
+		}
+		
+		//Ecrire devises rendues
+		$sMessage="La monnaie rendue est de " . ($_POST["iSomme"] - $iTotalPrix) . "€<br>" . "et se décompose en :<br>" . $iB10 . " billet(s) de 10€ <br>" . $iB5 . " billet(s) de 5€ <br>" . $iMonnaie . " pièce(s) de 1€"; 
+	}
+
+//Fin
+} 
+
+require "exo_5_10.html"		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_5_10.php" method="POST" name="formPHP">
+								<p>Nombre de prix à saisir :</p>
+								<p><input type="text" name="iNbreSaisiePrix" id="iNbreSaisiePrix" min="1" max="" value="" onKeyUp="constructFormulaire()"></p>
+								<p><input type="hidden" name="iTotalPrix" id="iTotalPrix" value="<?php echo $iTotalPrix; ?>"></p>
+	
+									<div id="p_formulaire">
+									</div>
+								<p><span id="sp_total_prix"></span></p>
+								<span><?php echo $sTotal; ?></span>
+								<p>Somme donnée :</p>
+								<p><input type="number" name="iSomme" id="iSomme" min="1" max="" value="0" onfocus="this.select()"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_5_10_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_5_10_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_5_10_php(); return false;">Cliquez ici !</button>
+								</p>
+                                </form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison5.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

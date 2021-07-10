@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 5.2 b)</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_5_2_b_php
+		function Exo_5_2_b_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 321px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 5.2 b)</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui choisit un nombre au hasard compris entre 1 et 100.
+                        <br>Pour ceci, on utilise la fonction :
+                        <br><br>iNombreHasard <- random[1..100]
+                        <br><br>Demander à l'utilisateur de trouver le nombre. On fera apparaître un message : « Plus petit ! », et inversement, « Plus grand ! » jusqu’à ce que l'utilisateur ait trouvé et afficher en combien de coups. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+					<button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_5_2_b
+Variable iNum iRand iTour en numérique
+Début
+    Ecrire "Trouvez le nombre (entre 1 et 100) :"
+    Lire iNum
+    iRand ← random[1..100]
+    iTour ← 1
+
+    TantQue iNum &lt;> iRand
+        Ecrire "Perdu, ce n'est pas" + iNum +"." + <br> + "Essayez un autre nombre"
+        iTour=iTour+1
+        SI iNum&lt;iRand Alors
+            Ecrire "Essayez plus grand !"
+        FinSI
+        Sinon
+            Ecrire "Essayez plus petit !"
+        Fin SINON
+    Fin TantQue
+    Ecrire "Bravo, vous avez trouvé en " + iTour + " tentative(s)"
+Fin 				</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+(Pas de corrigé)	
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_2_b JSFORM
+var iRand, iTour;
+iRand=Math.floor(Math.random() * 100)+1;
+iTour=1;
+
+function Exo_5_2_b_jsform()
+// DEBUT
+{			
+	var iNum;
+	//Lire iNum
+	iNum=+document.getElementById("iNum").value;
+	
+	//TantQue iNum &lt;> iRand
+	if (iNum!=iRand)
+	{
+		//Ecrire "Perdu, ce n'est pas " + iNum +"." + "&lt;br>Essayez un autre nombre"
+		document.getElementById("sp_resultat_code_1").innerHTML= "Perdu, ce n'est pas " + iNum + "." + "&lt;br>Essayez un autre nombre";
+		iTour++;
+		//SI iNum&lt;iRand Alors
+		if (iNum&lt;iRand)
+		{
+			//Ecrire "Essayez plus grand !"
+			document.getElementById("sp_resultat_code_2").innerHTML="&lt;br>&lt;span style='color: red'>Essayez plus grand !&lt;/span>";
+		}
+
+		//Sinon
+		else
+		{
+			//Ecrire "Essayez plus petit !"
+			document.getElementById("sp_resultat_code_2").innerHTML="&lt;br>&lt;span style='color: red'>Essayez plus petit !&lt;/span>";
+		}	
+	// FinTantQue	
+	}
+	else
+	{
+		//Ecrire : "Bravo, vous avez trouvé en " + iTour + " tentative(s)"
+		document.getElementById("sp_resultat_code_1").innerHTML= "Bravo, vous avez trouvé !!";
+		document.getElementById("sp_resultat_code_2").innerHTML= "&lt;br>en " tentative(s). &lt;br>Une autre partie ?";
+		iRand=Math.floor(Math.random() * 100)+1;
+		iTour=1;
+	}
+//Fin
+
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_2_b JQUERY
+var iRand, iTour;
+iRand=Math.floor(Math.random() * 100)+1;
+iTour=1;
+
+function Exo_5_2_b_jquery()
+// DEBUT
+{			
+	var iNum;
+	//Lire iNum
+	iNum=+$("#iNum").val();
+	
+	//TantQue iNum &lt;> iRand
+	if (iNum!=iRand)
+	{
+		//Ecrire "Perdu, ce n'est pas " + iNum +"." + "&lt;br>Essayez un autre nombre"
+		$("#sp_resultat_code_1").html("Perdu, ce n'est pas " + iNum + "." + "&lt;br>Essayez un autre nombre");
+		iTour++;
+		//SI iNum&lt;iRand Alors
+		if (iNum&lt;iRand)
+		{
+			//Ecrire "Essayez plus grand !"
+			$("#sp_resultat_code_2").html("&lt;br>&lt;span style='color: red'>Essayez plus grand !&lt;/span>");
+		}
+
+		//Sinon
+		else
+		{
+			//Ecrire "Essayez plus petit !"
+			$("#sp_resultat_code_2").html("&lt;br>&lt;span style='color: red'>Essayez plus petit !&lt;/span>");
+		}	
+	// FinTantQue	
+	}
+	else
+	{
+		//Ecrire : "Bravo, vous avez trouvé en " + iTour + " tentative(s)"
+		$("#sp_resultat_code_1").html("Bravo, vous avez trouvé !!");
+		$("#sp_resultat_code_2").html("&lt;br>en " + iTour + " tentative(s). &lt;br>Une autre partie ?");
+		iRand=Math.floor(Math.random() * 100)+1;
+		iTour=1;
+	}
+//Fin
+}	
+							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_5_2_b PHP
+$sMessage1= "";
+$sMessage2= "";
+
+// DEBUT
+if (isset($_POST["iNum"]) and isset($_POST["iRand"]))
+{
+
+	//Lire $iNum
+	$iNum= $_POST["iNum"];
+	//Lire $iRand
+	$iRand=$_POST["iRand"];
+	//Lire $iTour
+	$iTour=$_POST["iTour"];
+
+
+	//TantQue $iNum &lt;> $iRand
+	if ($iNum!=$iRand)
+	{
+		//Ecrire "Perdu, ce n'est pas " + $iNum +"." + "&lt;br>Essayez un autre nombre"
+		$sMessage1="Perdu, ce n'est pas " . $iNum . "." . "&lt;br>Essayez un autre nombre.";
+		++$iTour;
+		//SI $iNum&lt;$iRand Alors
+		if ($iNum&lt;$iRand)
+		{
+			//Ecrire "Essayez plus grand !"
+			$sMessage2="&lt;br>&lt;span style='color: red'>Essayez plus grand !&lt;/span>";
+		}
+		//Sinon
+		else
+		{
+			//Ecrire "Essayez plus petit !"
+			$sMessage2="&lt;br>&lt;span style='color: red'>Essayez plus petit !&lt;/span>";
+		}	
+	// FinTantQue	
+	}
+	else
+	{
+		//Ecrire : "Bravo, vous avez trouvé en " + iTour + " tentative(s)"
+		$sMessage1="Bravo, vous avez trouvé !!";
+		$sMessage2="en " . $iTour . " tentative(s). &lt;br>Une autre partie ?";
+		$iRand=rand(1, 100);
+		$iTour=1;
+	//Fin Sinon    
+	}
+//Fin Si 
+}
+else
+{
+	$iRand=rand(1, 100);
+	$iTour=1;
+	$sMessage2="Chiffre aléatoire généré !";
+//Fin Sinon
+}
+
+require "exo_5_2_b.html";	</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_5_2_b.php" method="POST" name="formPHP">
+								<p>Trouvez le nombre (entre 1 et 100) :</p>
+								<p><input type="number" name="iNum" id="iNum" min="1" max="100" value="50"></p>
+								<p><input type="hidden" name="iRand" id="iRand" value="<?php echo $iRand; ?>"></p>
+								<p><input type="hidden" name="iTour" id="iTour" value="<?php echo $iTour; ?>"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_5_2_b_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_5_2_b_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_5_2_b_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code_1"></span>
+							<span id="sp_resultat_code_2"></span>
+                           	<span><?php echo $sMessage1; ?></span>
+							<span><?php echo $sMessage2; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison5.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

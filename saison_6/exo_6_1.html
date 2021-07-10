@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.1</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 156px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 6.1</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui déclare et remplisse un tableau de 7 valeurs numériques en les mettant toutes à zéro. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_6_1
+    Tableau Tab(6) en Numérique
+    Variable i en Numérique
+Début
+    Pour i ← 0 à 6
+        Tab(i) ← 0
+    	Ecrire "Valeur" & i & Tab(6)
+    i Suivant
+Fin
+					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_1
+    Tableau Truc(6) en Numérique
+    Variable i en Numérique
+Debut
+    Pour i ← 0 à 6
+        Truc(i) ← 0
+    i Suivant
+Fin                            
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_1 JSFORM
+function Exo_6_1_jsform()
+//Début
+{
+	// Effacer résultat précédent
+	document.getElementById("sp_result").innerHTML="";
+
+	var Tab, i;
+	Tab = [];
+	//Pour i ← 0 à 6
+	for (i=0;i&lt;=6;i++)
+	{
+		Tab[i] = 0;
+		//Ecrire "Tableau de" & i & Tab
+		document.getElementById("sp_result").innerHTML+="Tableau de " + (i+1) + " valeur(s) : " + Tab + "&lt;br>";
+	}
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_1 JQUERY
+function Exo_6_1_jquery()
+//Début
+{
+	// Effacer résultat précédent
+	$("#sp_result").html("");
+
+	var Tab, i;
+	Tab = [];
+	//Pour i ← 0 à 6
+	for (i=0;i&lt;=6;i++)
+	{
+		Tab[i] = 0;
+		//Ecrire "Tableau de" & i & Tab
+		$("#sp_result").append("Tableau de " + (i+1) + " valeur(s) : " + Tab + "&lt;br>");
+	}
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_1 PHP
+//Début
+// pour ne pas afficher le resultat avant d'avoir cliqué sur boutton
+if (isset($_POST["btn_php"]))
+{
+	// Pour pouvoir concaténer les messages suivants
+	$sMessage= "";
+	$Tab = [];
+	//Pour i ← 0 à 6
+	for ($i=0;$i&lt;=6;$i++)
+	{
+		$Tab[$i] = 0;
+		//Ecrire "Tableau de" & i & Tab
+		$sMessage.="Valeur " . $i . " du tableau : " . $Tab[$i] . "&lt;br>";
+	}
+//Fin
+} 
+else
+{
+	$sMessage= "";
+}
+require "exo_6_1.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_1.php" method="POST" name="formPHP">
+								<p>Cliquez pour générer le tableau :</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_1_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_1_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

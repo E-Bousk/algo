@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 7.1</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_7_1_php
+		function Exo_7_1_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 336px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 7.1</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrivez un algorithme qui permette de saisir un nombre quelconque de valeurs, et qui les range au fur et à mesure dans un tableau. Le programme, une fois la saisie terminée, doit dire si les éléments du tableau sont tous consécutifs ou non.</p>
+                    <pre>
+Par exemple, si le tableau est :
+| 12 | 13 | 14 | 15 | 16 | 17 | 18 |
+ses éléments sont tous consécutifs. En revanche, si le tableau est :
+| 9  | 10 | 11 | 15 | 16 | 17 | 18 |
+ses éléments ne sont pas tous consécutifs. &raquo;</pre>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+Variables i, iNbre, iNbreVal, aTab en Entier
+Variable bFlag en Booléen
+Début
+	Ecrire "Combien de valeurs voulez-vous saisir ?"
+	Lire iNbreVal
+	bFlag ← FAUX
+	Pour i=0 à iNbreVal
+		Ecrire "Saisir la valeur" & i+1
+		Lire iNbre
+		SI iNbre &lt;> aTab(i-1)+1 ALORS
+			bflag ← VRAI
+		FINSI
+		aTab(i) ← iNbre
+	i suivant
+	Si bFlag = VRAI ALORS
+		Ecrire "Les valeurs ne sont pas consécutives"
+	FINSI
+	Sinon
+		Ecrire "Les valeurs sont consécutives"
+	FINSINON
+Fin				</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_7_1
+	Variables Nb, i en Entier
+	Variable Flag en Booleen
+	Tableau T() en Entier
+Debut
+	Ecrire "Entrez le nombre de valeurs :"
+	Lire Nb
+	Redim T(Nb-1)
+	Pour i ← 0 à Nb - 1
+	Ecrire "Entrez le nombre n° ", i + 1
+	Lire T(i)
+	i Suivant
+	Flag ← Vrai
+	Pour i ← 1 à Nb - 1
+	Si T(i) &lt;> T(i – 1) + 1 Alors
+	Flag ← Faux
+	FinSi
+	i Suivant
+	Si Flag Alors
+	Ecrire "Les nombres sont consécutifs"
+	Sinon
+	Ecrire "Les nombres ne sont pas consécutifs"
+	FinSi
+Fin	
+
+Cette programmation est sans doute la plus spontanée, mais elle présente le défaut d'examiner la totalité du tableau, même lorsqu'on découvre dès le départ deux éléments non consécutifs. Aussi, dans le cas d'un grand tableau, est-elle dispensieuse en temps de traitement. Une autre manière de procéder serait de sortir de la boucle dès que deux éléments non consécutifs sont détectés.
+La deuxième partie de l'algorithme deviendrait donc :
+
+i ← 1
+TantQue T(i) = T(i – 1) + 1 et i < Nb - 1
+i ← i + 1
+FinTantQue
+Si T(i) = T(i – 1) + 1 Alors
+Ecrire "Les nombres sont consécutifs"
+Sinon
+Ecrire "Les nombres ne sont pas consécutifs"
+FinSi				</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_7_1 JSFORM
+function inputDynamiqueExo_7_1()
+{
+	var sHTML= "";
+	var iRandom= Math.floor(Math.random() * 99) + 1;
+	sHTML+= "&lt;p>&lt;div name=\"div_Nombre\" id=\"div_Nombre\">Saisie n° 1&lt;/div>&lt;/p>&lt;p>&lt;input type=\"number\" name=\"iNombre\" id=\"iNombre\" value=\"" + iRandom + "\">&lt;/p>";
+	$('#div_formDyn').html(sHTML);
+}
+
+var iExo71=0;
+var bFlagExo71=false;
+var aTabExo71=[];
+var sTDExo71="";
+
+function Exo_7_1_jsform()
+
+//Début
+{
+	var iNbreVal, iNombre;
+
+	// lire combien de valeur à saisir (iNbreVal)
+	iNbreVal=document.getElementById("iNbreVal").value;
+
+	// boucle de 0 à iNbreVal
+	if (iExo71&lt;iNbreVal)
+	{
+		// ecrire "saisie n° iExo71+2"
+		document.getElementById("div_Nombre").innerHTML="Saisie n° "+(iExo71+2);
+		// lire la valeur a ajouter
+		iNombre=document.getElementById("iNombre").value;
+
+		//si le tableau est vide alors
+		if (aTabExo71.length==0)
+		{
+			// alors la 1ere valeur prend la 1ere position (0)
+			aTabExo71[0]=iNombre;
+			//ecrire que la valeur iNombre est ajoutée
+			document.getElementById("sp_result").innerHTML="Valeur " + iNombre + " ajoutée&lt;br>";
+			// (inscrire dans l'imput le chiffre suivant)
+			document.getElementById("iNombre").value=+iNombre+1;
+			//concaténer la valeur pour l'afficher plus tard sous forme de tableau
+			sTDExo71+="&lt;td>" + aTabExo71[iExo71] + "&lt;/td>";
+			// i suivant
+			iExo71++;
+		}
+		// sinon
+		else
+		{
+			// ajouter la nouvelle valeur iNombre dans l'index suivant
+			aTabExo71[iExo71]=iNombre;
+			//ecrire que la valeur iNombre est ajoutée
+			document.getElementById("sp_result").innerHTML+="Valeur " + iNombre + " ajoutée&lt;br>";
+			// (inscrire dans l'imput le chiffre suivant)
+			document.getElementById("iNombre").value=+iNombre+1;
+			//concaténer la valeur pour l'afficher plus tard sous forme de tableau
+			sTDExo71+="&lt;td>" + aTabExo71[iExo71] + "&lt;/td>";
+			// si la valeur dans l'index est différente de la valeur+1 de l'index précédent alors
+			if (aTabExo71[iExo71]!=+aTabExo71[iExo71-1]+1)
+			{
+				// mettre le repère à VRAI
+				bFlagExo71=true;
+			}
+			// i suivant
+			iExo71++;
+		}	
+	}
+	// si i égale iNbreVal (on a enter toutes les valeurs demandées) alors
+	if (iExo71==iNbreVal)
+	{
+		// si le repère est VRAI
+		if (bFlagExo71===true)
+		{
+			// (effacer le nombre dans l'imput)
+			document.getElementById("iNombre").value="";
+			// (effacer "saisie n°")
+			document.getElementById("div_Nombre").innerHTML="";
+			// Ecrire sous forme de tableau les différentes valeurs entrée
+			document.getElementById("sp_result").innerHTML="&lt;table>&lt;tr>" + sTDExo71 + "&lt;/tr>&lt;/table>&lt;br>";
+			// Ecrire "Les valeurs ne sont pas consécutives"
+			document.getElementById("sp_result").innerHTML+="Les valeurs ne sont pas consécutives";
+		}
+		// Sinon (repère FAUX)
+		else
+		{
+			// (effacer le nombre dans l'imput)
+			document.getElementById("iNombre").value="";
+			// (effacer "saisie n°")
+			document.getElementById("div_Nombre").innerHTML="";
+			// Ecrire sous forme de tableau les différentes valeurs entrée
+			document.getElementById("sp_result").innerHTML="&lt;table>&lt;tr>" + sTDExo71 + "&lt;/tr>&lt;/table>&lt;br>";
+			// Ecrire "Les valeurs sont consécutives"
+			document.getElementById("sp_result").innerHTML+="Les valeurs sont consécutives";
+		}
+	}
+//Fin
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_7_1 JQUERY
+function inputDynamiqueExo_7_1()
+{
+	var sHTML= "";
+	var iRandom= Math.floor(Math.random() * 99) + 1;
+	sHTML+= "&lt;p>&lt;div name=\"div_Nombre\" id=\"div_Nombre\">Saisie n° 1&lt;/div>&lt;/p>&lt;p>&lt;input type=\"number\" name=\"iNombre\" id=\"iNombre\" value=\"" + iRandom + "\">&lt;/p>";
+	$('#div_formDyn').html(sHTML);
+}
+
+var iExo71=0;
+var bFlagExo71=false;
+var aTabExo71=[];
+var sTDExo71="";
+
+function Exo_7_1_jquery()
+
+//Début
+{
+	var iNbreVal, iNombre;
+	
+	iNbreVal=$("#iNbreVal").val();
+	if (iExo71&lt;iNbreVal)
+	{
+		document.getElementById("div_Nombre").innerHTML="Saisie n° "+(iExo71+2);
+		iNombre=$("#iNombre").val();
+
+		if (aTabExo71.length==0)
+		{
+			// alors la 1ere valeur prend la 1ere position (0)
+			aTabExo71[0]=iNombre;
+			$("#sp_result").html("Valeur " + iNombre + " ajoutée&lt;br>");
+			$("#iNombre").val(+iNombre+1);
+			sTDExo71+="&lt;td>" + aTabExo71[iExo71] + "&lt;/td>";
+			iExo71++;
+		}
+
+		else
+		{
+			aTabExo71[iExo71]=iNombre;
+			$("#sp_result").append("Valeur " + iNombre + " ajoutée&lt;br>");
+			$("#iNombre").val(+iNombre+1);
+			sTDExo71+="&lt;td>" + aTabExo71[iExo71] + "&lt;/td>";
+			// iParseInt=parseInt(aTabExo71[i-1]);
+
+			// if (aTabExo71[i]!=parseInt(iParseInt+1))
+			if (aTabExo71[iExo71]!=+aTabExo71[iExo71-1]+1)
+			{
+				bFlagExo71=true;
+			}
+			
+			iExo71++;
+		}	
+	}
+
+	if (iExo71==iNbreVal)
+	{
+		if (bFlagExo71===true)
+		{
+			$("#iNombre").val("");
+			$("#div_Nombre").html("");
+			$("#sp_result").html("&lt;table>&lt;tr>" + sTDExo71 + "&lt;/tr>&lt;/table>&lt;br>");
+			$("#sp_result").append("Les valeurs ne sont pas consécutives");
+		}
+		else
+		{
+			$("#iNombre").val("");
+			$("#div_Nombre").html("");
+			$("#sp_result").html("&lt;table>&lt;tr>" + sTDExo71 + "&lt;/tr>&lt;/table>&lt;br>");
+			$("#sp_result").append("Les valeurs sont consécutives");
+		}
+	}
+//Fin
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_7_1 PHP
+$sMessage= "";
+
+//Début
+if (isset($_POST["iNbreVal"]) and isset($_POST["iExo71"]) and isset($_POST["bFlagExo71"]))
+{
+	$iNbreVal=$_POST["iNbreVal"];
+	$iExo71=$_POST["iExo71"];
+	$TabInput=$_POST["TabInput"];
+	$sTDExo71=$_POST["sTDExo71"];
+	$bFlagExo71=$_POST["bFlagExo71"];
+	$aTabExo71=[];
+	
+	if ($TabInput !="")
+		{
+			//pour (re)créer tableau
+			$aTabExo71=explode(",",$TabInput);
+		}
+	
+	if ($iExo71&lt;$iNbreVal)
+	{
+		$iNombre=$_POST["iNombre"];
+		$div_Nombre="Saisie n° ".($iExo71+2);
+		$div_formDyn="&lt;p>&lt;div name=\"div_Nombre\" id=\"div_Nombre\">".$div_Nombre."&lt;/div>&lt;/p>&lt;p>&lt;input type=\"number\" name=\"iNombre\" id=\"iNombre\" value=\"".($iNombre+1)."\">&lt;/p>";
+		
+		if (count($aTabExo71)===0)
+		{	
+			// alors la 1ere valeur prend la 1ere position (0)
+			$aTabExo71[0]=$iNombre;
+			$sMessage.="Valeur " . $iNombre . " ajoutée&lt;br>";
+			$sTDExo71.="&lt;td>" . $aTabExo71[$iExo71] . "&lt;/td>";
+			$iExo71++;
+		}
+		
+		else
+		{	
+			$aTabExo71[$iExo71]=$iNombre;
+			$sMessage.="Valeur " . $iNombre . " ajoutée&lt;br>";
+			$sTDExo71.="&lt;td>" . $aTabExo71[$iExo71] . "&lt;/td>";
+			
+			if ($aTabExo71[$iExo71]!=($aTabExo71[$iExo71-1])+1)
+			{
+				$bFlagExo71=1;
+			}
+			$iExo71++;
+		}
+	}
+
+	$TabInput=implode(",",$aTabExo71);
+
+	if ($iExo71==$iNbreVal)
+	{	
+		$div_formDyn="";
+			
+		if ($bFlagExo71==1)
+		{ 	
+			$sMessage="&lt;table>&lt;tr>" . $sTDExo71 . "&lt;/tr>&lt;/table>&lt;br>";
+			$sMessage.="Les valeurs ne sont pas consécutives";
+		}
+		else
+		{	
+			$sMessage="&lt;table>&lt;tr>" . $sTDExo71 . "&lt;/tr>&lt;/table>&lt;br>";
+			$sMessage.="Les valeurs sont consécutives";
+		}
+	}
+}
+
+else 
+{
+$iExo71=0;
+$sTDExo71="";
+$aTabExo71=[];
+$bFlagExo71=0;
+$TabInput="";
+$iNbreVal="";
+$div_formDyn="";
+}
+
+require "exo_7_1.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_7_1.php" method="POST" name="formPHP">
+								<p><input type="hidden" name="bFlagExo71" id="bFlagExo71" min="" max="" value="<?php echo $bFlagExo71; ?>"></p>
+								<p>Combien de valeurs voulez-vous saisir ?</p>
+								<p><input type="text" name="iNbreVal" id="iNbreVal" min="" max="" value="<?php echo $iNbreVal; ?>" onKeyUp="inputDynamiqueExo_7_1()"></p>
+								<p><input type="hidden" name="iExo71" id="iExo71" min="" max="" value="<?php echo $iExo71; ?>"></p>
+								<div class="div_formDyn" id="div_formDyn"><?php echo $div_formDyn; ?></div>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_7_1_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_7_1_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_7_1_php(); return false;">Cliquez ici !</button>
+								</p>
+								<p><input type="hidden" name="TabInput" id="TabInput" min="" max="" value="<?php echo $TabInput; ?>"></p>
+								<p><input type="hidden" name="sTDExo71" id="sTDExo71" min="" max="" value="<?php echo $sTDExo71; ?>"></p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span id="sp_result_php"><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison7.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

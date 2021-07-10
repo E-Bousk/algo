@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.5</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_5_php
+		function Exo_4_5_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 351px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 4.5</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Les habitants de Toon’sCity paient l’impôt selon les règles suivantes :
+					<br><br>• les hommes de plus de 20 ans paient l’impôt
+                    <br>• les femmes paient l’impôt si elles ont entre 18 et 35 ans
+                    <br>• les autres ne paient pas d’impôt
+                    <br><br>Le programme demandera donc l’âge et le sexe du Toon, et se prononcera donc ensuite sur le fait que l’habitant est imposable ou non. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_5
+    Variable iNombre, bH
+DEBUT
+	Ecrire "Entrez votre age :"
+	Lire iNombre
+
+	Lire radio H/F
+
+	Si radio Homme sélectionné
+	bH = true
+
+	Si bH = true et iNombre > 20
+	Ecrire "Vous êtes imposable"
+
+
+	Si bH != true et iNombre >=18 et <=35
+	Ecrire "Vous êtes imposable"
+
+	SINON
+	Ecrire "Vous n'êtes pas imposable"
+
+FIN					</textarea>
+												
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_5
+	Variable sSexe en alphanumerique
+	Variable iAge en Numérique
+	Variables bH20, bF18_35 en Booléen
+Début
+	Ecrire "Entrez le sexe (M/F) : "
+	Lire sSexe
+	Ecrire "Entrez l’âge: "
+	Lire iAge
+	bH20 ← sSexe == "M" ET iAge > 20
+	bF18_35 ← sSexe == "F" ET (iAge > 18 ET iAge < 35)
+	Si bH20 ou bF18_35 Alors
+		Ecrire "Imposable"
+	Sinon
+		Ecrire "Non Imposable"
+	FinSi
+Fin				</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					
+					<div id="div_jsform">
+						<!-- <textarea class="txt_jsform tarea_green"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_5 JSFORM
+function Exo_4_5_jsform() 
+// DEBUT
+{ 
+	var iNombre;
+	var bH= false;
+
+	//Ecrire "Entrez votre age :"
+	//Lire iNombre
+	iNombre=document.getElementById("iNombre").value;
+
+	//Si radio Homme sélectionné
+	if (document.formPHP.bSexe[0].checked == true)   {
+		bH= true;
+	}  
+
+	//Si "Homme" séléctionné et age > 20
+	//Ecrire "Vous êtes imposable"
+	if ((bH) && (iNombre>20)){
+		document.getElementById("sp_resultat_code").innerHTML="Vous êtes imposable";
+	}
+
+	//Si "Femme" séléctionné et age >=18 et &lt;=35
+	//Ecrire "Vous êtes imposable"
+	else if ((!bH) && (iNombre) >=18 && (iNombre) &lt;=35){
+		document.getElementById("sp_resultat_code").innerHTML="Vous êtes imposable";
+	}
+
+	//SINON
+	//Ecrire "Vous n'êtes pas imposable"
+	else {
+		document.getElementById("sp_resultat_code").innerHTML="Vous n'êtes pas imposable";
+	}
+//FIN
+} 
+                        </code></pre>
+                        </section>	
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_jquery">
+						<!-- <textarea class="txt_jquery tarea_pink"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_5 JQUERY
+function Exo_4_5_jquery() 
+// DEBUT
+{ 
+	var iNombre;
+	var bH= false;
+
+	//Ecrire "Entrez votre age :"
+	//Lire iNombre
+	iNombre=$("#iNombre").val();
+
+	//Si radio Homme sélectionné
+	if ( $("#bSexeH:checked").val() == "H"){
+		bH= true;
+	}  
+	
+	//Si "Homme" séléctionné et age > 20
+	//Ecrire "Vous êtes imposable"
+	if ((bH) && (iNombre>20)){
+		$("#sp_resultat_code").html("Vous êtes imposable");
+	}
+
+	//Si "Femme" séléctionné et age >=18 et &lt;=35
+	//Ecrire "Vous êtes imposable"
+	else if ((!bH) && (iNombre) >=18 && (iNombre) &lt;=35){
+		$("#sp_resultat_code").html("Vous êtes imposable");
+	}
+
+	//SINON
+	//Ecrire "Vous n'êtes pas imposable"
+	else {
+		$("#sp_resultat_code").html("Vous n'êtes pas imposable");
+	}
+//FIN
+}
+                       </code></pre>
+                        </section>	
+                        <!-- </textarea> -->
+					</div>
+
+					<div id="div_php">
+						<!-- <textarea class="txt_php tarea_black"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_5 PHP
+$sMessage= "";
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iNombre"]))
+{
+	
+	//Ecrire "Entrez votre age :"
+	//Lire iNombre
+	$iNombre= intval($_POST["iNombre"]) ;
+	$Genre=$_POST["bSexe"];
+	
+	//Si "Homme" séléctionné et age > 20
+	if ($Genre==="H" && $iNombre>20)
+	{
+		//Ecrire "Vous êtes imposable"
+		$sMessage= "Vous êtes imposable";
+	}
+
+	//Si "Femme" séléctionné et age >=18 et &lt;=35
+	if ($Genre==="F" && $iNombre >=18 && $iNombre &lt;=35)
+	{
+		//Ecrire "Vous êtes imposable"
+		$sMessage= "Vous êtes imposable";
+	}
+
+	//SINON
+	else
+	{
+		//Ecrire "Vous n'êtes pas imposable"
+		$sMessage= "Vous n'êtes pas imposable";
+		
+	// FINSI
+	}
+//FIN	
+}
+
+require "exo_4_5.html";		</code></pre>
+                        </section>
+                        <!-- </textarea> -->
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_5.php" method="POST" name="formPHP">
+								<p>Entrez votre age :</p>
+								<p><input type="number" name="iNombre" id="iNombre"  min="0" max="99" value="18"></p>
+								<p><input type="radio" name="bSexe" id="bSexeH" value="H">Homme</p>
+								<p><input type="radio" name="bSexe" id="bSexeF" value="F" checked>Femme</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_5_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_5_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_5_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

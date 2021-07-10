@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 7.7</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 486px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 7.7</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Écrivez un algorithme qui fusionne deux tableaux (déjà existants) dans un troisième, qui devra être trié.
+                    <br>Attention ! On présume que les deux tableaux de départ sont préalablement triés : il est donc irrationnel de faire une simple concaténation des deux tableaux de départ, puis d'opérer un tri : comme quand on se trouve face à deux tas de papiers déjà triés et qu'on veut les réunir, il existe une méthode bien plus économique (et donc, bien plus rationnelle...) &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_7_7
+Variables TabA, TabB et TabC en alphanumerique
+Variables i, j, iMax en entier
+Variables bFinTabA, bFinTabB en booléen
+Début
+	i ← 0
+	j ← 0
+	iMax ← TabA.length + TabB.length
+	bFinTabA ← FAUX
+	bFinTabB ← FAUX
+	TANTQUE TabC.length&lt;iMax
+		TANTQUE ((TabA[i] &lt;= TabB[j] ET FinTabA = FAUX) OU (TabC.length&lt;iMax ET bFinTabB = VRAI))
+			TabC.push(TabA[i])
+			i++
+			SI i = aTabA.length ALORS
+				i ← aTabA.length-1
+				bFinTabA ← VRAI
+			FINSI
+		Fin TANTQUE
+		TANTQUE ((TabB[j] &lt;= TabA[i] ET FinTabB = FAUX) OU (TabC.length&lt;iMax ET bFinTabA = VRAI))
+		TabC.push(TabB[j])
+		i++
+		SI i = aTabB.length ALORS
+			i ← aTabB.length-1
+			bFinTabB ← VRAI
+		FINSI
+	Fin TANTQUE
+	Fin TANTQUE
+	Ecrire le nouveau tableau fusionné
+FIN					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_7_7
+Début
+	(...)
+	Afini ← faux
+	Bfini ← faux
+	ia ← 0
+	ib ← 0
+	ic ← -1
+	TantQue Non(Afini) ou Non(Bfini)
+		ic ← ic + 1
+		Redim C(ic)
+		Si Afini ou A(ia)>B(ib) Alors
+			C(ic) ← B(ib)
+			ib ← ib + 1
+			Bfini ← ib > n
+		Sinon
+			C(ic) ← A(ia)
+			ia ← ia + 1
+			Afini ← ia > m
+		FinSi
+	FinTantQue
+Fin
+
+Les deux tableaux de départ, A(m) et B(n), sont déjà triés : pas question donc de les empiler simplement pour se relancer dans un (long) tri. On prend simplement les deux tableaux, et on avance dans l'un puis dans l'autre selon celui des deux éléments auquel on est parvenu est le plus petit (il suffit de s'imaginer devant deux tas de papiers triés par date, et de vouloir constituer un tas unique, pour comprendre ce qu'on va faire). Le truc est qu'on ne sait pas par avance où on va en être à un moment donné dans un tableau et dans l'autre : il nous faut donc deux compteurs différents pour noter notre position dans chacun des deux tableaux. On appelle C le tableau de destination, et ic la variable qui indique où on en est dans celui-ci.				
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_7 JSFORM
+function Exo_7_7_jsform()
+//Début
+{	
+	var aTabA=[1,18,25,26,27,263,299,401];
+	var aTabB=[0,9,22,46,222,500];
+	var aTabC=[];
+	var iTailleTabC=aTabA.length+aTabB.length;
+	var i=0;
+	var j=0;
+	var bFinTabA=false;
+	var bFinTabB=false;
+
+	//TANT QUE la taille du nouveau tableau est inférieur à la somme des deux tableaux à fusionner
+	//(c'est que le tableau C n'est pas entièrement rempli)
+	while (aTabC.length<iTailleTabC)
+	{	
+
+		// TANT QUE la valeur i du tableau A est plus petite que celle de j du tableau B
+		// ET que le tableau A n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau B est fini
+		while ((aTabA[i] <= aTabB[j] && bFinTabA===false) || (aTabC.length<iTailleTabC && bFinTabB===true))
+		{	
+			//inserer la  valeur i du tableau A dans tableau C
+			aTabC.push(aTabA[i]);
+			//i suivant
+			i++;
+
+			// Si i égal taille du tableau
+			if (i===aTabA.length)
+			{
+				// i devient dernier index du tableau
+				i=aTabA.length-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				bFinTabA = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+
+		// TANT QUE la valeur j du tableau b est plus petite que celle de i du tableau A
+		// ET que le tableau B n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau A est fini
+		while ((aTabB[j] <= aTabA[i]  && bFinTabB===false) || (aTabC.length<iTailleTabC && bFinTabA===true))
+		{	
+			//inserer la  valeur j du tableau B dans tableau C
+			aTabC.push(aTabB[j]);
+			//j suivant
+			j++;
+
+			// Si j égal taille du tableau
+			if (j===aTabB.length)
+			{
+				// j devient dernier index du tableau
+				j=aTabB.length-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				bFinTabB = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+	//FIN TANTQUE
+	}
+
+	//Affichage des tableaux à fusionner
+	document.getElementById("sp_result").innerHTML="Tableau 1 : <br>"+ aTabA.join(" | ")+"<br><br>";
+	document.getElementById("sp_result").innerHTML+="Tableau 2 : <br>"+ aTabB.join(" | ")+"<br><br>";
+	//Affichage du nouveau tableau fusionné
+	document.getElementById("sp_result").innerHTML+="Tableau fusionné : <br>"+ aTabC.join(" | ");
+//FIN
+} 	                 		</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_7 JQUERY
+function Exo_7_7_jquery()
+//Début
+{	
+	var aTabA=[1,18,25,26,27,88,119,263];
+	var aTabB=[0,9,22,46,47,88,131,201,222];
+	var aTabC=[];
+	var iTailleTabC=aTabA.length+aTabB.length;
+	var i=0;
+	var j=0;
+	var bFinTabA=false;
+	var bFinTabB=false;
+
+	//TANT QUE la taille du nouveau tableau est inférieur à la somme des deux tableaux à fusionner
+	//(c'est que le tableau C n'est pas entièrement rempli)
+	while (aTabC.length<iTailleTabC)
+	{	
+
+		// TANT QUE la valeur i du tableau A est plus petite que celle de j du tableau B
+		// ET que le tableau A n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau B est fini
+		while ((aTabA[i] <= aTabB[j] && bFinTabA===false) || (aTabC.length<iTailleTabC && bFinTabB===true))
+		{	
+			//inserer la  valeur i du tableau A dans tableau C
+			aTabC.push(aTabA[i]);
+			//i suivant
+			i++;
+
+			// Si i égal taille du tableau
+			if (i===aTabA.length)
+			{
+				// i devient dernier index du tableau
+				i=aTabA.length-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				bFinTabA = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+
+		// TANT QUE la valeur j du tableau b est plus petite que celle de i du tableau A
+		// ET que le tableau B n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau A est fini
+		while ((aTabB[j] <= aTabA[i]  && bFinTabB===false) || (aTabC.length<iTailleTabC && bFinTabA===true))
+		{	
+			//inserer la  valeur j du tableau B dans tableau C
+			aTabC.push(aTabB[j]);
+			//j suivant
+			j++;
+
+			// Si j égal taille du tableau
+			if (j===aTabB.length)
+			{
+				// j devient dernier index du tableau
+				j=aTabB.length-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				bFinTabB = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+	//FIN TANTQUE
+	}
+
+	//Affichage des tableaux à fusionner
+	$("#sp_result").html("Tableau 1 : <br>"+ aTabA.join(" | ")+"<br><br>");
+	$("#sp_result").append("Tableau 2 : <br>"+ aTabB.join(" | ")+"<br><br>");
+	//Affichage du nouveau tableau fusionné
+	$("#sp_result").append("Tableau fusionné : <br>"+ aTabC.join(" | "));
+
+//FIN
+} 							</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_7_7 PHP
+if (isset($_POST["btn_php"]))
+{
+
+	$aTabA=[1,18,25,26,27,263,299,401];
+	$aTabB=[0,9,22,46,222,500];
+	$aTabC=[];
+	$iTailleTabC=count($aTabA)+count($aTabB);
+	$i=0;
+	$j=0;
+	$bFinTabA=false;
+	$bFinTabB=false;
+	//TANT QUE la taille du nouveau tableau est inférieur à la somme des deux tableaux à fusionner
+	//(c'est que le tableau C n'est pas entièrement rempli)
+	while (count($aTabC)<$iTailleTabC)
+	{	
+
+		// TANT QUE la valeur i du tableau A est plus petite que celle de j du tableau B
+		// ET que le tableau A n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau B est fini
+		while (($aTabA[$i] <= $aTabB[$j] && $bFinTabA===false) || (count($aTabC)<$iTailleTabC && $bFinTabB===true))
+		{	
+			//inserer la  valeur i du tableau A dans tableau C
+			array_push($aTabC,$aTabA[$i]);
+			//i suivant
+			$i++;
+
+			// Si i égal taille du tableau
+			if ($i===count($aTabA))
+			{
+				// i devient dernier index du tableau
+				$i=count($aTabA)-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				$bFinTabA = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+
+		// TANT QUE la valeur j du tableau b est plus petite que celle de i du tableau A
+		// ET que le tableau B n'est pas fini
+		// OU
+		// TANT QUE le tableau C n'est pas entièrement rempli
+		// ET que le tableau A est fini
+		while (($aTabB[$j] <= $aTabA[$i]  && $bFinTabB===false) || (count($aTabC)<$iTailleTabC && $bFinTabA===true))
+		{	
+			//inserer la  valeur j du tableau B dans tableau C
+			// $aTabC.push($aTabB[$j]);
+			array_push($aTabC,$aTabB[$j]);
+			//j suivant
+			$j++;
+
+			// Si j égal taille du tableau
+			if ($j===count($aTabB))
+			{
+				// j devient dernier index du tableau
+				$j=count($aTabB)-1;
+				// booléen VRAI pour indiquer qu'il n'y a plus de valeur à récuperer
+				$bFinTabB = true;
+			//FINSI
+			}
+		//FIN TANTQUE
+		}
+	//FIN TANTQUE
+	}
+
+	//Affichage des tableaux à fusionner
+	$sMessage="Tableau 1 : <br>". implode(" | ", $aTabA)."<br><br>";
+	$sMessage.="Tableau 2 : <br>". implode(" | ", $aTabB)."<br><br>";
+	//Affichage du nouveau tableau fusionné
+	$sMessage.="Tableau fusionné : <br>". implode(" | ", $aTabC);
+//FIN
+}
+
+else
+{
+	$sMessage= "";
+}
+require "exo_7_7.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_7_7.php" method="POST" name="formPHP">
+								<p>Cliquez pour lancer la fusion</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_7_7_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_7_7_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison7.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

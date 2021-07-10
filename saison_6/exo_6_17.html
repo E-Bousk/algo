@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.17</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_6_17_php
+		function Exo_6_17_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 489px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 6.17</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrire un algorithme permettant de saisir 100 valeurs et qui les range au fur et à mesure dans un tableau. Cela s'appelle le tri à la volée (qui est une forme de tri par insertion) &raquo;</p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_6_17
+Variables aTab(99), iNbre, bFlag, iPosition, i, j
+Début
+Pour i ← 0 à 99
+	Ecrire "Entrez une valeur"
+	Lire iNbre
+	Si Tab vide
+		tab[0] ← iNbre
+	FINSI
+	SINON
+		bFlag ← FAUX
+		TANT QUE bFlag=FAUX & i boucle&lt; taille de aTab
+			if aTab(i boucle)>iNbre ALORS
+				iPosition ← i boucle
+				bFlag = VRAI
+			FINSI
+			i boucle ++
+		FIN TANT QUE
+		SI iFlag = FAUX
+			aTab(taille du tableau) ← iNbre
+		FINSI
+		SINON
+			POUR j=aTab(taille du tableau -1) JUSQU'A j>= iPosition
+				aTab(j+1) ← aTab(j)
+			FIN POUR
+			aTab(position) ← iNbre
+		FINSINON
+	FINSINON
+FINPOUR
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_17
+
+Debut
+Fin	                </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_17 JSFORM
+var aTab = [];
+var i=0;
+	function Exo_6_17_jsform()
+//Début
+{
+	var iNbre, bFlag, iPosition, j;
+			
+	//POUR i ← 0 à 99
+	if (i&lt;=99)		
+	{
+		//Lire la valeur à inserer
+		iNbre = +document.getElementById("iNbre").value;
+		// SI le tableau est vide...
+		if (aTab.length==0)
+		{
+			// alors la 1ere valeur prend la 1ere position (0)
+			aTab[0]=iNbre;
+		}
+		//SINON, on crée un booléen pour marquer la position où il faut ranger la valeur
+		else 
+		{	//boucle = 0
+			j=0;
+			// booléen pour marquer position = FAUX
+			bFlag=0;
+
+			//TANT QU'on ne trouve pas la position (booléen FAUX) et j &lt; nombre de position dans tableau
+			while (bFlag==0 && j&lt;aTab.length)
+			{
+				// (on teste) SI la valeur dans la position (j) est supérieure à la valeur qu'il faut ajouter
+				if (aTab[j]>iNbre)
+				{
+					//ALORS on marque la position
+					iPosition=j;
+					// et on passe le booléen à VRAI
+					bFlag=1;
+				//FIN SI
+				}
+			// incrémentation de la boucle
+			j++;
+			//FIN TANTQUE	
+			}
+
+			//SI la position n'est pas trouvée, ALORS
+			if (bFlag == 0)
+			{
+				//On place la valeur dans la dernière position du tableau
+				aTab[aTab.length]=iNbre;
+			}
+			//SINON
+			else
+			{
+				//On boucle de la fin du tableau jusqu'à la position trouvée
+				for (j=(aTab.length-1); j>=iPosition; j--)
+				{
+					aTab[j+1]=aTab[j];
+				}
+				//On range la valeur entrée dans la position trouvée
+				aTab[iPosition]=iNbre;
+			//FINSI	
+			}
+		//FINSI	
+		}
+		i++;
+	//FINSI	
+	}
+	document.getElementById("sp_result").innerHTML=aTab;
+//Fin	
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_17 JQUERY
+var aTab = [];
+var i=0;
+	function Exo_6_17_jquery()
+//Début
+{
+	var iNbre, bFlag, iPosition, j;
+			
+	//POUR i ← 0 à 99
+	if (i&lt;=99)		
+	{
+		//Lire la valeur à inserer
+		iNbre = +$("#iNbre").val();
+		// SI le tableau est vide...
+		if (aTab.length==0)
+		{
+			// alors la 1ere valeur prend la 1ere position (0)
+			aTab[0]=iNbre;
+		}
+		//SINON, on crée un booléen pour marquer la position où il faut ranger la valeur
+		else 
+		{	//boucle = 0
+			j=0;
+			// booléen pour marquer position = FAUX
+			bFlag=0;
+
+			//TANT QU'on ne trouve pas la position (booléen FAUX) et j &lt; nombre de position dans tableau
+			while (bFlag==0 && j&lt;aTab.length)
+			{
+				// (on teste) SI la valeur dans la position (j) est supérieure à la valeur qu'il faut ajouter
+				if (aTab[j]>iNbre)
+				{
+					//ALORS on marque la position
+					iPosition=j;
+					// et on passe le booléen à VRAI
+					bFlag=1;
+				//FIN SI
+				}
+			// incrémentation de la boucle
+			j++;
+			//FIN TANTQUE	
+			}
+
+			//SI la position n'est pas trouvée, ALORS
+			if (bFlag == 0)
+			{
+				//On place la valeur dans la dernière position du tableau
+				aTab[aTab.length]=iNbre;
+			}
+			//SINON
+			else
+			{
+				//On boucle de la fin du tableau jusqu'à la position trouvée
+				for (j=(aTab.length-1); j>=iPosition; j--)
+				{
+					aTab[j+1]=aTab[j];
+				}
+				//On range la valeur entrée dans la position trouvée
+				aTab[iPosition]=iNbre;
+			//FINSI	
+			}
+		//FINSI	
+		}
+		i++;
+	//FINSI	
+	}
+	$("#sp_result").html(aTab+"");
+//Fin	
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_17 PHP
+$sMessage= "";
+
+//Début
+if (isset($_POST["iNbre"]) and isset($_POST["iChaineTab"]) and isset($_POST["i"]) )
+{
+
+	$aTab=[];
+	//Lire $i
+	$i=$_POST["i"];
+
+	//Lire $TabInput (Récuperer les valeurs du tableau depuis HTML)
+	$iChaineTab= $_POST["iChaineTab"];
+	if ($iChaineTab !="")
+	{
+		//pour (re)créer tableau
+		$aTab=explode(",",$iChaineTab);
+	}
+
+	//POUR i ← 0 à 99
+	if ($i&lt;=9)		
+	{
+		///Lire la valeur à inserer
+		$iNbre=$_POST["iNbre"];
+		// SI le tableau est vide...
+		if (count($aTab)==0)
+		{
+			// alors la 1ere valeur prend la 1ere position (0)
+			$aTab[0]=$iNbre;
+		}
+		//SINON, on crée un booléen pour chercher et marquer la position où il faut ranger la valeur
+		else
+		{
+			//boucle = 0
+			$j=0;
+			// booléen pour marquer position = FAUX
+			$bFlag=0;
+
+			//TANT QU'on ne trouve pas la position (booléen FAUX) et j &lt; nombre de position dans tableau
+			while ($bFlag===0 && $j&lt;count($aTab))
+			{
+				// (on teste) SI la valeur dans la position (i) est supérieure à la valeur qu'il faut ajouter
+				if ($aTab[$j]>$iNbre)
+				{
+					//ALORS on marque la position
+					$bFlag=1;
+					$iPosition=$j;
+				//FIN SI
+				}
+			// On incrémente la boucle
+			$j++;
+			//FIN de TANTQUE
+		}
+			// SI on ne trouve pas la position
+			if ($bFlag===0)
+			{
+				//On place la valeur dans la dernière position du tableau
+				$aTab[count($aTab)]=$iNbre;
+			}
+			//SINON
+			else
+			{
+				//On boucle de la fin du tableau jusqu'a la position trouvée
+				for ($k=count($aTab)-1; $k>=$iPosition; $k--)
+				{
+					$aTab[$k+1]=$aTab[$k];
+				}
+				//Puis on place la valeur ajoutée dans la position trouvée
+				$aTab[$iPosition]=$iNbre;
+			//FinSI
+			}
+		//Finsi
+		}
+		$i++;
+	//FinSI
+	}
+	//Éclater les valeurs en lignes en les séparants par un « : » pour envoyer dans HTML
+	$iChaineTab=implode(",", $aTab);
+
+	$sMessage="Les valeurs sont :&lt;br>";
+	for ($i=0; $i&lt;=count($aTab)-1; $i++)
+	{
+		$sMessage.="Position n° " . ($i+1) . " : " . $aTab[$i] . "&lt;br>";
+	}
+//FINSI
+}	
+
+else
+{
+	$sMessage="";
+	$iChaineTab="";
+	$i=0;
+}
+
+require "exo_6_17.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_17.php" method="POST" name="formPHP">
+								<p>Entrez un nombre :</p>
+								<p><input type="number" name="iNbre" id="iNbre"></p>
+                                <p><input type="hidden" name="i" id="i" value="<?php echo $i; ?>"></p>
+                                <p><input type="hidden" name="iChaineTab" id="iChaineTab" value="<?php echo $iChaineTab; ?>"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_17_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_17_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_6_17_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

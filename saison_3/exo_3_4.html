@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 3.4</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+
+
+	<script type="text/javascript">
+		// ALGORITHME Exo_3_4_php
+		function Exo_3_4_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	
+	<style type="text/css">
+		.txt_pseudocode {
+			width: 100%;
+			height: 246px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 3.4</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>					<h3>Enoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui demande un nombre à l’utilisateur, et l’informe ensuite si ce nombre est positif ou négatif (on inclut cette fois le traitement du cas où le nombre vaut zéro). &raquo;</p>
+				</div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_3_4
+    Variables iNombre en entier
+    Variables bZero, bNegatif en booléen
+Début
+    Ecrire "Entrez un nombre"
+    Lire iNombre
+    bZero=iNombre==0
+    bNegatif=iNombre&lt;0
+    SI bZero
+        Ecrire "ce nombre vaut zéro"
+    SINON SI bNegatif
+        Ecrire "ce nombre est négatif"
+    SINON
+        Ecrire "ce nombre est positif"
+    FINSI
+Fin                 </textarea>
+                            
+                    <textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_3_4
+    Variable iNb en Numerique
+Début
+    Ecrire "Entrez un nombre : "
+    Lire iNb
+    Si iNb < 0 Alors
+        Ecrire "Ce nombre est négatif"
+    SinonSi iNb == 0 Alors
+        Ecrire "Ce nombre est nul"
+    Sinon
+        Ecrire "Ce nombre est positif"
+    Finsi
+Fin                 </textarea>
+                </div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsprompt">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_4 JSPROMPT
+function Exo_3_4()
+// DEBUT
+{
+    var iNombre;
+    var bZero, bNegatif;
+
+    //Ecrire "entrez un nombre"
+    //Lire iNombre
+    iNombre=prompt("Veuillez entrer un nombre");
+
+    bZero=iNombre==0;
+    bNegatif=iNombre&lt;0;
+
+    //SI iNombre =0
+    if (bZero)
+    {
+        //Ecrire "Ce nombre vaut zéro"
+        alert("Ce nombre vaut zéro");
+    }
+    //SINON SI iNombre &lt;0
+    else if (bNegatif)
+    {
+        //Ecrire Ce nombre est négatif"
+        alert("Ce nombre est negatif");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ce nombre est positif"
+        alert("Ce nombre est positif");
+    }
+    //FINSI		
+//FIN	
+}                           </code></pre>
+                        </section>
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_4 JSFORM
+function Exo_3_4_jsform()
+// DEBUT
+{
+    var iNombre;
+    var bZero, bNegatif;
+
+    //Ecrire "entrez un nombre"
+    //Lire iNombre
+    iNombre= document.getElementById("iNombre").value;
+
+    bZero=iNombre==0;
+    bNegatif=iNombre&lt;0;
+
+    //SI iNombre =0
+    if (bZero)
+    {
+        //Ecrire "Ce nombre vaut zéro"
+        document.getElementById("sp_resultat_code").innerHTML="Ce nombre vaut zéro";
+    }
+    //SINON SI iNombre &lt;0
+    else if (bNegatif)
+    {
+        //Ecrire "Ce nombre est négatif"
+        document.getElementById("sp_resultat_code").innerHTML="Ce nombre est négatif";
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ce nombre est positif"
+        document.getElementById("sp_resultat_code").innerHTML="Ce nombre est positif";
+    }
+    //FINSI		
+//FIN	
+}                            </code></pre>
+                        </section>
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_4 JQUERY
+function Exo_3_4_jquery()
+// DEBUT
+{
+    var iNombre;
+    var bZero, bNegatif;
+
+    //Ecrire "entrez un nombre"
+    //Lire iNombre
+    iNombre= $("#iNombre").val();
+
+    bZero=iNombre==0;
+    bNegatif=iNombre&lt;0;
+
+    //SI iNombre =0
+    if (bZero)
+    {
+        //Ecrire "Ce nombre vaut zéro"
+        $("#sp_resultat_code").html("Ce nombre vaut zéro");
+    }
+    //SINON SI iNombre &lt;0
+    else if (bNegatif)
+    {
+        //Ecrire "Ce nombre est négatif"
+        $("#sp_resultat_code").html("Ce nombre est négatif");
+    }	
+    //SINON
+    else
+    {
+    //Ecrire "Ce nombre est positif"	
+        $("#sp_resultat_code").html("Ce nombre est positif");
+    }
+    //FINSI		
+//FIN	
+}                           </code></pre>
+                        </section>
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_3_4 PHP
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iNombre"]))
+{
+    // ECRIRE "entrez un nombre"
+    // LIRE iNombre
+    $iNombre= $_POST["iNombre"];
+    $bZero=$iNombre==0;
+    $bNegatif=$iNombre&lt;0;
+    
+    //SI iNombre =0
+    if ($bZero)
+    {
+        //Ecrire "Ce nombre vaut zéro"
+        $sMessage= "&lt;b>Ce nombre vaut zéro&lt;/b>";
+    }
+    //SINON SI iNombre &lt;0
+    else if ($bNegatif)
+    {
+        //Ecrire "Ce nombre est négatif"
+        $sMessage= "&lt;span style='color: red'>Ce nombre est négatif&lt;/span>";
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ce nombre est positif"
+        $sMessage= "Ce nombre est positif";
+        
+    // FINSI
+    }
+//FIN	
+}
+
+require "exo_3_4.html";     </code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_3_4.php" method="POST" name="formPHP">
+								<p>Entrez un nombre :</p>
+								<p><input type="number" name="iNombre" id="iNombre"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_3_4(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_3_4_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_3_4_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_3_4_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison3.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.8</title>
+	<?php include "../commun/head.html" ?>
+	
+
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_8_php
+		function Exo_4_8_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 351px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 4.8</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrivez un algorithme qui a près avoir demandé un numéro de jour, de mois et d'année à l'utilisateur, renvoie s'il s'agit ou non d'une date valide.
+						<br>Cet exercice est certes d’un manque d’originalité affligeant, mais après tout, en algorithmique comme ailleurs, il faut connaître ses classiques ! Et quand on a fait cela une fois dans sa vie, on apprécie pleinement l’existence d’un type numérique « date » dans certains langages…).
+						<br>Il n'est sans doute pas inutile de rappeler rapidement que le mois de février compte 28 jours, sauf si l’année est bissextile, auquel cas il en compte 29. L’année est bissextile si elle est divisible par quatre. Toutefois, les années divisibles par 100 ne sont pas bissextiles, mais les années divisibles par 400 le sont.
+						<br>Un dernier petit détail : vous ne savez pas, pour l’instant, exprimer correctement en pseudo-code l’idée qu’un nombre A est divisible par un nombre B. Aussi, vous vous contenterez d’écrire en bons télégraphistes que A divisible par B se dit « A dp B ». Nous verrons les modulos plus tard. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_8
+	Variable iJour, iMois, iAnnée en umérique
+	Variable bBis, bTrente en booléen
+Début
+	Ecrire "Entrez le jour"
+	Lire iJour
+	Ecrire "Entre le mois"
+	Lire iMois
+	Ecrire "Entrez l'année"
+	Lire iAnnee
+	bBis <- iAnnée dp 4 ET iAnnée nondp 100 OU iAnnée dp 400
+	bTrente <- iMois=="avril" OU iMois="juin" OU iMois="septembre" OU iMois="novembre"
+	Si  ((iMois="février" ET ((iJour>"28" ET !bBis) OU iJour>"29")) OU (iJour>"30 ET bTrente) OU (iJour>"31"))Alors
+		Ecrire "votre date est incorrect"
+	Sinon
+		Ecrire "votre date est valide"
+	FinSi
+Fin					</textarea>
+												
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_8
+	Variables J, M, A, en Numérique
+	Variables K1, K2, K3, K4, B en Booleen
+Début
+	Ecrire "Entrez le numéro du jour"
+	Lire J
+	Ecrire "Entrez le numéro du mois"
+	Lire M
+	Ecrire "Entrez l'année"
+	Lire A
+
+	B ← (A dp 4 et Non(A dp 100)) ou A dp 400
+	K1 ← (m=1 ou m=3 ou m=5 ou m=7 ou m=8 ou m=10 ou m=12) et (J>=1 et J=&lt;31)
+	K2 ← (m=4 ou m=6 ou m=9 ou m=11) et (J>=1 et J=&lt;30)
+	K3 ← m=2 et B et J>=1 et J=&lt;29
+	K4 ← m=2 et J>=1 et J=&lt;28
+	Si K1 ou K2 ou K3 ou K4 Alors
+		Ecrire "Date valide"
+	Sinon
+		Ecrire "Date non valide"
+	FinSi
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_8 JSFORM
+function Exo_4_8_jsform()
+//Début
+{
+	var iJour, iMois, iAnnee, bBis, bTrente;
+
+	//Ecrire "Entrez le jour"
+	// Lire iJour
+	iJour=document.getElementById("iJour").value;
+	// Ecrire "Entre le mois"
+	// Lire iMois
+	iMois=document.getElementById("iMois").value;
+	// Ecrire "Entrez l'année"
+	// Lire iAnnee
+	iAnnee=document.getElementById("iAnnee").value;
+
+	bBis= iAnnee%4===0 && (iAnnee%100!=0 || iAnnee%400===0);        
+	bTrente=(iMois==="avr") || (iMois==="jui") || (iMois==="sep") || (iMois==="nov");
+
+
+
+	if ((iMois==="fev" && ((iJour>"28" && !bBis) || iJour>"29")) || (iJour>"30" && bTrente) || (iJour>"31"))
+	{
+		document.getElementById("sp_resultat_code").innerHTML="votre date est incorrect";
+	}
+		else 
+		{
+		document.getElementById("sp_resultat_code").innerHTML="votre date est valide";
+		}
+
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_8 JQUERY
+function Exo_4_8_jquery()
+//Début
+{
+	var iJour, iMois, iAnnee, bBis, bTrente;
+
+	//Ecrire "Entrez le jour"
+	// Lire iJour
+	iJour=$("#iJour").val();
+	// Ecrire "Entre le mois"
+	// Lire iMois
+	iMois=$("#iMois").val();
+	// Ecrire "Entrez l'année"
+	// Lire iAnnee
+	iAnnee=$("#iAnnee").val();
+
+	bBis= iAnnee%4===0 && iAnnee%100!=0 || iAnnee%400===0;        
+	bTrente=(iMois==="avr") || (iMois==="jui") || (iMois==="sep") || (iMois==="nov");
+
+
+
+	if ((iMois==="fev" && ((iJour>"28" && !bBis) || iJour>"29")) || (iJour>"30" && bTrente) || (iJour>"31"))
+	{
+		$("#sp_resultat_code").html("votre date est incorrect");
+	}
+		else 
+		{
+			$("#sp_resultat_code").html("votre date est valide");
+		}
+
+}						</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_8 PHP
+$sMessage= "";
+
+if ((isset($_POST["iJour"])) && ($_POST["iAnnee"] != ""))
+{
+	// Lire iJour
+	$iJour= $_POST["iJour"] ;
+	// Lire iMois
+	$iMois= $_POST["iMois"] ;
+	// Lire iAnnee
+	$iAnnee= $_POST["iAnnee"] ;
+
+	$bBis= $iAnnee%4===0 && $iAnnee%100!=0 || $iAnnee%400===0;        
+	$bTrente=($iMois==="avr") || ($iMois==="jui") || ($iMois==="sep") || ($iMois==="nov");
+
+	if (($iMois==="fev" && (($iJour>"28" && !$bBis) || $iJour>"29")) || ($iJour>"30" && $bTrente) || ($iJour>"31"))
+{
+	$sMessage= "votre date est incorrect";
+}
+	else 
+	{
+		$sMessage= "votre date est valide";
+	}
+
+}
+
+require "exo_4_8.html";
+                            </code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_8.php" method="POST" name="formPHP">
+								<p>Entrez un jour :</p>
+								<p><input type="number" name="iJour" id="iJour" min="1" max="31" value="30"></p>
+								<p><label for="iMois">Entrez un mois:</label></p>
+								<p><select name="iMois" id="iMois">
+									<option value="">--Selectionner--</option>
+									<option value="jan">Janvier</option>
+									<option value="fev">Février</option>
+									<option value="mar">Mars</option>
+									<option value="avr">Avril</option>
+									<option value="mai">Mai</option>
+									<option value="jui">Juin</option>
+									<option value="jul">Juillet</option>
+									<option value="aou">Août</option>
+									<option value="sep">Septembre</option>
+									<option value="oct">Octobre</option>
+									<option value="nov">Novembre</option>
+									<option value="dec">Décembre</option></select></p>
+								<p>Entrez une année :</p>
+								<p><input type="number" name="iAnnee" id="iAnnee" min="1" max="3000" value="2021"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_8_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_8_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_8_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

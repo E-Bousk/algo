@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 10.3</title>
+	<?php include "../commun/head_php_only.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 246px;
+		}
+		input {
+			background-color: black;
+			color: white
+		}
+		.div_formulaire p {
+			background-color: rgba(0,0,0,.5);
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 10.3</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; On travaille avec le fichier du carnet d’adresses en champs de largeur fixe.
+                    <br>Ecrivez un algorithme qui permet à l’utilisateur de saisir au clavier un nouvel individu qui sera ajouté à ce carnet d’adresses. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_10_3
+	Variable sTitre*50, sRealisateur*25, sAnnee*4, sTexte en caractère
+Début
+	Ecrire "Entrez le titre (50 caractères max.)"
+	lire sTitre
+	Ecrire "Entrez le réalisateur (25 caractères max.)"
+	lire sRealisateur
+	Ecrire "Entrez l'année (4 caractères max.)"
+	lire sAnnee
+
+	Ouvrir "Exercice10_3.txt" sur 5 en Ajout
+	Ecrire sTitre
+	Fermer 5
+
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_10_3
+	Variables Nom * 20, Prénom * 17, Tel * 10, Mail * 20, Lig en Caractère
+Debut
+	Ecrire "Entrez le nom : "
+	Lire Nom
+	Ecrire "Entrez le prénom : "
+	Lire Prénom
+	Ecrire "Entrez le téléphone : "
+	Lire Tel
+	Ecrire "Entrez le nom : "
+	Lire Mail
+	Lig ← Nom & Prénom & Tel & Mail
+	Ouvrir "Adresse.txt" sur 5 pour Ajout
+	EcrireFichier 5, Lig
+	Fermer 5
+Fin	
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_phpOnly('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_10_3 PHP
+if (isset($_POST["btn_php"]))
+{
+    
+    // lire sTitre, sRealisateur, sAnnee
+    $sTitre=$_POST["sTitre"];
+    $sRealisateur=$_POST["sRealisateur"];
+    $sAnnee=$_POST["sAnnee"];
+    
+    // verifie si champ "Titre" est rempli
+    if (empty($sTitre))
+    {
+        $sMessage= "Rien à ajouter.<br>";
+        $sMessage.= "(titre du film obligatoire)";
+    }
+
+    // verifie si nombre de caractère $sTitre < 50
+    else if (strlen($sTitre)>50)
+    {
+        $sMessage="Le titre est trop long. (50 caractères max.)";
+        $sMessage.="<br> Vous avez entré ". strlen($sTitre)." caractères";
+    }
+
+    // verifie si nombre de caractère $sRealisateur < 25
+    else if (strlen($sRealisateur)>25)
+    {
+        $sMessage="Le nom est trop long. (25 caractères max.)";
+        $sMessage.="<br> Vous avez entré ". strlen($sRealisateur)." caractères";
+    }
+
+    // verifie si nombre de caractère $sAnnee < 4
+    else if (strlen($sAnnee)>4)
+    {
+        $sMessage="Année sur 4 caractères maximum";
+        $sMessage.="<br> Vous avez entré ". strlen($sAnnee)." caractères";
+
+    }
+
+    // si tout est ok
+    else
+    {     
+        // initialise $sTexte à vide pour pouvoir concatener dedans plus tard
+        $sTexte="";
+
+        // ouvre fichier "Exercice10_3.txt" en AJOUT et attribut son contenu à la variable $sReferenceFichier
+        $sReferenceFichier = fopen("./Fichiers/Exercice10_3.txt", "a");
+
+        // Si $sReferenceFichier rempli (fichier trouvé et ouvert)
+        if ($sReferenceFichier)
+        {
+            // Ajoute les espaces manquant après les données
+            $sTitre=str_pad($sTitre,50);
+            $sRealisateur=str_pad($sRealisateur,25);
+            $sAnnee=str_pad($sAnnee,4);
+
+            // concatène tout dans variable $sTexte et ajoute un saut de ligne avant
+            $sTexte.="\r\n".$sTitre.$sRealisateur.$sAnnee;
+            // ecrit les données
+            fwrite($sReferenceFichier, $sTexte);
+            // fermeture du fichier à traiter
+            fclose($sReferenceFichier);
+        //FIN SI
+        }
+
+        ////////////////////////////////////////
+        // POUR AFFICHER LE TEXTE AVEC L'AJOUT :
+        // ouvre fichier "Exercice10_3.txt" en LECTURE et attribut son contenu à la variable $sReferenceFichier
+		$sReferenceFichier = fopen("./Fichiers/Exercice10_3.txt", "r");
+
+        // Si $sReferenceFichier rempli (fichier trouvé et ouvert)
+        if ($sReferenceFichier)
+		{
+            // confirmer par message l'ajout des données
+            $sMessage= "Données ajoutées<br><br>";
+
+            //Tant que pas fin de fichier (dernière ligne)
+			while(!feof($sReferenceFichier))
+			{
+                // affiche les données ligne par ligne
+				$sMessage .= fgets($sReferenceFichier)."<br>";	
+			}
+			// fermeture du fichier à traiter
+			fclose($sReferenceFichier);
+        // FIN SIN
+		}
+    //FIN SINON
+    }
+//FIN
+}
+
+else
+{
+    $sMessage= "";
+}
+
+require "exo_10_3.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_10_3.php" method="POST" name="formPHP">
+								<p>Entrez le titre du film (50 caractères max.)</p>
+								<p><input type="text" name="sTitre" id="sTitre" min="" max="" value=""></p>
+								<p>Entrez le nom du réalisateur (25 caractères max.)</p>
+								<p><input type="text" name="sRealisateur" id="sRealisateur" min="" max="" value=""></p>
+								<p>Entrez l'année de sortie (4 caractères max.)</p>
+								<p><input type="text" name="sAnnee" id="sAnnee" min="" max="" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

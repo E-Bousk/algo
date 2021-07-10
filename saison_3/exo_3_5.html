@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 3.5</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+
+	<script type="text/javascript">
+		// ALGORITHME Exo_3_5_php
+		function Exo_3_5_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+
+	
+	<style type="text/css">
+		.txt_pseudocode {
+			width: 100%;
+			height: 306px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 3.5</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Enoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui demande deux nombres à l’utilisateur et l’informe ensuite si le produit est négatif ou positif (on inclut cette fois le traitement du cas où le produit peut être nul). Attention toutefois, on ne doit pas calculer le produit ! &raquo;</p>
+				</div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_3_5
+    Variables iNombre1, iNombre2 en entier
+Début
+    Ecrire "Entrez le 1er nombre :"
+    Lire iNombre1
+    Ecrire "Entrez le 2nd nombre :"
+    Lire iNombre2
+
+    SI (iNombre1 ET iNombre2 >0) OU (iNombre1 ET iNombre2 &lt;0)
+        Ecrire "leur produit est positif"
+
+    SINONSI (iNombre1 !=0 ET iNombre2 !=0)
+    Ecrire "leur produit est négatif"
+
+    SINON
+    Ecrire "Leur produit est nul"
+
+    FINSI
+Fin					</textarea>
+												
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_3_5
+	Variables iNb1, iNb2 en Numerique
+Début
+	Ecrire "Entrez deux nombres : "
+	Lire iNb1, iNb2
+	Si iNb1 == 0 OU iNb2 == 0 Alors
+		Ecrire "Le produit est nul"
+	SinonSi (iNb1 < 0 ET iNb2 < 0) OU (iNb1 > 0 ET iNb2 > 0) Alors
+		Ecrire "Le produit est positif"
+	Sinon
+		Ecrire "Le produit est négatif"
+	Finsi
+Fin
+		
+
+Si on souhaite simplifier l’écriture de la condition lourde du SinonSi, on peut toujours passer par des variables booléennes intermédiaires.
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+						<section class="language-markup">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_5 JSPROMPT
+function Exo_3_5()
+//DEBUT
+{
+	var iNombre1, iNombre2;
+
+	//Ecrire "Entrez le 1er nombre :"
+	//Lire iNombre1
+	iNombre1= prompt("Entrez le 1er nombre :");
+	//Ecrire "Entrez le 2nd nombre :"
+	//Lire iNombre2
+	iNombre2= prompt("Entrez le 2nd nombre :");
+
+	//SI iNombre1 ET iNombre2 >0 ou iNombre1 ET iNombre2 &lt;0
+	if (iNombre1 >0 && iNombre2 >0 || iNombre1 &lt;0 && iNombre2 &lt;0)
+	{
+		//Ecrire "Leur produit est positif"
+		alert("Leur produit est positif");
+	}
+	//SINON
+	else if (iNombre1 !=0 && iNombre2 !=0)
+	{
+		//Ecrire "Leur produit est négatif"
+		alert("Leur produit est négatif");
+	//FINSI
+	}
+	else
+	{
+		//Ecrire "Leur produit est nul"
+		alert("Leur produit est nul");
+	}
+	//FINSI
+//FIN
+}                           </code></pre>
+						</section>
+					</div>
+					<div id="div_jsform">
+						<section class="language-markup">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_5 JSFORM
+function Exo_3_5_jsform()
+//DEBUT
+{
+	var iNombre1, iNombre2;
+
+	//Ecrire "Entrez le 1er nombre :"
+	//Lire iNombre1
+	iNombre1= document.getElementById("iNombre1").value;
+	//Ecrire "Entrez le 2nd nombre :"
+	//Lire iNombre2
+	iNombre2= document.getElementById("iNombre2").value;
+
+	//SI (iNombre1 >0 ET iNombre2 >0) ou (iNombre1 &lt;0 ET iNombre2 &lt;0)
+	if (iNombre1 >0 && iNombre2 >0 || iNombre1 &lt;0 && iNombre2 &lt;0)
+	{
+		//Ecrire "Leur produit est positif"
+		document.getElementById("sp_resultat_code").innerHTML="Leur produit est positif";
+	}
+	//SINON
+	else if (iNombre1 !=0 && iNombre2 !=0)
+	{
+		//Ecrire "Leur produit est négatif"
+		document.getElementById("sp_resultat_code").innerHTML="Leur produit est négatif";
+	//FINSI
+	}
+	else
+	{
+		//Ecrire "Leur produit est nul"
+		document.getElementById("sp_resultat_code").innerHTML="Leur produit est nul";
+	}
+	//FINSI		
+//FIN	
+}                           </code></pre>
+						</section>
+					</div>
+
+					<div id="div_jquery">
+						<section class="language-markup">
+							<pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_5 JQUERY
+function Exo_3_5_jquery()
+//DEBUT
+{
+	var iNombre1, iNombre2;
+
+	//Ecrire "Entrez le 1er nombre :"
+	//Lire iNombre1
+	iNombre1= $("#iNombre1").val();
+	//Ecrire "Entrez le 2nd nombre :"
+	//Lire iNombre2
+	iNombre2= $("#iNombre2").val();
+
+	//SI iNombre1 ET iNombre2 >0 ou iNombre1 ET iNombre2 &lt;0
+	if (iNombre1 >0 && iNombre2 >0 || iNombre1 &lt;0 && iNombre2 &lt;0)
+	{
+		//Ecrire "Leur produit est positif"
+		$("#sp_resultat_code").html("Leur produit est positif");
+	}
+	//SINON
+	else if (iNombre1 !=0 && iNombre2 !=0)
+	{
+		//Ecrire "Leur produit est négatif"
+		$("#sp_resultat_code").html("Leur produit est négatif");
+	//FINSI
+	}
+	else
+	{
+		//Ecrire "Leur produit est nul"
+		$("#sp_resultat_code").html("Leur produit est nul");
+	}
+	//FINSI
+//FIN
+}                           </code></pre>
+						</section>
+					</div>
+
+					<div id="div_php">
+						<section class="language-markup">
+							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_3_5 PHP
+$sMessage= "";
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iNombre1"]))
+{
+	//Ecrire "Entrez le 1er nombre :"
+	//Lire iNombre1
+	$iNombre1= $_POST["iNombre1"];
+	//Ecrire "Entrez le 2nd nombre :"
+	//Lire iNombre2
+	$iNombre2= $_POST["iNombre2"];
+	
+	//SI (iNombre1 >0 ET iNombre2 >0) ou (iNombre1 &lt;0 ET iNombre2 &lt;0)
+	if ($iNombre1 >0 && $iNombre2 >0 || $iNombre1 &lt;0 && $iNombre2 &lt;0)
+	{
+		//Ecrire "Leur produit est positif"
+		$sMessage= "&lt;b>Leur produit est positif&lt;/b>";
+	}
+	//SINON SI 
+	else if ($iNombre1 !=0 && $iNombre2 !=0)
+	{
+		//Ecrire "Ce nombre est négatif"
+		$sMessage= "&lt;span style='color: red'>Ce nombre est négatif&lt;/span>";
+	}
+	//SINON
+	else
+	{
+		//Ecrire "Leur produit est nul""
+		$sMessage= "Leur produit est nul";
+		
+	// FINSI
+	}
+//FIN	
+}
+							
+require "exo_3_5.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_3_5.php" method="POST" name="formPHP">
+								<p>Entrez le premier nombre :</p>
+								<p><input type="number" name="iNombre1" id="iNombre1"></p>
+								<p>Entrez le second nombre :</p>
+								<p><input type="number" name="iNombre2" id="iNombre2"></p>
+                                <p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_3_5(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_3_5_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_3_5_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_3_5_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison3.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

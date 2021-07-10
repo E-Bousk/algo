@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.7</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_7_php
+		function Exo_4_7_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 696px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 4.7</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Une compagnie d'assurance automobile propose à ses clients quatre familles de tarifs identifiables par une couleur, du moins au plus onéreux : tarifs bleu, vert, orange et rouge. Le tarif dépend de la situation du conducteur : 
+					<br><br>• un conducteur de moins de 25 ans et titulaire du permis depuis moins de deux ans, se voit attribuer le tarif rouge, si toutefois il n'a jamais été responsable d'accident. Sinon, la compagnie refuse de l'assurer.
+                    <br>• un conducteur de moins de 25 ans et titulaire du permis depuis plus de deux ans, ou de plus de 25 ans mais titulaire du permis depuis moins de deux ans a le droit au tarif orange s'il n'a jamais provoqué d'accident, au tarif rouge pour un accident, sinon il est refusé.
+                    <br>• un conducteur de plus de 25 ans titulaire du permis depuis plus de deux ans bénéficie du tarif vert s'il n'est à l'origine d'aucun accident et du tarif orange pour un accident, du tarif rouge pour deux accidents, et refusé au-delà
+					<br>• De plus, pour encourager la fidélité des clients acceptés, la compagnie propose un contrat de la couleur immédiatement la plus avantageuse s'il est entré dans la maison depuis plus de cinq ans. Ainsi, s'il satisfait à cette exigence, un client normalement "vert" devient "bleu", un client normalement "orange" devient "vert", et le "rouge" devient orange.
+					<br><br>Ecrire l'algorithme permettant de saisir les données nécessaires (sans contrôle de saisie) et de traiter ce problème. Avant de se lancer à corps perdu dans cet exercice, on pourra réfléchir un peu et s'apercevoir qu'il est plus simple qu'il n'en a l'air (cela s'appelle faire une analyse !) &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_7
+Variables iConducteur, iPermis, iAccident, iFidelite, sRouge, sOrange, sVert, sBleu en entiers
+Variables bConducteur, bPermis en booleen
+Début
+	Ecrire "Entrez l'age du conducteur :"
+	Lire iConducteur
+	Ecrire "Entrez l'age du permis :"
+	Lire iPermis
+	Ecrire "Entrez le nombre d'accident responsable :"
+	Lire iAccident
+	Ecrire "Entrez le nombre d'année d'inscription à la compagnie d'assurance :"
+	Lire iFidelite
+
+	sRouge = "rouge"
+	sOrange = "orange"
+	sVert = "vert"
+	sBleu = "bleu"
+
+	bConducteur = iConducteur>25;
+	bPermis = iPermis>2;
+
+	SI iFidelite >5
+	sRouge=sOrange;
+	sOrange=sVert;
+	sVert=sBleu; 
+
+	SI (!bConducteur ET !bPermis) ET iAccident ==0
+	OU ((!bConducteur ET bPermis) OU (bConducteur ET !bPermis) ET iAccident ==1)
+	OU (bConducteur ET bPermis) ET iAccident ==2
+	Ecrire "La couleur de votre contrat : " + "sRouge"
+
+	SINON SI ((!bConducteur ET bPermis) OU (bConducteur ET !bPermis) ET iAccident ==0)
+	OU (bConducteur ET bPermis) ET iAccident ==1
+	Ecrire "La couleur de votre contrat : " + "sOrange"
+
+	SINON SI (bConducteur ET bPermis) ET iAccident ==0
+	Ecrire "La couleur de votre contrat : " + "sVert"
+
+	SINON
+	Ecrire "Nous ne pouvons pas vous assurer"
+
+FIN					</textarea>
+                            
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_7
+	Variables iAge, iPerm, iAcc, iAssur en Numerique
+	Variables bAge25, bPerm2, bAssur5 en Booleen
+	Variable sSituation en Alphanumerique
+Début
+	Ecrire "Entrez l’âge: "
+	Lire iAge
+	Ecrire "Entrez le nombre d'années de permis: "
+	Lire iPerm
+	Ecrire "Entrez le nombre d'accidents: "
+	Lire iAcc
+	Ecrire "Entrez le nombre d'années d'assurance: "
+	Lire iAssur
+	bAge25 ← iAge >= 25
+	bPerm2 ← iPerm >= 2
+	bAssur5 ← iAssur > 5					
+	iPoint ← 0
+
+	Si Non(bAge25) Alors
+		iPoint ← iPoint + 1
+	FinSi
+	Si Non(bPerm2) Alors
+		iPoint ← iPoint + 1
+	FinSi
+
+	iPoint ← iPoint + acc
+
+	Si iPoint &lt; 3 et bAssur5 Alors
+		iPoint ← iPoint - 1
+	FinSi
+	Si iPoint = -1 Alors
+		sSituation ← "Bleu"
+	SinonSi iPoint = 0 Alors
+		sSituation ← "Vert"
+	SinonSi iPoint = 1 Alors
+		sSituation ← "Orange"
+	SinonSi iPoint = 2 Alors
+		sSituation ← "Rouge"
+	Sinon
+		sSituation ← "Refusé"
+	FinSi
+	Ecrire "Votre situation : ", sSituation
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_7 JSFORM
+function Exo_4_7_jsform()
+//Début
+{
+	var iConducteur, iPermis, iAccident, iFidelite, sRouge, sOrange, sVert, sBleu, bConducteur, bPermis ;
+
+	//Ecrire "Entrez l'age du conducteur :"
+	//Lire iConducteur
+	iConducteur= document.getElementById("iConducteur").value;
+	// Ecrire "Entrez l'age du permis :"
+	// Lire iPermis
+	iPermis= document.getElementById("iPermis").value;
+	//Ecrire "Entrez le nombre d'accident responsable :"
+	//Lire iConducteur
+	iAccident= document.getElementById("iAccident").value;
+	//Ecrire "Entrez le nombre d'année d'inscription à la compagnie d'assurance :"
+	// Lire iPermis
+	iFidelite= document.getElementById("iFidelite").value;
+
+
+	bConducteur = iConducteur>25;
+	bPermis = iPermis>2;
+
+	sRouge = "rouge";
+	sOrange = "orange";
+	sVert = "vert";
+	sBleu = "bleu";
+
+	if (iFidelite >5)
+	{	
+		sRouge=sOrange;
+		sOrange=sVert;
+		sVert=sBleu;        
+	}
+
+	if((!bConducteur && !bPermis) && iAccident==0 || ((!bConducteur &&  bPermis) || (bConducteur &&  !bPermis)) &&  iAccident==1 || (bConducteur && bPermis) && iAccident==2)
+	{
+		document.getElementById("sp_resultat_code").innerHTML="La couleur de votre contrat : " + sRouge;
+	}
+
+	else if (((!bConducteur &&  bPermis) || (bConducteur &&  !bPermis)) &&  iAccident==0 || (bConducteur && bPermis) && iAccident==1)
+	{
+		document.getElementById("sp_resultat_code").innerHTML="La couleur de votre contrat : " + sOrange;
+	}
+
+	else if ((bConducteur && bPermis) && iAccident==0)
+	{
+		document.getElementById("sp_resultat_code").innerHTML="La couleur de votre contrat : " + sVert;
+	}
+
+	else {
+		document.getElementById("sp_resultat_code").innerHTML="Nous ne pouvons pas vous assurer";
+    }
+    //FIN
+}                    		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_7 JQUERY
+function Exo_4_7_jquery()
+//Début
+{
+	var iConducteur, iPermis, iAccident, iFidelite, sRouge, sOrange, sVert, sBleu, bConducteur, bPermis ;
+
+	//Ecrire "Entrez l'age du conducteur :"
+	//Lire iConducteur
+	iConducteur= $("#iConducteur").val();
+	// Ecrire "Entrez l'age du permis :"
+	// Lire iPermis
+	iPermis= $("#iPermis").val();
+	//Ecrire "Entrez le nombre d'accident responsable :"
+	//Lire iConducteur
+	iAccident= $("#iAccident").val();
+	//Ecrire "Entrez le nombre d'année d'inscription à la compagnie d'assurance :"
+	// Lire iPermis
+	iFidelite= $("#iFidelite").val();
+
+
+	bConducteur = iConducteur>25;
+	bPermis = iPermis>2;
+
+	sRouge = "rouge";
+	sOrange = "orange";
+	sVert = "vert";
+	sBleu = "bleu";
+
+	if (iFidelite >5)
+	{
+		sRouge=sOrange;
+		sOrange=sVert;
+		sVert=sBleu;        
+	}
+
+	if ((!bConducteur && !bPermis) && iAccident==0 || ((!bConducteur &&  bPermis) || (bConducteur &&  !bPermis)) &&  iAccident==1 || (bConducteur && bPermis) && iAccident==2)
+	{
+		$("#sp_resultat_code").html("La couleur de votre contrat : " + sRouge);
+	}
+
+	else if (((!bConducteur &&  bPermis) || (bConducteur &&  !bPermis)) &&  iAccident==0 || (bConducteur && bPermis) && iAccident==1)
+	{
+		$("#sp_resultat_code").html("La couleur de votre contrat : " + sOrange);
+	}
+
+	else if ((bConducteur && bPermis) && iAccident==0)
+	{
+		$("#sp_resultat_code").html("La couleur de votre contrat : " + sVert);
+	}
+
+	else 
+	{
+		$("#sp_resultat_code").html("Nous ne pouvons pas vous assurer");
+	}
+//FIN
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_7 PHP
+$sMessage= "";
+
+
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if ((isset($_POST["iConducteur"])) && ($_POST["iPermis"] != ""))
+{
+	
+// Ecrire "Entrez l'age du conducteur :"
+// Lire iConducteur
+$iConducteur = $_POST["iConducteur"] ;
+// Ecrire "Entrez l'age du permis :"
+// Lire iPermis
+$iPermis = $_POST["iPermis"] ;
+// Ecrire "Entrez le nombre d'accident responsable :"
+// Lire iAccident
+$iAccident = $_POST["iAccident"] ;
+// Ecrire "Entrez le nombre d'année d'inscription à la compagnie d'assurance :"
+// Lire iFidelite
+$iFidelite = $_POST["iFidelite"] ;
+
+$bConducteur = $iConducteur>25;
+$bPermis = $iPermis>2;
+
+$sRouge = "rouge";
+$sOrange = "orange";
+$sVert = "vert";
+$sBleu = "bleu";
+
+if ($iFidelite >5)
+{	
+	$sRouge= $sOrange;
+	$sOrange= $sVert;
+	$sVert= $sBleu;        
+}
+
+if((!$bConducteur && !$bPermis) && $iAccident==0 || ((!$bConducteur &&  $bPermis) || ($bConducteur &&  !$bPermis)) &&  $iAccident==1 || ($bConducteur && $bPermis) && $iAccident==2)
+{
+	$sMessage= "La couleur de votre contrat : " . $sRouge;
+}
+
+else if (((!$bConducteur &&  $bPermis) || ($bConducteur &&  !$bPermis)) &&  $iAccident==0 || ($bConducteur && $bPermis) && $iAccident==1)
+{
+	$sMessage= "La couleur de votre contrat : " . $sOrange;
+}
+
+else if (($bConducteur && $bPermis) && $iAccident==0)
+{
+	$sMessage= "La couleur de votre contrat : " . $sVert;
+}
+
+else {
+	$sMessage= "Nous ne pouvons pas vous assurer";
+}
+							//FIN	
+							}
+                            </code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_7.php" method="POST" name="formPHP">
+								<p>Entrez l'age du conducteur :</p>
+								<p><input type="number" name="iConducteur" id="iConducteur" min="16" max="99" value="25"></p>
+								<p>Entrez l'age du permis :</p>
+								<p><input type="number" name="iPermis" id="iPermis" min="1" max="99" value="2"></p>
+								<p>Entrez le nombre d'accident responsable :</p>
+								<p><input type="number" name="iAccident" id="iAccident" min="0" max="100" value="0"></p>
+								<p>Entrez le nombre d'année d'inscription à la compagnie d'assurance :</p>
+								<p><input type="number" name="iFidelite" id="iFidelite" min="0" max="100" value="0"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_7_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_7_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_7_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

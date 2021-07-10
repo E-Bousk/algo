@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.2</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_2_php
+		function Exo_4_2_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 276px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 4.2</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Cet algorithme est destiné à prédire l'avenir, et il doit être infaillible !
+                    </br>Il lira au clavier l’heure et les minutes, et il affichera l’heure qu’il sera une minute plus tard. Par exemple, si l'utilisateur tape 21 puis 32, l'algorithme doit répondre :
+                    </br>"Dans une minute, il sera 21 heure(s) 33".
+                    </br>NB : on suppose que l'utilisateur entre une heure valide. Pas besoin donc de la vérifier. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_2
+    Variable iHeures, iMinutes en entier
+Début
+    Ecrire "Entrez l'heure actuelle :"
+    Lire iHeures
+    Ecrire "Entrez les minutes :"
+    Lire iMinutes
+
+    iMinutes <- iMinutes+1
+
+    SI iHeures=23 ET iMinutes=59 alors
+    Ecrire "Dans une minute, il sera 00 heure 00"
+    SINON iMinutes=iMinutes+1
+    Ecrire "Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes
+    FINSI
+FIN
+					</textarea>
+                    
+                            
+                    <textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_2
+    Variables h, m en Numérique
+Début
+    Ecrire "Entrez les heures, puis les minutes : "
+    Lire h, m
+    m ← m + 1
+    Si m = 60 Alors
+            m ← 0
+            h ← h + 1
+    FinSi
+    Si h = 24 Alors
+            h ← 0
+    FinSi
+    Ecrire "Dans une minute il sera ", h, "heure(s) ", m, "minute(s)"
+Fin
+                    </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_2 JSPROMPT
+function Exo_4_2()
+// DEBUT
+{
+    var iHeures, iMinutes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=prompt("Entrez l'heure actuelle :");
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=prompt("Entrez les minutes :");
+
+    iMinutes=parseInt(iMinutes)+1;
+
+    //Si iMinutes=60 alors
+    if (iHeures!=23 & iMinutes==60)
+    {
+        iHeures=parseInt(iHeures)+1;
+        iMinutes="00";
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        alert("Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes);
+    }
+
+    //SINON SI iHeures=23 ET iMinutes=60 alors
+    else if (iHeures==23 & iMinutes==60)
+    {
+        //Ecrire "Dans une minute, il sera 00 heure 00"
+        alert("Dans une minute, il sera 00 heure 00");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        alert("Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes);
+    }
+    //FINSI		
+//FIN	
+}                       </code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_2 JSFORM
+function Exo_4_2_jsform()
+// DEBUT
+{
+    var iHeures, iMinutes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=document.getElementById("iHeures").value;
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=document.getElementById("iMinutes").value;
+
+    iMinutes=parseInt(iMinutes)+1;
+
+    //Si iMinutes=60 alors
+    if (iHeures!=23 & iMinutes==60)
+    {
+        iHeures=parseInt(iHeures)+1;
+        iMinutes="00";
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        document.getElementById("sp_resultat_code").innerHTML="Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes;
+    }
+
+    //SINON SI iHeures=23 ET iMinutes=60 alors
+    else if (iHeures==23 & iMinutes==60)
+    {
+        //Ecrire "Dans une minute, il sera 00 heure 00"
+        document.getElementById("sp_resultat_code").innerHTML="Dans une minute, il sera 00 heure 00";
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        document.getElementById("sp_resultat_code").innerHTML="Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes;
+    }
+    //FINSI		
+//FIN	
+}                           </code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_2 JQUERY
+function Exo_4_2_jquery()
+// DEBUT
+{
+    var iHeures, iMinutes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=$("#iHeures").val();
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=$("#iMinutes").val();
+
+    iMinutes=parseInt(iMinutes)+1;
+
+    //Si iMinutes=60 alors
+    if (iHeures!=23 & iMinutes==60)
+    {
+        iHeures=parseInt(iHeures)+1;
+        iMinutes="00";
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        $("#sp_resultat_code").html("Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes);
+    }
+
+    //SINON SI iHeures=23 ET iMinutes=60 alors
+    else if (iHeures==23 & iMinutes==60)
+    {
+        //Ecrire "Dans une minute, il sera 00 heure 00"
+        $("#sp_resultat_code").html("Dans une minute, il sera 00 heure 00");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        $("#sp_resultat_code").html("Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes);
+    }
+    //FINSI		
+//FIN	
+}                           </code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_2 PHP
+$sMessage= "";
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iHeures"]))
+{
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    $iHeures= intval($_POST["iHeures"]) ;
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    $iMinutes= intval($_POST["iMinutes"]);
+
+    $iMinutes++;
+    
+    //Si iMinutes=60 alors
+    if ($iHeures!=23 & $iMinutes==60)
+    {
+        $iHeures++;
+        $iMinutes=00;
+        //Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        $sMessage= "Dans une minute, il sera " . $iHeures . " heure(s) " . $iMinutes;
+    }
+
+    //SINON SI iHeures=23 ET iMinutes=60 alors 
+    else if ($iHeures==23 & $iMinutes==60)
+    {
+        //Ecrire "Dans une minute, il sera 00 heure 00"
+        $sMessage= "Dans une minute, il sera 00 heure 00";
+    }
+
+    //SINON
+    else
+    {
+        ///Ecrire "Dans une minute, il sera " + iHeure + " heure(s) " + iMinutes
+        $sMessage= "Dans une minute, il sera " . $iHeures . " heure(s) " . $iMinutes;
+        
+    // FINSI
+    }
+//FIN	
+}                           </code></pre>
+                        </section>	  
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_2.php" method="POST" name="formPHP">
+								<p>Entrez l'heure actuelle :</p>
+								<p><input type="number" name="iHeures" id="iHeures" min="0" max="23" value=""></p>
+                                <p>Entrez les minutes :</p>
+								<p><input type="number" name="iMinutes" id="iMinutes" min="0" max="59" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_4_2(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_2_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_2_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_2_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

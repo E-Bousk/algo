@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.11</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 191px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 6.11</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p>&laquo; À partir de deux tableaux précédemment saisis, écrivez un algorithme qui calcule le « Toon » des deux tableaux. Pour calculer le « Toon », il faut multiplier chaque élément du tableau 1 par chaque élément du tableau 2, et additionner le tout. Par exemple si l'on a : </p>
+                    <pre>
+Tableau 1 : | 4 | 8 | 7 | 12 |
+Tableau 2 : | 3 | 6 |</pre>
+                     
+Le « Toon » sera : 3 * 4 + 3 * 8 + 3 * 7 + 3 * 12 + 6 * 4 + 6 * 8 + 6 * 7 + 6 * 12 = 279 &raquo;
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ ALGORITHME Exo_6_11
+    Tableau Tab1(3) et Tab2(1)
+    i, j, iTotal en numerique
+ Début
+    iTtotal ← 0
+    Pour i ← 0 à 3
+        Pour j ← 0 à 1
+            iTotal = iTotal+(Tab1(i)*Tab2(j))
+        j suivant
+    i suivant
+    Ecrire "Le total est de :" & iTotal
+ Fin                </textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_11
+    Variables i, j, N1, N2, S en Numérique
+    Tableaux T1(), T2() en Numérique
+Debut
+    // … On ne programme pas la saisie des tableaux T1 et T2.
+    // On suppose que T1 possède N1 éléments, et que T2 en possède N2)
+    // …
+    S ← 0
+    Pour i ← 0 à N1 – 1
+        Pour j ← 0 à N2 – 1
+            S ← S + T1(i) * T2(j)
+        j Suivant
+    i Suivant
+    Ecrire "Le Toon est : ", S
+Fin	                </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_11 JSFORM
+function Exo_6_11_jsform()
+//Début
+{	
+    var TabExo11_1 = [4, 8, 7, 12];
+    var TabExo11_2 = [3, 6];
+    var i, j, iTotal;
+    iTotal = 0;
+    i = 0;
+
+    for (i;i&lt;=3;i++)
+    {
+        j = 0;
+        for (j;j&lt;=1;j++)
+        {
+            iTotal = iTotal+(TabExo11_1[i]*TabExo11_2[j]);
+        }
+    }
+    
+    document.getElementById("sp_result").innerHTML="Le total du calcul demandé est de : "	+ iTotal;
+//Fin
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_11 JQUERY
+function Exo_6_11_jquery()
+//Début
+{	
+    var TabExo11_1 = [4, 8, 7, 12];
+    var TabExo11_2 = [3, 6];
+    var i, j, iTotal;
+    iTotal = 0;
+    i = 0;
+
+    for (i;i&lt;=1;i++)
+    {
+        j = 0;
+        for (j;j&lt;=3;j++)
+        {
+            iTotal = iTotal+(TabExo11_2[i]*TabExo11_1[j]);
+        }
+    }
+    
+    $("#sp_result").html("Le total du calcul demandé est de : "	+ iTotal);
+//Fin
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_11 PHP
+$sMessage= "";
+
+//Début
+// pour ne pas afficher le resultat avant d'avoir cliqué sur boutton
+if (isset($_POST["iTrick"]))
+{
+    $TabExo11_1 = [4, 8, 7, 12];
+    $TabExo11_2 = [3, 6];
+    $iTotal = 0;
+    $i=0;
+    
+    for ($i;$i&lt;=3;$i++)
+    {
+        $j = 0;
+        for ($j;$j&lt;=1;$j++)
+        {
+            $iTotal = $iTotal+($TabExo11_1[$i]*$TabExo11_2[$j]);
+        }
+    }
+    $sMessage.="Le total du calcul demandé est de : " . $iTotal;
+//Fin
+} 
+
+require "exo_6_11.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_11.php" method="POST" name="formPHP">
+                                <p>Valeurs du tableau 1: [4, 8, 7, 12]
+                                <br>Valeurs du tableau 2: [3, 6]</p>
+								<p>Cliquez pour effectuer le calcul :</p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_11_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_11_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

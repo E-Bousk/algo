@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.3</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_3_php
+		function Exo_4_3_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 411px;
+		}
+
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 4.3</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; De même que le précédent, cet algorithme doit demander une heure et en afficher une autre. Mais cette fois, il doit gérer également les secondes, et afficher l'heure qu'il sera une seconde plus tard.
+                    </br>Par exemple, si l'utilisateur tape 21, puis 32, puis 8, l'algorithme doit répondre : "Dans une seconde, il sera 21 heure(s), 32 minute(s) et 9 seconde(s)".
+                    </br>NB : là encore, on suppose que l'utilisateur entre une date valide. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_3
+    Variable iHeures, iMinutes, iSecondes en entier
+Début
+    Ecrire "Entrez l'heure actuelle :"
+    Lire iHeures
+    Ecrire "Entrez les minutes :"
+    Lire iMinutes
+    Ecrire "Entrez les secondes :"
+    Lire iSecondes
+    
+    iSecondes = iSecondes + 1
+
+    Si iSecondes=60 ALORS
+    iMinutes = iMinutes +1
+    iSecondes = 0
+
+    Si iMinutes=60 ALORS
+    iHeures = iHeures +1
+    iMinutes = 0
+    
+    SI iHeures=24 ALORS
+    iHeures = 0
+
+    FINSI
+    Ecrire "Dans une minute, il sera " + iHeures + " heure(s) " + iMinutes
+FINSI               </textarea>
+                                                
+                    <textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_3
+    Variables h, m, s en Numérique
+Début
+    Ecrire "Entrez les heures, puis les minutes, puis les secondes : "
+    Lire h, m, s
+    s ← s + 1
+    Si s = 60 Alors
+        s ← 0
+        m ← m + 1
+    FinSi
+    Si m = 60 Alors
+        m ← 0
+        h ← h + 1
+    FinSi
+    Si h = 24 Alors
+        h ← 0
+    FinSi
+    Ecrire "Dans une seconde il sera ", h, "h", m, "m et ", s, "s"
+Fin
+                    </textarea>
+                </div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_3 JSPROMPT
+function Exo_4_3() 
+// DEBUT
+{ 
+    var iHeures, iMinutes, iSecondes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=prompt("Entrez l'heure actuelle :");
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=prompt("Entrez les minutes :");
+    //Ecrire "Entrez les secondes :"
+    //Lire iSecondes
+    iSecondes=prompt("Entrez les secondes :");
+
+    iSecondes=parseInt(iSecondes)+1;
+
+    //Si iSecondes=60 alors
+    if (iSecondes==60)
+    {
+        iSecondes=0;
+        iMinutes=parseInt(iMinutes)+1;
+    }
+
+    //Si iMinutes=60 alors
+    if (iMinutes==60)
+    {
+        iMinutes=0;
+        iHeures=parseInt(iHeures)+1;
+    }
+    
+    //Si iHeures=60 alors
+    if (iHeures==24)
+    {
+        iHeures=0;
+    }
+
+    alert("Dans une seconde, il sera " + iHeures + " heure(s) " + iMinutes + " minute(s)" + iSecondes + " seconde(s)" );
+}                           </code></pre>
+                        </section>		
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_3 JSFORM
+function Exo_4_3_jsform() 
+// DEBUT
+{ 
+    var iHeures, iMinutes, iSecondes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=document.getElementById("iHeures").value;
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=document.getElementById("iMinutes").value;
+    //Ecrire "Entrez les secondes :"
+    //Lire iSecondes
+    iSecondes=document.getElementById("iSecondes").value;
+
+    iSecondes=parseInt(iSecondes)+1;
+
+    //Si iSecondes=60 alors
+    if (iSecondes==60)
+    {
+        iSecondes=0;
+        iMinutes=parseInt(iMinutes)+1;
+    }
+
+    //Si iMinutes=60 alors
+    if (iMinutes==60)
+    {
+        iMinutes=0;
+        iHeures=parseInt(iHeures)+1;
+    }
+    
+    //Si iHeures=60 alors
+    if (iHeures==24)
+    {
+        iHeures=0;
+    }
+
+    document.getElementById("sp_resultat_code").innerHTML=("Dans une seconde, il sera " + iHeures + " heure(s) " + iMinutes + " minute(s) " + iSecondes + " seconde(s)") ;
+}                           </code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_3 JQUERY
+function Exo_4_3_jquery() 
+// DEBUT
+{ 
+    var iHeures, iMinutes, iSecondes;
+
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    iHeures=$("#iHeures").val();
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    iMinutes=$("#iMinutes").val();
+    //Ecrire "Entrez les secondes :"
+    //Lire iSecondes
+    iSecondes=$("#iSecondes").val();
+
+    iSecondes=parseInt(iSecondes)+1;
+
+    //Si iSecondes=60 alors
+    if (iSecondes==60)
+    {
+        iSecondes=0;
+        iMinutes=parseInt(iMinutes)+1;
+    }
+
+    //Si iMinutes=60 alors
+    if (iMinutes==60)
+    {
+        iMinutes=0;
+        iHeures=parseInt(iHeures)+1;
+    }
+    
+    //Si iHeures=60 alors
+    if (iHeures==24)
+    {
+        iHeures=0;
+    }
+
+    $("#sp_resultat_code").html("Dans une seconde, il sera " + iHeures + " heure(s) " + iMinutes + " minute(s) " + iSecondes + " seconde(s)" );
+}                         </code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_3 PHP
+$sMessage= "";
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iHeures"]))
+{
+    //Ecrire "Entrez l'heure actuelle :"
+    //Lire iHeures
+    $iHeures= intval($_POST["iHeures"]) ;
+    //Ecrire "Entrez les minutes :"
+    //Lire iMinutes
+    $iMinutes= intval($_POST["iMinutes"]);
+    //Ecrire "Entrez les secondes :"
+    //Lire iMinutes
+    $iSecondes= intval($_POST["iSecondes"]);
+
+    $iSecondes++;
+
+//Si iSecondes=60 alors
+if ($iSecondes==60)
+{
+    $iSecondes=0;
+    $iMinutes=$iMinutes+1;
+}
+
+//Si iMinutes=60 alors
+if ($iMinutes==60)
+{
+    $iMinutes=0;
+    $iHeures=$iHeures+1;
+}
+
+//Si iHeures=60 alors
+if ($iHeures==24)
+{
+    $iHeures=0;
+}
+
+$sMessage= "Dans une seconde, il sera " . $iHeures . " heure(s) " . $iMinutes . " minute(s) " . $iSecondes . " seconde(s)" ;
+} 
+
+require "exo_4_3.html";     </code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_3.php" method="POST" name="formPHP">
+								<p>Entrez l'heure actuelle :</p>
+								<p><input type="number" name="iHeures" id="iHeures" min="1" max="23" value=""></p>
+                                <p>Entrez les minutes :</p>
+								<p><input type="number" name="iMinutes" id="iMinutes" min="0" max="59" value=""></p>
+                                <p>Entrez les secondes :</p>
+								<p><input type="number" name="iSecondes" id="iSecondes" min="0" max="59" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_4_3(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_3_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_3_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_3_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

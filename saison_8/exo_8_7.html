@@ -1,0 +1,983 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 8.7</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 771px;
+		}
+
+		#sp_result2 {
+			font-size: larger;
+			background-color: rgba(0, 0, 0, 1);
+		}
+
+		table {
+			border: 0px;
+			border-spacing: 0px;
+		}
+
+		td, tr {
+			border: 1px solid white;
+			padding: 0px;
+		}
+
+		td {
+			width: 43px
+		}
+
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 8.7</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Écrire un algorithme de jeu de dames très simplifié.
+                    <br>L’ordinateur demande à l’utilisateur dans quelle case se trouve son pion (quelle ligne, quelle colonne). On met en place un contrôle de saisie afin de vérifier la validité des valeurs entrées.
+                    <br>Ensuite, on demande à l’utilisateur quel mouvement il veut effectuer : 0 (en haut à gauche), 1 (en haut à droite), 2 (en bas à gauche), 3 (en bas à droite).
+                    <br>Si le mouvement est impossible (i.e. on sort du damier ), on le signale à l’utilisateur et on s’arrête là . Sinon, on déplace le pion et on affiche le damier résultant, en affichant un « O » pour une case vide et un « X » pour la case où se trouve le pion. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_8_7
+	Variable tableau aDamier(10,10)
+	Variables iPosition, iLigne, iColonne, iMvt
+	Variables bLigMsImp, bColMsImp, bLigPsImp, bColPsImp
+Début
+	Ecrire "Indiquez la position"
+	Lire iLigne, iColonne
+	TANTQUE iLigne OU iColonne < 1 OU > 10
+		Ecrire "valeur incorrect, recommencez"
+	FINTANTQUE
+	aDamier(iLigne,iColonne) ← "X"
+	Si iLigne = 1
+		bLigMsImp ← VRAI
+	FinSi
+	Si iColonne = 1
+		bColMsImp ← VRAI
+	FinSi
+	Si iLigne = 10
+		bLigPsImp ← VRAI
+	FinSi
+	Si iColonne = 10
+		bColPsImp ← VRAI
+	FinSi
+	Ecrire "Quel mouvement voulez-vous effectuer ? (0,1,2 ou 3 ?)"
+	Lire iMvt
+	SI iMvt = 0
+		si bLigMsImp ou bColMsImp ALORS
+			Ecrire "Mouvement impossible, recommencez"
+		Sinon
+			aDamier(iLigne,iColonne) ← 0
+			aDamier(iLigne-1,iColonne-1) ← "X"
+		Finsi
+	FinSi
+	SI iMvt = 1
+		aDamier(iLigne,iColonne) ← 0
+		aDamier(iLigne-1,iColonne+1) ← "X"
+	FinSi
+	SI iMvt = 2
+		aDamier(iLigne,iColonne) ← 0
+		aDamier(iLigne+1,iColonne-1) ← "X"
+	FinSi
+	SI iMvt = 3
+		aDamier(iLigne,iColonne) ← 0
+		aDamier(iLigne+1,iColonne+1) ← "X"
+	FinSi
+	Ecrire Tableau
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_8_7
+	Variables i, j , posi, posj, i2, j2 en Entier
+	Variables Correct, MoveOK en Booléen
+	Tableau Damier(7, 7) en Booléen
+	Tableau Mouv(3, 1) en Entier
+
+Le damier contenant un seul pion, on choisit de le coder à l'économie, en le représentant par un tableau de booléens à deux dimensions. Dans chacun des emplacements de ce damier, Faux signifie l'absence du pion, Vrai sa présence.
+Par ailleurs, on emploie une méchante astuce, pas obligatoire, mais bien pratique dans beaucoup de situations.
+L'idée est de faire correspondre les choix possibles de l'utilisateur avec les mouvements du pion. On entre donc dans un tableau Mouv à deux dimensions, les déplacements du pion selon les quatre directions, en prenant soin que chaque ligne du tableau corresponde à une saisie de l’utilisateur. La première valeur étant le déplacement en i, la seconde le déplacement en j. Ceci nous épargnera par la suite de faire quatre fois les mêmes tests.
+
+Début
+Choix 0 : pion en haut à droite
+	Mouv(0, 0) ← -1
+	Mouv(0, 1) ← -1
+Choix 1 : pion en haut à droite
+	Mouv(1, 0) ← -1
+	Mouv(1, 1) ← 1
+Choix 2 : pion en bas à gauche
+	Mouv(2, 0) ← 1
+	Mouv(2, 1) ← -1
+Choix 3 : pion en bas à droite
+	Mouv(3, 0) ← 1
+	Mouv(3, 1) ← 1
+Initialisation du damier; le pion n’est pour le moment nulle part	
+	Pour i ← 0 à 7
+		Pour j ← 0 à 7
+			Damier(i, j) ← Faux
+		j suivant
+	i suivant
+Saisie de la coordonnée en i ("posi") avec contrôle de saisie
+	Correct ← Faux
+	TantQue Non Correct
+		Ecrire "Entrez la ligne de votre pion: "
+		Lire posi
+		Si posi >= 0 et posi &lt;= 7 Alors
+			Correct ← vrai
+		Finsi
+	Fintantque
+Saisie de la coordonnée en j ("posj") avec contrôle de saisie
+	Correct ← Faux
+	TantQue Non Correct
+		Ecrire "Entrez la colonne de votre pion: "
+		Lire posj
+		Si posj >= 0 et posj &lt;= 7 Alors
+			Correct ← Vrai
+		Finsi
+	Fintantque
+Positionnement du pion sur le damier virtuel.
+	Damier(posi, posj) ← Vrai
+Saisie du déplacement, avec contrôle
+	Ecrire "Quel déplacement ?"
+	Ecrire " - 0: en haut à gauche"
+	Ecrire " - 1: en haut à droite"
+	Ecrire " - 2: en bas à gauche"
+	Ecrire " - 3: en bas à droite"
+	Correct ← Faux
+	TantQue Non Correct
+		Lire Dep
+		Si Dep >= 0 et Dep &lt;= 3 Alors
+			Correct ← Vrai
+		FinSi
+	FinTantQue
+i2 et j2 sont les futures coordonnées du pion. La variable booléenne MoveOK vérifie la validité de ce futur emplacement
+	i2 ← posi + Mouv(Dep, 0)
+	j2 ← posj + Mouv(Dep, 1)
+	MoveOK ← i2 >= 0 et i2 &lt;= 7 et j2 >= 0 et j2 &lt;= 7
+Cas où le déplacement est valide
+	Si MoveOK Alors
+		Damier(posi, posj) ← Faux
+		Damier(i2, j2) ← Vrai
+Affichage du nouveau damier
+		Pour i ← 0 à 7
+			Pour j ← 0 à 7
+				Si Damier(i, j) Alors
+					Ecrire " O ";
+				Sinon
+					Ecrire " X ";
+				FinSi
+			j suivant
+			Ecrire ""
+		i suivant
+	Sinon
+Cas où le déplacement n’est pas valide
+		Ecrire "Mouvement impossible"
+	FinSi
+Fin
+
+---------------------
+VARIANTE Exercice 8.7
+---------------------
+
+ALGORITHME Exo_8_7
+	Tableau Tab(9,9) en entier
+	Variable ligneUser, colonneUser, mouvUser, x, y en entier
+	Variable strError en caractère
+DEBUT
+	strError=""
+	estValide = Faux
+	REPETER
+		Ecrire strError, "Saisissez la ligne puis la colonne de la case de votre pion (1 à 10) svp :"
+		Lire ligneUser
+		Lire colonneUser
+		SI ligneUser >= 1 ET ligneUser &lt;= 10 ET colonneUser >= 1 ET colonneUser &lt;= 10 ALORS
+			estValide = Vrai
+		SINON
+			strError= "Erreur de position. "
+		FINSI
+	JUSQU'A estValide = Vrai
+	
+	ligneUser -= 1
+	colonneUser -= 1
+	strError=""
+	REPETER
+		Ecrire strError, "Quel mouvement voulez-vous effectuer ? 0 (haut gauche), 1 (haut droite), 2 (bas gauche), 3 (bas droite)."
+		Lire mouvUser
+		SI mouvUser >= 0 ET mouvUser &lt;= 3 ALORS
+			estValide = Vrai
+		SINON
+			strError= "Erreur de mouvement. "
+		FINSI
+	JUSQU'A estValide = Vrai
+	
+	SI mouvUser = 0 ALORS
+		x = ligneUser-1
+		y = colonneUser+1
+	FINSI
+
+	SI mouvUser = 1 ALORS
+		x = ligneUser+1
+		y = colonneUser+1
+	FINSI
+
+	SI mouvUser = 2 ALORS
+		x = ligneUser-1
+		y = colonneUser-1
+	FINSI
+
+	SI mouvUser = 3 ALORS
+		x = ligneUser+1
+		y = colonneUser-1
+	FINSI
+
+	SI x &lt; 0 OU x > 9 ou y &lt; 0 ou y > 9 ALORS
+		Ecrire "Mouvement impossible à réaliser. Fin du programme..."
+	SINON
+		POUR i &lt;- 0 à 9
+			POUR j &lt;- 0 à 9
+				SI i == x ET j == y ALORS
+					Ecrire "O"
+				SINON
+					Ecrire "X"
+				FINSI
+			j SUIVANT
+			Ecrire "\n"
+		i SUIVANT
+	FINSI
+FINSI				</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_8_7 JSFORM
+function Exo_8_7_jsform()
+// DEBUT
+{
+	var iLigne, iColonne, iLigneTab, iColonneTab, iMvt;
+	var bLigMsImp, bColMsImp, bLigPsImp, bColPsImp;
+	//Creation du damier vide
+	var aDamier = new Array(10);
+	for (var i=0; i<10; i++)
+	{
+		aDamier[i] = new Array(10);
+
+		for (var j=0; j<10; j++)
+		{
+			aDamier[i][j]="<img src=\"../img/pionNoir.png\">";
+		}
+	}
+
+	// Ecrire "Indiquez la position"
+	// Lire iLigne, iColonne
+	iLigne=document.getElementById("iLigne").value;
+	iColonne=document.getElementById("iColonne").value;
+	iLigneTab=iLigne-1;
+	iColonneTab=iColonne-1;
+
+	//TANTQUE iLigne OU iColonne < 1 OU > 10
+	if (iLigne < 1 || iLigne > 10 || iColonne < 1 || iColonne > 10)
+	{
+		// 	Ecrire "valeur incorrect, recommencez"
+		document.getElementById("sp_result").innerHTML="valeur incorrect, recommencez";
+	//FIN TANTQUE
+	}
+
+	// Sinon
+	else
+	{
+		// Positionner le pion dans le tableau à la case voulue
+		aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+		document.getElementById("sp_result").innerHTML="Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")";
+		
+		// Mouvements impossibles si pion au bords du tableau
+		if (iLigneTab == 0)
+		{
+			bLigMsImp = true;
+		}
+		if (iColonneTab == 0)
+		{
+			bColMsImp = true;
+		}
+		if (iLigneTab == 9)
+		{
+			bLigPsImp = true;
+		}
+		if (iColonneTab == 9)
+		{
+			bColPsImp = true;
+		}
+
+		// Lire iMvt
+		// iMvt=document.getElementById("iMvt").value;
+		iMvt=document.querySelector('input[name = "iMvt"]:checked').value;
+		
+		// Si mouvement = haut gauche
+		if (iMvt == 0)
+		{
+			if (bLigMsImp || bColMsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				document.getElementById("sp_result").innerHTML="déplacement impossible, recommencez";
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				iLigneTab--;
+				iColonneTab--;
+				iLigne--;
+				iColonne--;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				document.getElementById("sp_result").innerHTML="Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")";
+				document.getElementById("iLigne").value=iLigne;
+				document.getElementById("iColonne").value=iColonne;
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = haut droite
+		if (iMvt == 1)
+		{
+			if (bLigMsImp || bColPsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				document.getElementById("sp_result").innerHTML="déplacement impossible, recommencez";
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				iLigneTab--;
+				iColonneTab++;
+				iLigne--;
+				iColonne++;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				document.getElementById("sp_result").innerHTML="Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")";
+				document.getElementById("iLigne").value=iLigne;
+				document.getElementById("iColonne").value=iColonne;
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = bas gauche
+		if (iMvt == 2)
+		{
+			if (bLigPsImp || bColMsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				document.getElementById("sp_result").innerHTML="déplacement impossible, recommencez";
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				iLigneTab++;
+				iColonneTab--;
+				iLigne++;
+				iColonne--;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				document.getElementById("sp_result").innerHTML="Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")";
+				document.getElementById("iLigne").value=iLigne;
+				document.getElementById("iColonne").value=iColonne;
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = bas droite
+		if (iMvt == 3)
+		{
+			if (bLigPsImp || bColPsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				document.getElementById("sp_result").innerHTML="déplacement impossible, recommencez";
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				iLigneTab++;
+				iColonneTab++;
+				iLigne++;
+				iColonne++;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				document.getElementById("sp_result").innerHTML="Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")";
+				document.getElementById("iLigne").value=iLigne;
+				document.getElementById("iColonne").value=iColonne;
+			}
+		//Fin SI
+		}
+
+		// Génération du tableau à damier N&B
+		var sHtml="";
+		//Pour a de 0 à 10
+		for (var a = 0; a < 10; a++) 
+		{
+			sHtml += "<tr><td style=\"width:24px; \">" + (a+1) + "</td>";
+
+			//Pour b de 0 à 10
+			for (var b = 0; b < 10; b++)
+			{
+				//Si a est paire et b aussi couleur noir
+				if (a % 2 == 0 && b % 2 == 0)
+				{
+					sHtml += "<td style=\"background-color: black; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+
+				//SiNonSi a est impaire et b aussi couleur noir
+				} else if ((a % 2 !== 0 && b % 2 !== 0))
+				{
+					sHtml += "<td style=\"background-color: black; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+				} 
+
+				//SiNon couleur blanc
+				else 
+				{
+					sHtml += "<td style=\"background-color: white; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+				}
+			//b Suivant	
+			}
+
+			sHtml = sHtml + "</tr>";
+
+		//a Suivant 	
+		}
+
+		// Afficher tableau
+		document.getElementById("sp_result2").innerHTML="<br><table><tr><td style=\"width:24px; \"></td><td style=\"width:43px;\">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr></table>";
+		document.getElementById("sp_result2").innerHTML+="<table>" + sHtml + "</table><br>";
+		
+	// Fin SINON
+	}
+//Fin
+} 	                 		</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_8_7 JQUERY
+function Exo_8_7_jquery()
+// DEBUT
+{
+	var iLigne, iColonne, iLigneTab, iColonneTab, iMvt;
+	var bLigMsImp, bColMsImp, bLigPsImp, bColPsImp;
+
+	//Creation du damier vide
+	var aDamier = new Array(10);
+	for (var i=0; i<10; i++)
+	{
+		aDamier[i] = new Array(10);
+
+		for (var j=0; j<10; j++)
+		{
+			aDamier[i][j]="<img src=\"../img/pionBlanc.png\">";
+		}
+	}
+
+	// Ecrire "Indiquez la position"
+	// Lire iLigne, iColonne
+	iLigne=$("#iLigne").val();
+	iColonne=$("#iColonne").val();
+	iLigneTab=iLigne-1;
+	iColonneTab=iColonne-1;
+
+	//TANTQUE iLigne OU iColonne < 1 OU > 10
+	if (iLigne < 1 || iLigne > 10 || iColonne < 1 || iColonne > 10)
+	{
+		// 	Ecrire "valeur incorrect, recommencez"
+		$("#sp_result").html("valeur incorrect, recommencez");
+	//FIN TANTQUE
+	}
+
+	// Sinon
+	else
+	{
+		// Positionner le pion dans le tableau à la case voulue
+		aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+		$("#sp_result").html("Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")");
+		
+		// Mouvements impossibles si pion au bords du tableau
+		if (iLigneTab == 0)
+		{
+			bLigMsImp = true;
+		}
+		if (iColonneTab == 0)
+		{
+			bColMsImp = true;
+		}
+		if (iLigneTab == 9)
+		{
+			bLigPsImp = true;
+		}
+		if (iColonneTab == 9)
+		{
+			bColPsImp = true;
+		}
+		
+		// Lire iMvt
+		// iMvt=$("#iMvt").val();
+		iMvt=$("input[type='radio'][name='iMvt']:checked").val();
+		
+		// Si mouvement = haut gauche
+		if (iMvt == 0)
+		{
+			if (bLigMsImp || bColMsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				$("#sp_result").html("déplacement impossible, recommencez");
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				iLigneTab--;
+				iColonneTab--;
+				iLigne--;
+				iColonne--;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				$("#sp_result").html("Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")");
+				$("#iLigne").val(iLigne);
+				$("#iColonne").val(iColonne);
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = haut droite
+		if (iMvt == 1)
+		{
+			if (bLigMsImp || bColPsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				$("#sp_result").html("déplacement impossible, recommencez");
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				iLigneTab--;
+				iColonneTab++;
+				iLigne--;
+				iColonne++;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				$("#sp_result").html("Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")");
+				$("#iLigne").val(iLigne);
+				$("#iColonne").val(iColonne);
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = bas gauche
+		if (iMvt == 2)
+		{
+			if (bLigPsImp || bColMsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				$("#sp_result").html("déplacement impossible, recommencez");
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				iLigneTab++;
+				iColonneTab--;
+				iLigne++;
+				iColonne--;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				$("#sp_result").html("Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")");
+				$("#iLigne").val(iLigne);
+				$("#iColonne").val(iColonne);
+			}
+		//Fin SI
+		}
+
+		// Si mouvement = bas droite
+		if (iMvt == 3)
+		{
+			if (bLigPsImp || bColPsImp)
+			{
+				// Ecrire "mouvement impossible, recommencez"
+				$("#sp_result").html("déplacement impossible, recommencez");
+			}
+			
+			else
+			{
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+				iLigneTab++;
+				iColonneTab++;
+				iLigne++;
+				iColonne++;
+				aDamier[iLigneTab][iColonneTab]="<img src=\"../img/pionNoir.png\">";
+				$("#sp_result").html("Le pion se trouve à la position (ligne "+iLigne+", colonne "+iColonne+")");
+				$("#iLigne").val(iLigne);
+				$("#iColonne").val(iColonne);
+			}
+		//Fin SI
+		}
+
+
+		// Génération du tableau à damier N&B
+		var sHtml="";
+		//Pour a de 0 à 10
+		for (var a = 0; a < 10; a++) 
+		{
+			sHtml += "<tr><td style=\"width:24px; \">" + (a+1) + "</td>";
+
+			//Pour b de 0 à 10
+			for (var b = 0; b < 10; b++)
+			{
+				//Si a est paire et b aussi couleur noir
+				if (a % 2 == 0 && b % 2 == 0)
+				{
+					sHtml += "<td style=\"background-color: black; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+
+				//SiNonSi a est impaire et b aussi couleur noir
+				} else if ((a % 2 !== 0 && b % 2 !== 0))
+				{
+					sHtml += "<td style=\"background-color: black; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+				} 
+
+				//SiNon couleur blanc
+				else 
+				{
+					sHtml += "<td style=\"background-color: white; width:43px; height: 45px;\">" + aDamier[a][b] + "</td>";
+				}
+			//b Suivant	
+			}
+
+			sHtml = sHtml + "</tr>";
+
+		//a Suivant 	
+		}
+
+		// Afficher tableau
+		$("#sp_result2").html("<br><table><tr><td style=\"width:24px; \"></td><td style=\"width:43px;\">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr></table>");
+		$("#sp_result2").append("<table>" + sHtml + "</table><br>");
+		
+	// Fin SINON
+	}
+//Fin
+} 							</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_8_7 PHP
+if (isset($_POST["btn_php"]) and isset($_POST["iLigne"]) and  isset($_POST["iColonne"]))
+{
+	//Creation du damier vide
+
+ for ($i=0; $i<10; $i++)
+ {
+	 for ($j=0; $j<10; $j++)
+	 {
+		 $aDamier[$i][$j]="<img src=\"../img/pionBlanc.png\">";
+	 }
+ }
+
+ // Ecrire "Indiquez la position"
+ // Lire iLigne, iColonne
+ $iLigne=$_POST["iLigne"];
+ $iColonne=$_POST["iColonne"];
+
+ //TANTQUE iLigne OU iColonne < 1 OU > 10
+ if ($iLigne < 1 || $iLigne > 10 || $iColonne < 1 || $iColonne > 10)
+ {
+	 // Ecrire "valeur incorrect, recommencez"
+	 $sMessage="valeur incorrect, recommencez";
+	 // Pour eviter erreur -Undefined variable-
+	 $sMessage2="";
+ //FIN TANTQUE
+ }
+
+ // Sinon
+ else
+ {
+	// pour faire un distingo entre valeurs tableau (0 à 9) et valeurs damier (1 à 10)
+	 $iLigneTab=$iLigne-1;
+	 $iColonneTab=$iColonne-1;
+
+	 // Positionner le pion dans le tableau à la case voulue
+	 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionNoir.png\">";
+	 $sMessage="Le pion se trouve à la position (ligne ".$iLigne.", colonne ".$iColonne.")";
+	 $bLigMsImp = false;
+	 $bColMsImp = false;
+	 $bLigPsImp = false;
+	 $bColPsImp = false;
+	 
+	 // Mouvements impossibles si pion au bords du tableau
+	 if ($iLigneTab == 0)
+	 {
+		 $bLigMsImp = true;
+	 }
+	 if ($iColonneTab == 0)
+	 {
+		 $bColMsImp = true;
+	 }
+	 if ($iLigneTab == 9)
+	 {
+		 $bLigPsImp = true;
+	 }
+	 if ($iColonneTab == 9)
+	 {
+		 $bColPsImp = true;
+	 }
+
+	 // Lire iMvt
+	 $iMvt=$_POST["iMvt"];
+ 
+	 // Si mouvement = haut gauche
+	 if ($iMvt == 0)
+	 {
+		 if ($bLigMsImp || $bColMsImp)
+		 {
+			 // Ecrire "mouvement impossible, recommencez"
+			 $sMessage="déplacement impossible, recommencez";
+		 }
+		 
+		 else
+		 {
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+			 $iLigneTab--;
+			 $iColonneTab--;
+			 $iLigne--;
+			 $iColonne--;
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionNoir.png\">";
+			 $sMessage="Le pion se trouve à la position (ligne ".$iLigne.", colonne ".$iColonne.")";
+		 }
+	 //Fin SI
+	 }
+	 
+	 // Si mouvement = haut droite
+	 if ($iMvt == 1)
+	 {
+		 if ($bLigMsImp || $bColPsImp)
+		 {
+			 // Ecrire "mouvement impossible, recommencez"
+			 $sMessage="déplacement impossible, recommencez";
+		 }
+		 
+		 else
+		 {
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+			 $iLigneTab--;
+			 $iColonneTab++;
+			 $iLigne--;
+			 $iColonne++;
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionNoir.png\">";
+			 $sMessage="Le pion se trouve à la position (ligne ".$iLigne.", colonne ".$iColonne.")";
+		 }
+	 //Fin SI
+	 }
+
+	 // Si mouvement = bas gauche
+	 if ($iMvt == 2)
+	 {
+		 if ($bLigPsImp || $bColMsImp)
+		 {
+			 // Ecrire "mouvement impossible, recommencez"
+			 $sMessage="déplacement impossible, recommencez";
+		 }
+		 
+		 else
+		 {
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+			 $iLigneTab++;
+			 $iColonneTab--;
+			 $iLigne++;
+			 $iColonne--;
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionNoir.png\">";
+			 $sMessage="Le pion se trouve à la position (ligne ".$iLigne.", colonne ".$iColonne.")";
+		 }
+	 //Fin SI
+	 }
+
+	 // Si mouvement = bas droite
+	 if ($iMvt == 3)
+	 {
+		 if ($bLigPsImp || $bColPsImp)
+		 {
+			 // Ecrire "mouvement impossible, recommencez"
+			 $sMessage="déplacement impossible, recommencez";
+		 }
+		 
+		 else
+		 {
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionBlanc.png\">";
+			 $iLigneTab++;
+			 $iColonneTab++;
+			 $iLigne++;
+			 $iColonne++;
+			 $aDamier[$iLigneTab][$iColonneTab]="<img src=\"../img/pionNoir.png\">";
+			 $sMessage="Le pion se trouve à la position (ligne ".$iLigne.", colonne ".$iColonne.")";
+		 }
+	 //Fin SI
+	 }
+
+	 // Génération du tableau à damier N&B
+	 $sHtml ="";
+	 //Pour a de 0 à 10
+	 for ($a = 0; $a < 10; $a++) 
+	 {
+		 $sHtml .= "<tr><td style=\"width:24px; \">" . ($a+1) . "</td>";
+
+		 //Pour b de 0 à 10
+		 for ($b = 0; $b < 10; $b++)
+		 {
+			 //Si a est paire et b aussi couleur noir
+			 if ($a % 2 == 0 && $b % 2 == 0)
+			 {
+				 $sHtml .= "<td style=\"background-color: black; width:43px; height: 45px;\">" . $aDamier[$a][$b] . "</td>";
+
+			 //SiNonSi a est impaire et b aussi couleur noir
+			 } else if (($a % 2 !== 0 && $b % 2 !== 0))
+			 {
+				 $sHtml .= "<td style=\"background-color: black; width:43px; height: 45px;\">" . $aDamier[$a][$b] . "</td>";
+			 } 
+
+			 //SiNon couleur blanc
+			 else 
+			 {
+				 $sHtml .= "<td style=\"background-color: white; width:43px; height: 45px;\">" . $aDamier[$a][$b] . "</td>";
+			 }
+		 //b Suivant	
+		 }
+
+		 $sHtml = $sHtml . "</tr>";
+
+	 //a Suivant 	
+	 }
+
+	 // Afficher tableau
+	 $sMessage2="<br><table><tr><td style=\"width:24px; \"></td><td style=\"width:43px;\">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr></table>";
+	 $sMessage2.="<table>" . $sHtml . "</table><br>";
+
+ //Fin SINON
+ }
+//Fin
+}
+
+else
+{
+ $sMessage= "";
+ $sMessage2= "";
+ $iLigne= "";
+ $iColonne= "";
+}
+
+require "exo_8_7.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_8_7.php" method="POST" name="formPHP">
+								<p>Dans quelle case se trouve votre pion ?</p>
+								<p>Ligne : <input type="number" name="iLigne" id="iLigne" min="" max="" value="<?= $iLigne ?>"></p>
+                                <p>Colonne : <input type="number" name="iColonne" id="iColonne" min="" max="" value="<?= $iColonne ?>"></p>
+								
+								<!-- <p><label for="iMvt">Mouvement :</label>
+								<select name="iMvt" id="iMvt">
+									<option value="-1">--Quel mouvement voulez-vous effectuer ?--</option>
+									<option value="0">en haut à gauche</option>
+									<option value="1">en haut à droite</option>
+									<option value="2">en bas à gauche</option>
+									<option value="3">en bas à droite</option>
+								</select></p> -->
+
+								<p>Quel mouvement voulez-vous effectuer ?</p>
+								<div>
+									<input type="radio" id="iMvt" name="iMvt" value="-1" checked>
+									<label for="-1">aucun</label>
+								</div>
+								<div>
+									<input type="radio" id="iMvt0" name="iMvt" value="0">
+									<label for="0">en haut à gauche</label>
+									<input type="radio" id="iMvt1" name="iMvt" value="1">
+									<label for="1">en haut à droite</label>
+								</div>
+								<div>
+									<input type="radio" id="iMvt2" name="iMvt" value="2">
+									<label for="2">en bas à gauche</label>
+									<input type="radio" id="iMvt3" name="iMvt" value="3">
+									<label for="3">en bas à droite</label>
+								</div>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_8_7_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_8_7_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+							<span id="sp_result2"></span>
+                           	<span><?php echo $sMessage; ?></span>
+							<span><?php echo $sMessage2; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison8.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

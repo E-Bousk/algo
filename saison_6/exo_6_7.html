@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.7</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_6_7_php
+		function Exo_6_7_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 207px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 6.7</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrivez la fin de l’algorithme 6.3 afin que le calcul de la moyenne des notes soit effectué et affiché à l’écran. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_6_3
+	Tableau Tab(8) en numérique
+	Variable i, iTotal en numérique
+Début
+	iTotal ← 0
+	POUR i ← 0 à 8
+	Ecrire "Entrez une note :"
+	Lire Tab(i)
+	iTotal = iTotal+Tab(i)
+	i Suivant
+	Ecrire "La moyenne des notes est :" & iTotal/i+1
+Fin
+</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_7
+	Variable S en Numérique
+	Tableau Notes(8) en Numérique
+Debut
+	s ← 0
+	Pour i ← 0 à 8
+		Ecrire "Entrez la note n° ", i + 1
+		Lire Notes(i)
+		s ← s + Notes(i)
+	i Suivant
+	Ecrire "Moyenne :", s/9
+Fin	
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_7 JSFORM
+var TabExo7 = [8];
+var iExo7= 0;
+var iTotalExo7 = 0;
+function Exo_6_7_jsform()
+//Début
+{
+	//Pour i ← 0 à 8
+	if (iExo7&lt;8)		
+	{
+		//Lire Tab(i)
+		TabExo7[iExo7]=+document.getElementById("iNbre").value;
+		iTotalExo7 = iTotalExo7+TabExo7[iExo7];
+		// Ecrire "Notes " & iExo7+1 & "bien prise en compte.""
+		document.getElementById("sp_result").innerHTML="Notes " + (iExo7+1) + " bien prise en compte.";
+		iExo7++;
+	}
+
+	else if (iExo7==8)		
+	{
+		//Lire Tab(i)
+		TabExo7[iExo7]=+document.getElementById("iNbre").value;
+		iTotalExo7 = iTotalExo7+TabExo7[iExo7];
+		// Ecrire "Notes " & iExo7+1 & "bien prise en compte.""
+		document.getElementById("sp_result").innerHTML="Notes " + (iExo7+1) + " bien prise en compte.&lt;br>Cliquez pour calculer la moyenne";
+		iExo7++;
+		// Effacer chiffre dans input
+		document.getElementById("iNbre").value = "";
+	}
+
+	else
+	{
+		// Ecrire "La moyenne des notes est :" & iTotalExo7/i
+		document.getElementById("sp_result").innerHTML="La moyenne des notes est : " + (iTotalExo7/iExo7);
+	}
+//Fin						</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_7 JQUERY
+var TabExo7 = [8];
+var iExo7= 0;
+var iTotalExo7 = 0;
+function Exo_6_7_jquery()
+//Début
+{
+	//Pour i ← 0 à 8
+	if (iExo7&lt;8)		
+	{
+		//Lire Tab(i)
+		TabExo7[iExo7]=+document.getElementById("iNbre").value;
+		iTotalExo7 = iTotalExo7+TabExo7[iExo7];
+		// Ecrire "Notes " & iExo7+1 & "bien prise en compte.""
+		$("#sp_result").html("Notes " + (iExo7+1) + " bien prise en compte.");
+		iExo7++;
+	}
+
+	else if (iExo7==8)		
+	{
+		//Lire Tab(i)
+		TabExo7[iExo7]=+document.getElementById("iNbre").value;
+		iTotalExo7 = iTotalExo7+TabExo7[iExo7];
+		// Ecrire "Notes " & iExo7+1 & "bien prise en compte.""
+		$("#sp_result").html("Notes " + (iExo7+1) + " bien prise en compte.&lt;br>Cliquez pour calculer la moyenne");
+		iExo7++;
+		// Effacer chiffre dans input
+		$("#iNbre").val("");
+	}
+
+	else
+	{
+		// Ecrire "La moyenne des notes est :" & iTotalExo7/i
+		$("#sp_result").html("La moyenne des notes est : " + (iTotalExo7/iExo7));
+	}
+//Fin
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_7 PHP
+$sMessage= "";
+
+//Début
+if (isset($_POST["iNbre"]) and isset($_POST["i"]) and isset($_POST["iTotal"]))
+{
+    //Lire $i
+    $i=$_POST["i"];
+    //Lire $iTotal
+    $iTotal=$_POST["iTotal"];
+
+    //Lire $TabInput (Récuperer les valeurs du tableau depuis HTML)
+    $TabInput= $_POST["TabInput"];
+    if ($TabInput !="")
+    {
+		//pour (re)créer tableau
+        $Tab=explode(":",$TabInput);
+    }
+    
+   
+    //Pour i ← 0 à 8
+    if ($i&lt;8)		
+    {
+        //Lire Tab(i)
+        $iNbre=$_POST["iNbre"];
+        $iTotal = $iTotal+$iNbre;
+        // Ecrire "Notes " & i+1 & "bien prise en compte.""
+        $sMessage.="Notes " . ($i+1) . " bien prise en compte.";
+        $Tab[]=$iNbre;
+        $i++;
+    }
+    
+    else if ($i==8)
+    {
+        //Lire Tab(i)
+        $iNbre=$_POST["iNbre"];
+        $iTotal = $iTotal+$iNbre;
+        // Ecrire "Notes " & i+1 & "bien prise en compte.""
+        $sMessage.="Notes " . ($i+1) . " bien prise en compte.&lt;br>Cliquez pour calculer la moyenne";
+        $Tab[]=$iNbre;;
+        $i++;
+    }
+    
+    else
+    {
+        // Ecrire "La moyenne des notes est :" & iTotal/i
+        $sMessage="La moyenne des notes est : " . number_format($iTotal/$i, 2) . "&lt;br>";
+        for ($i=0; $i&lt;9; $i++)
+        {
+            $sMessage.="Note n° " . ($i+1) . " : " . $Tab[$i] . "&lt;br>";
+        }
+    }
+
+    //Éclater les valeurs en lignes en les séparants par un « : » pour envoyer dans HTML
+    $TabInput=implode(":", $Tab);
+}
+else
+{
+    $i= 0;
+    $iTotal = 0;
+    $Tab="";
+    $TabInput="";
+}
+	
+require "exo_6_7.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_7.php" method="POST" name="formPHP">
+								<p>Entrez une note :</p>
+								<p><input type="number" name="iNbre" id="iNbre" min="0" max="20" value="10"></p>
+								<p><input type="hidden" name="i" id="i" min="" max="" value="<?php echo $i; ?>"></p>
+								<p><input type="hidden" name="iTotal" id="iTotal" min="" max="" value="<?php echo $iTotal; ?>"></p>
+								<p><input type="hidden" name="TabInput" id="TabInput" min="" max="" value="<?php echo $TabInput; ?>"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_7_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_7_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_6_7_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

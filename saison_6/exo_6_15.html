@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.15</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_6_15_php
+		function Exo_6_15_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 201px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 6.15</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Pour sa naissance, la grand-mère de TITI place une somme de 1000 Euros sur son compte épargne rémunéré au taux de 2.75% (chaque année le compte est augmenté de 2.75%). Développer un algorithme permettant de stocker dans un tableau sur 20 ans associant à chaque anniversaire de TITI la somme acquise sur son compte.
+                    <br>Puis, la grand-mère de TITI aura la possibilité de saisir un âge (compris entre 1 et 20 ans) et l'algorithme affichera la somme correspondante qu'il y'aura alors sur le compte &raquo;</p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_6_15
+Variables i, iSomme, iInteret en Numérique
+Tableaux Tab(20) en Numérique
+Début
+    Tab(0) ← 1000
+    Pour i ← 1 à 20
+        Tab(i) ← Tab(i-1)*(1+2.75/100)
+    i suivant
+    Ecrire "Saisissez un âge pour voir la somme correspondante"
+    Lire iAge
+    Ecrire "À " & iAge & " an(s), la somme sera de :" & Tab(iAge) & " €."
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_15
+    Variables i, iAge en Numérique
+    Tableau compte(20) en Numérique
+Debut
+    compte(0) ← 1000
+    Pour i ← 1 à 20
+        compte(i) ← compte(i-1) + ( compte(i-1) * 2.75 / 100 )
+    i Suivant
+    REPETER
+        Ecrire "Saisissez un âge, compris entre 1 et 20 ans, afin de connaitre alors la somme du compte :"
+        Lire iAge
+    JUSQU'A iAge >= 1 ET iAge =< 20
+    Ecrire "Le compte aura alors comme solde : ", compte(iAge)
+Fin	                </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_15 JSFORM
+function Exo_6_15_jsform()
+//Début
+{	
+    // déclaration des variables
+    var iAge, TabExo15, i;
+    
+    TabExo15 = [20];
+    TabExo15[0] = 1000;
+    
+    // Pour i ← 1 à 20
+    for (i=1;i&lt;=20;i++)
+    {
+        TabExo15[i] = TabExo15[i-1]*(1+2.75/100);
+    // i suivant 
+    }
+    // Ecrire "Saisissez un âge pour voir la somme correspondante"
+    // Lire iAge
+    iAge=document.getElementById("iAge").value;
+    // Ecrire "À " & iAge & " an(s), la somme sera de :" & Tab(iAge) & " €."
+    document.getElementById("sp_result").innerHTML="À " + iAge + " an(s), la somme sera de : " + TabExo15[iAge].toFixed(2) + " €.";
+//Fin	
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_15 JQUERY
+function Exo_6_15_jquery()
+//Début
+{	
+    // déclaration des variables
+    var iAge, TabExo15, i;
+
+    TabExo15 = [20];
+    TabExo15[0] = 1000;
+    
+    // Pour i ← 1 à 20
+    for (i=1;i&lt;=20;i++)
+    {
+        TabExo15[i] = TabExo15[i-1]*(1+2.75/100);
+    // i suivant 
+    }
+    // Ecrire "Saisissez un âge pour voir la somme correspondante"
+    // Lire iAge
+    iAge=$("#iAge").val();
+    // Ecrire "À " & iAge & " an(s), la somme sera de :" & Tab(iAge) & " €."
+    $("#sp_result").html("À " + iAge + " an(s), la somme sera de : " + TabExo15[iAge].toFixed(2) + " €.);
+//Fin	
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_15 PHP
+$sMessage= "";
+
+//Début
+if (isset($_POST["iAge"]))
+{
+
+    $TabExo15 = [19];
+    $TabExo15[0] = 1000;
+    
+    // Pour i ← 1 à 20
+    for ($i=1;$i&lt;=20;$i++)
+    {
+        $TabExo15[$i] = $TabExo15[$i-1]*(1+2.75/100);
+    // i suivant 
+    }
+    // Ecrire "Saisissez un âge pour voir la somme correspondante"
+    // Lire iAge
+    $iAge=$_POST["iAge"];
+    // Ecrire "À " & iAge & " an(s), la somme sera de :" & Tab(iAge) & " €."
+    $sMessage="À " . $iAge . " an(s), la somme sera de : " . number_format($TabExo15[$iAge], 2, ',', ' ') . " €.";
+//Fin
+} 
+
+require "exo_6_15.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_15.php" method="POST" name="formPHP">
+                               	<p>Saisissez un âge pour voir la somme correspondante :</p>
+                                <p><input type="number" name="iAge" id="iAge" min="1" max="20" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_15_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_15_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_6_15_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

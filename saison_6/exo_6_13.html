@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 6.13</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_6_13_php
+		function Exo_6_13_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 261px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 6.13</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrivez un algorithme permettant, toujours sur le même principe, à l’utilisateur de saisir un nombre déterminé de valeurs. Le programme, une fois la saisie terminée, renvoie la plus grande valeur en précisant quelle position elle occupe dans le tableau. On prendra soin d’effectuer la saisie dans un premier temps, et la recherche de la plus grande valeur du tableau dans un second temps. &raquo;</p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_6_13
+	Variables i, iGreatest, iPosition en Numérique
+	Tableaux Tab(x) en Numérique
+Début
+	Ecrire "saisissez les x valeurs"
+	Lire Tab(x-1)
+	iGreatest ← ""
+	iPosition ← 0
+	Pour i ← 0 à x-1
+		si Tab(i)>iGreatest OU iGreatest = "" Alors
+			iGreatest ← Tab(i)
+			iPosition ← i
+		FinSI
+	i suivant
+	Ecrire "La plus grande valeur est : " &  $iGreatest & " en position numero " & ($iPosition+1)
+Fin					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_6_13
+	Variables Nb, Posmaxi en Numérique
+	Tableau T() en Numérique
+Debut
+	Ecrire "Entrez le nombre de valeurs :"
+	Lire Nb
+	Redim T(Nb-1)
+	Pour i ← 0 à Nb - 1
+		Ecrire "Entrez le nombre n° ", i + 1
+		Lire T(i)
+	i Suivant
+	Posmaxi ← 0
+	Pour i ← 0 à Nb - 1
+		Si T(i) > T(Posmaxi) alors
+			Posmaxi ← i
+		Finsi
+	i Suivant
+	Ecrire "Element le plus grand : ", T(Posmaxi)
+	Ecrire "Position de cet élément : ", Posmaxi
+Fin	                </textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_13 JSFORM
+function Exo_6_13_jsform()
+//Début
+{	
+	// déclaration des variables
+	var iNbreDyn, TabExo13, iGreatest, iPosition, iv, i;
+	TabExo13=[];
+	
+	// Recuperer les nombre de valeur(s) à inserer
+	iNbreDyn=document.getElementById("iNbreDyn").value;
+	
+	// Récuperation des valeurs à inserer dans le tableau
+	for (iv=0;iv&lt;iNbreDyn;iv++)
+	{
+		// Lire Tab(x)
+		TabExo13[iv]=+document.getElementById("iNombre"+(iv+1)).value;
+	}
+
+	iGreatest = "";
+	
+	// Pour i ← 0 à x-1
+	for (i=0;i&lt;iNbreDyn;i++)
+	{
+		// Si Tab(i)>iGreatest ou 1er nombre comparé Alors
+		if (TabExo13[i]>iGreatest || iGreatest === "")
+		{
+			// iGreatest ← Tab(i)
+			iGreatest = TabExo13[i];
+			iPosition = i;
+		// finSI
+		}
+	// i suivant 
+	}
+	document.getElementById("sp_result").innerHTML="La plus grande valeur est : " + iGreatest + "<br> en position numero " + (iPosition+1) + "";
+//Fin
+} 	                 		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_6_13 JQUERY
+function Exo_6_13_jquery()
+//Début
+{	
+	// déclaration des variables
+	var iNbreDyn, TabExo13, iGreatest, iPosition, iv, i;
+	TabExo13=[];
+
+	// Recuperer les nombre de valeur(s) à inserer
+	iNbreDyn=$("#iNbreDyn").val();
+
+	// Récuperation des valeurs à inserer dans le tableau
+	for (iv=0;iv&lt;iNbreDyn;iv++)
+	{
+		// Lire Tab(x)
+		TabExo13[iv]=+$("#iNombre"+(iv+1)).val();
+	}
+
+	iGreatest = "";
+	
+	// Pour i ← 0 à x-1
+	for (i=0;i&lt;iNbreDyn;i++)
+	{
+		// Si Tab(i)>iGreatest ou 1er nombre comparé Alors
+		if (TabExo13[i]>iGreatest || iGreatest === "")
+		{
+			// iGreatest ← Tab(i)
+			iGreatest = TabExo13[i];
+			iPosition = i;
+		// finSI
+		}
+	// i suivant 
+	}
+	console.table(TabExo13);
+	$("#sp_result").html("La plus grande valeur est : " + iGreatest + "<br> en position numero " + (iPosition+1));
+//Fin	
+} 							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_6_13 PHP
+$sMessage= "";
+
+//Début
+if (isset($_POST["iNbreDyn"]))
+{
+	// Recuperer les nombre de valeur(s) à inserer
+	$iNbreDyn=$_POST["iNbreDyn"];
+	// Definir la taille du tableau en fonction du nombre de valeur(s) récuprée(s)
+	$TabExo13=[$iNbreDyn];
+	// Récuperation des valeurs à inserer dans le tableau
+	for ($iv=0;$iv&lt;$iNbreDyn;$iv++)
+	{
+		// Lire Tab(x)
+		$TabExo13[$iv]=$_POST["iNombre".($iv+1)];
+	}
+
+	$iGreatest = "";
+	
+	// Pour i ← 0 à x-1
+	for ($i=0;$i&lt;$iNbreDyn;$i++)
+	{
+		// Si Tab(i)>iGreatest ou 1er nombre comparé Alors
+		if ($TabExo13[$i]>$iGreatest || $iGreatest === "")
+		{
+			// iGreatest ← Tab(i)
+			$iGreatest = $TabExo13[$i];
+			$iPosition = $i;
+		// finSI
+		}
+	// i suivant 
+	}
+	$sMessage.="La plus grande valeur est : " . $iGreatest . "&lt;br> en position numero " . ($iPosition+1);
+//Fin
+} 
+
+require "exo_6_13.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_6_13.php" method="POST" name="formPHP">
+                               	<p>Nombre de valeur(s) à entrer :</p>
+                                <p><input type="text" name="iNbreDyn" id="iNbreDyn" min="" max="" value="" onKeyUp="inputDynamique()"></p>
+                                    <div id="div_formDyn">
+                                    </div>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_6_13_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_6_13_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_6_13_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison6.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

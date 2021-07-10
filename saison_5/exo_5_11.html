@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 5.11</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_5_11_php
+		function Exo_5_11_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 366px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 5.11</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Écrire un algorithme qui permette de connaître ses chances de gagner au tiercé, quarté, quinté et autres impôts volontaires.
+                        <br>On demande à l’utilisateur le nombre de chevaux partants, et le nombre de chevaux joués. Les deux messages affichés devront être : 
+                        <br><dd>Dans l’ordre : une chance sur X de gagner
+                        <br>Dans le désordre : une chance sur Y de gagner</dd>
+                        <br>X et Y nous sont donnés par la formule suivante, si n est le nombre de chevaux partants et p le nombre de chevaux joués (on rappelle que le signe ! signifie "factorielle", comme dans l'exercice 5.7 ci-dessus) :
+                        <br><br><dd>X = n ! / (n - p) !
+                        <br>Y = n ! / (p ! * (n – p) !)</dd>
+                        <br>NB : cet algorithme peut être écrit d’une manière simple, mais relativement peu performante. Ses performances peuvent être singulièrement augmentées par une petite astuce. Vous commencerez par écrire la manière la plus simple, puis vous identifierez le problème, et écrirez une deuxième version permettant de le résoudre. &raquo;
+                    </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_5_11
+Variable iChevauxPartant, iChevauxJoue, iFactCP, iFactCJ, iFactCP-CJ en numérique
+Début
+	Ecrire "Nombre de chevaux partants :"
+	Lire iChevauxPartant
+	Ecrire "Nombre de chevaux joués :"
+	Lire iChevauxJoue
+	iFactCP ← 1
+	iFactCJ ← 1
+	iFactCP-CJ ← 1
+	Pour i ← 1 à iChevauxPartant
+		iFactCP ← iFactCP * i
+	i suivant
+	pour j ← 1 à iChevauxJoue
+		iFactCJ ← iFactCJ * j
+	j suivant
+	Pour k ← 1 à (iChevauxPartant - iChevauxJoue)
+		iFactCP-CJ  ← iFactCP-CJ *k
+	k suivant
+	Ecrire "Dans l'ordre, vos chances de gagner sont d'une chance sur " & iFactCP/iFactCP-CJ & " de gagner"
+	Ecrire "Dans le désordre, vos chances de gagner sont d'une chance sur " & iFactCP/(iFactCJ*iFactCP-CJ) & " de gagner"
+FIN					</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_5_11
+	Variables iNBpartant, iNBjoue, i, iNumerateur, iDenominateur1, iDenominateur2 en Entier
+Debut
+	Ecrire "Entrez le nombre de chevaux partants : "
+	Lire iNBpartant
+	Ecrire "Entrez le nombre de chevaux joués : "
+	Lire iNBjoue
+	iNumerateur ← 1
+	Pour i ← 2 à iNBpartant
+		iNumerateur ← iNumerateur * i
+	i Suivant
+	iDenominateur1← 1
+	Pour i ← 2 à iNBpartant - iNBjoue
+		iDenominateur1← iDenominateur1* i
+	i Suivant
+	iDenominateur2 ← 1
+	Pour i ← 2 à iNBjoue
+		iDenominateur2 ← iDenominateur2 * i
+	i Suivant
+	Ecrire "Dans l’ordre, une chance sur ", iNumerateur / iDenominateur1
+	Ecrire "Dans le désordre, une sur ", iNumerateur / (iDenominateur1 * iDenominateur2)
+Fin
+
+///////////////////////////
+	VERSION OPTIMISÉE : 
+///////////////////////////
+
+ALGORITHME Exo_5_11
+	Variables iNbPartant, iNbJoue, i, iNbOrder, iNbDivise en Numérique
+Debut
+	Ecrire "Entrez le nombre de chevaux partants : "
+	Lire iNbPartant
+	Ecrire "Entrez le nombre de chevaux joués : "
+	Lire iNbJoue
+	iNbOrder ← 1
+	iNbDivise ← 1
+	Pour i ← 1 à iNbJoue
+		iNbOrder ← iNbOrder * (i + iNbPartant - iNbJoue)
+		iNbDivise ← iNbDivise * i
+	i Suivant
+	Ecrire "Dans l’ordre, une chance sur ", iNbOrder
+	Ecrire "Dans le désordre, une chance sur ", iNbOrder / iNbDivise
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_11 JSFORM
+function Exo_5_11_jsform()
+// DEBUT
+{
+	var iChevauxPartant, iChevauxJoue, iFactCP, iFactCJ, iFactCPCJ, i, j, k;
+
+	// Lire iChevauxJoue
+	iChevauxPartant = document.getElementById("iChevauxPartant").value;
+	// Lire iChevauxPartant
+	iChevauxJoue = document.getElementById("iChevauxJoue").value;
+										
+	iFactCP = 1;
+	iFactCJ = 1;
+	iFactCPCJ = 1;
+	i = 1;
+	j = 1;
+	k = 1;
+
+	// Pour i ← 1 à iChevauxPartant
+	for (i;i&lt;=iChevauxPartant;i++)
+	{
+		iFactCP = iFactCP*i;
+	}
+	// Pour j ← 1 à iChevauxJoue
+	for (j;j&lt;=iChevauxJoue;j++)
+	{
+		iFactCJ = iFactCJ*j;
+	}
+	// k ← 1 à (iChevauxPartant - iChevauxJoue)
+	for (k;k&lt;=(iChevauxPartant-iChevauxJoue);k++)
+	{
+		iFactCPCJ = iFactCPCJ*k;
+	}
+
+	// Ecrire "Dans l'ordre, vos chances de gagner sont d'une chance sur " & iFactCP/iFactCP-CJ & " de gagner"
+	document.getElementById("sp_resultat_code").innerHTML+="Dans l'ordre, vous avez une chance sur " + iFactCP/iFactCPCJ + " de gagner &lt;br>";
+	// Ecrire "Dans le désordre, vos chances de gagner sont d'une chance sur " & iFactCP/(iFactCJ*iFactCP-CJ) & " de gagner"
+	document.getElementById("sp_resultat_code").innerHTML+="Dans le désordre, vous avez une chance sur " + iFactCP/(iFactCJ*iFactCPCJ) + " de gagner";
+//Fin
+}                  		</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_11 JQUERY
+function Exo_5_11_jquery()
+// DEBUT
+{
+	var iChevauxPartant, iChevauxJoue, iFactCP, iFactCJ, iFactCPCJ, i, j, k;
+	
+	// Lire iChevauxJoue
+	iChevauxPartant = $("#iChevauxPartant").val();
+	// Lire iChevauxPartant
+	iChevauxJoue = $("#iChevauxJoue").val();
+
+	iFactCP = 1;
+	iFactCJ = 1;
+	iFactCPCJ = 1;
+	i = 1;
+	j = 1;
+	k = 1;	
+
+	// Pour i ← 1 à iChevauxPartant
+	for (i;i&lt;=iChevauxPartant;i++)
+	{
+		iFactCP = iFactCP*i;
+	}
+	// Pour j ← 1 à iChevauxJoue	
+	for (j;j&lt;=iChevauxJoue;j++)
+	{
+		iFactCJ = iFactCJ*j;
+	}
+	// k ← 1 à (iChevauxPartant - iChevauxJoue)
+	for (k;k&lt;=(iChevauxPartant-iChevauxJoue);k++)
+	{
+		iFactCPCJ = iFactCPCJ*k;
+	}
+
+	// Ecrire "Dans l'ordre, vos chances de gagner sont d'une chance sur " & iFactCP/iFactCP-CJ & " de gagner"
+	$("#sp_resultat_code").append("Dans l'ordre, vous avez une chance sur " + iFactCP/iFactCPCJ + " de gagner &lt;br>");
+	// Ecrire "Dans le désordre, vos chances de gagner sont d'une chance sur " & iFactCP/(iFactCJ*iFactCP-CJ) & " de gagner"
+	$("#sp_resultat_code").append("Dans le désordre, vous avez une chance sur " + iFactCP/(iFactCJ*iFactCPCJ) + " de gagner");
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_5_11 PHP
+$sMessage= "";
+
+// DEBUT
+if (isset($_POST["iChevauxPartant"]) and isset($_POST["iChevauxJoue"]) )
+{
+
+	//Lire 
+	$iChevauxPartant = $_POST["iChevauxPartant"];
+	$iChevauxJoue = $_POST["iChevauxJoue"];
+
+	$iFactCP = 1;
+	$iFactCJ = 1;
+	$iFactCPCJ = 1;
+	$i = 1;
+	$j = 1;
+	$k = 1;
+
+	for ($i;$i&lt;=$iChevauxPartant;$i++)
+	{
+		$iFactCP = $iFactCP*$i;
+	}	
+	for ($j;$j&lt;=$iChevauxJoue;$j++)
+	{
+		$iFactCJ = $iFactCJ*$j;
+	}
+	for ($k;$k&lt;=($iChevauxPartant-$iChevauxJoue);$k++)
+	{
+		$iFactCPCJ = $iFactCPCJ*$k;
+	}
+
+	$sMessage="Dans l'ordre, vous avez une chance sur " . $iFactCP/$iFactCPCJ . " de gagner &lt;br>";
+	$sMessage.="Dans le désordre, vous avez une chance sur " . $iFactCP/($iFactCJ*$iFactCPCJ) . " de gagner";
+
+//Fin
+} 
+
+require "exo_5_11.html"		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_5_11.php" method="POST" name="formPHP">
+								<p>Nombre de chevaux partants :</p>
+								<p><input type="number" name="iChevauxPartant" id="iChevauxPartant" min="1" max="" value=""></p>
+								<p>Nombre de chevaux joués :</p>
+								<p><input type="number" name="iChevauxJoue" id="iChevauxJoue" min="1" max="" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_5_11_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_5_11_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_5_11_php(); return false;">Cliquez ici !</button>
+								</p>
+                            </form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison5.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+</html>

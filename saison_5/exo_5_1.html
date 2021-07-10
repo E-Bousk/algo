@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 5.1</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_5_1_php
+		function Exo_5_1_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 216px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 5.1</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui demande à l’utilisateur un nombre compris entre 1 et 3 jusqu’à ce que la réponse convienne. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_5_1
+Variable iNum en Numérique
+Début
+	Ecrire "Veuillez entrer un nombre compris entre 1 et 3"	
+	Lire iNum
+	TantQue iNum&lt;1 OU iNum>3
+		Ecrire "Ce nombre n'est pas compris entre 1 et 3"
+	FinTantQue
+	Ecrire : "C'est tout bon !"
+Fin					</textarea>
+
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_5_1
+	Variable N en Entier
+Debut
+	N ← 0
+	Ecrire "Entrez un nombre entre 1 et 3"
+	TantQue N &lt; 1 ou N > 3
+		Lire N
+		Si N &lt; 1 ou N > 3 Alors
+			Ecrire "Saisie erronée. Recommencez”
+		FinSi
+	FinTantQue
+Fin
+					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_1 JSFORM
+function Exo_5_1_jsform()
+// DEBUT
+{	var iNum;
+	
+	//Lire iNum
+	iNum=+document.getElementById("iNum").value;
+
+	
+	//TantQue iNum&lt;1 OU iNum>3
+	if ((iNum&lt;1) || (iNum>3))
+	{
+		//Ecrire "ce nombre n'est pas compris entre 1 et 3"
+		document.getElementById("sp_resultat_code").innerHTML="&lt;span style='color: red'>Ce nombre n'est pas compris entre 1 et 3&lt;/span>";
+	// FinTantQue	
+	}
+	else
+	{
+		//Ecrire : "C'est tout bon !"
+		document.getElementById("sp_resultat_code").innerHTML="C'est tout bon !";
+	//Fin SiNON
+	}
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_5_1 JQUERY
+function Exo_5_1_jquery()
+// DEBUT
+{	var iNum;
+	
+	//Lire iNum
+	iNum=+$("#iNum").val();
+
+	
+	//TantQue iNum&lt;1 OU iNum>3
+	if ((iNum&lt;1) || (iNum>3))
+	{
+		//Ecrire "ce nombre n'est pas compris entre 1 et 3"
+		$("#sp_resultat_code").html("&lt;span style='color: red'>Ce nombre n'est pas compris entre 1 et 3&lt;/span>");
+	// FinTantQue	
+	}
+	else
+	{
+		//Ecrire : "C'est tout bon !"
+		$("#sp_resultat_code").html("C'est tout bon !");
+	//Fin SINON
+	}
+//Fin
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_5_1 PHP
+$sMessage= "";
+
+// DEBUT
+if (isset($_POST["iNum"]))
+{
+	//Lire iNum
+	$iNum= $_POST["iNum"] ;
+
+	//TantQue iNum&lt;1 OU iNum>3
+	if (($iNum&lt;1) || ($iNum>3))
+	{
+		//Ecrire "ce nombre n'est pas compris entre 1 et 3"
+		$sMessage="&lt;span style='color: red'>Ce nombre n'est pas compris entre 1 et 3&lt;/span>";
+	// Fin TantQue	
+	}
+	else
+	{
+		//Ecrire : "C'est tout bon !"
+		$sMessage="C'est tout bon !";
+	//Fin SINON
+	}
+//Fin
+}
+
+require "exo_5_1.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_5_1.php" method="POST" name="formPHP">
+								<p>Veuillez entrer un nombre compris entre 1 et 3</p>
+								<p><input type="number" name="iNum" id="iNum" min="" max="" value=""></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_5_1_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_5_1_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_5_1_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison5.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

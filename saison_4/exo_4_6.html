@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.6</title>
+	<?php include "../commun/head.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_6_php
+		function Exo_4_6_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 621px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 4.6</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Les élections législatives, en Toonerie Nationale, obéissent à la règle suivante :
+					<br><br>• lorsque l'un des candidats obtient plus de 50% des suffrages, il est élu dès le premier tour.
+					<br>• en cas de deuxième tour, peuvent participer uniquement les candidats ayant obtenu au moins 12,5% des voix au premier tour.
+					<br><br>Vous devez écrire un algorithme qui permette la saisie des scores de quatre candidats au premier tour. Cet algorithme traitera ensuite le candidat numéro 1 (et <strong>uniquement</strong> lui) : il dira s'il est élu, battu, s'il se trouve en ballottage favorable (il participe au second tour en étant arrivé en tête à l'issue du premier tour) ou défavorable (il participe au second tour sans avoir été en tête au premier tour). &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_6
+Variable iCandidat1, iCandidat2, iCandidat3, iCandidat4 en entier
+Variables bBattu, bBallotage, bElu en booléen
+DEBUT
+	Ecrire "Entrez le score (en %) de premier tour du candidat # 1 : "
+	Lire iCandidat1
+	Ecrire "Entrez le score (en %) de premier tour du candidat # 2 : "
+	Lire iCandidat2
+	Ecrire "Entrez le score (en %) de premier tour du candidat # 3 : "
+	Lire iCandidat3
+	Ecrire "Entrez le score (en %) de premier tour du candidat # 4 : "
+	Lire iCandidat4
+
+	bBattu -> iCandidat1&lt;12.5 OU iCandidat2>50 OU iCandidat3>50 OU iCandidat4>50
+	bElu -> iCandidat1>50;
+	bBallotage -> iCandidat1>=12.5 ET iCandidat1<=50
+
+	Si bBattu
+		Ecrire "Le candidat # 1 est battu dès le premier tour"
+	SinonSI bElu
+		Ecrire "Le candidat # 1 est élu au premier tour"
+	SinonSI bBallotage
+		Ecrire "Le candidat # 1 est en ballotage défavorable au second tour"
+	SINON 
+		Ecrire "Le candidat # 1 est en ballotage favorable au second tour"
+	FinSI
+FIN					</textarea>
+                            
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_6
+	Variables iScore1, iScore2, iScore3, iScore4 en Numérique
+	Variables b1erTour, bPerdu, bBalOK, bBalNOOK en Booléen
+Début
+	Ecrire "Entrez les scores des quatre prétendants :"
+	Lire iScore1, iScore2, iScore3, iScore4
+	b1erTour ← iScore1 > 50
+	bPerdu ← iScore2 > 50 ou iScore3 > 50 ou iScore4 > 50
+	bBalOK ← iScore1 >= iScore2 et iScore1 >= iScore3 et iScore1 >= iScore4
+	bBalNOOK ← iScore1 < 12,5
+	Si b1erTour Alors
+		Ecrire “Elu au premier tour"
+	Sinonsi bPerdu ou bBalNOOK Alors
+		Ecrire “Battu, éliminé, sorti !!!”
+	SinonSi bBalOK Alors
+		Ecrire "Ballotage favorable"
+	Sinon
+		Ecrire "Ballotage défavorable"
+	FinSi
+Fin		
+
+
+Cet exercice, du pur point de vue algorithmique, n'est pas très méchant. En revanche, il représente dignement la
+catégorie des énoncés piégés.
+En effet, rien de plus facile que d'écrire : si le candidat a plus de 50%, il est élu, sinon s'il a plus de 12,5 %, il est au
+deuxième tour, sinon il est éliminé. MAIS il ne faut pas oublier que le candidat peut très bien avoir eu 20 % mais être
+tout de même éliminé, tout simplement parce que l'un des autres a fait plus de 50 % et donc qu'il n'y a pas de
+deuxième tour !...
+Moralité : ne jamais se jeter sur la programmation avant d'avoir soigneusement mené l'analyse du problème à
+traiter.			</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_6 JSFORM
+function Exo_4_6_jsform()
+//Début
+{
+	var iCandidat1, iCandidat2, iCandidat3, iCandidat4, bBattu, bBallotage, bElu;
+
+	//Ecrire "Entrez le score (en %) de premier tour du candidat # 1 : "
+	//Lire iCandidat1
+	iCandidat1=parseInt(document.getElementById("iCandidat1").value);
+
+	//Ecrire "Entrez le score (en %) de premier tour du candidat # 2 : "
+	// Lire iCandidat2
+	iCandidat2=parseInt(document.getElementById("iCandidat2").value);
+
+	// Ecrire "Entrez le score (en %) de premier tour du candidat # 3 : "
+	// Lire iCandidat3
+	iCandidat3=parseInt(document.getElementById("iCandidat3").value);
+
+	// Ecrire "Entrez le score (en %) de premier tour du candidat # 4 : "
+	// Lire iCandidat4
+	iCandidat4=parseInt(document.getElementById("iCandidat4").value);
+	
+	bBattu = iCandidat1&lt;12.5 || iCandidat2>50 || iCandidat3>50 || iCandidat4>50 ;
+	bElu = iCandidat1>50;
+	bBallotage = iCandidat1>=12.5 && iCandidat1&lt;=50
+
+	//Si iCandidat1 &lt;12.5 ou Candidat2>50 ou Candidat3>50 ou Candidat4>50 
+	if (bBattu)
+	{
+		//Ecrire "Le candidat # 1 est battu dès le premier tour"
+		document.getElementById("sp_resultat_code").innerHTML= "Le candidat # 1 est battu dès le premier tour";
+	}
+
+	//Si iCandidat1 >50
+	else if (bElu)
+	{
+		//Ecrire "Le candidat # 1 est élu au premier tour"
+		document.getElementById("sp_resultat_code").innerHTML= "Le candidat # 1 est élu au premier tour";
+	}
+
+	//Si iCandidat1 &lt;=50 ET >=12.5 OU &lt;iCandidat2 OU &lt;iCandidat3 OU &lt;iCandidat3
+	else if ((bBallotage) && (iCandidat1 &lt; iCandidat2) || (bBallotage) && (iCandidat1 &lt; iCandidat3) ||  (bBallotage) && (iCandidat1 &lt; iCandidat4))
+	{
+		//Ecrire "Le candidat # 1 est en ballotage défavorable au second tour"
+		document.getElementById("sp_resultat_code").innerHTML=("Le candidat # 1 est en ballotage défavorable au 2nd tour");
+	}
+
+	//SiNON 
+	else 
+	{
+		//Ecrire "Le candidat # 1 est en ballotage favorable au second tour"
+		document.getElementById("sp_resultat_code").innerHTML=("Le candidat # 1 est en ballotage favorable au second tour");
+	}
+//FIN
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_6 JQUERY
+function Exo_4_6_jquery()
+//Début
+{
+	var iCandidat1, iCandidat2, iCandidat3, iCandidat4, bBattu, bBallotage, bElu;
+
+	//Ecrire "Entrez le score (en %) de premier tour du candidat # 1 : "
+	//Lire iCandidat1
+	iCandidat1=parseInt($("#iCandidat1").val());
+
+	//Ecrire "Entrez le score (en %) de premier tour du candidat # 2 : "
+	// Lire iCandidat2
+	iCandidat2=parseInt($("#iCandidat2").val());
+
+	// Ecrire "Entrez le score (en %) de premier tour du candidat # 3 : "
+	// Lire iCandidat3
+	iCandidat3=parseInt($("#iCandidat3").val());  
+
+	// Ecrire "Entrez le score (en %) de premier tour du candidat # 4 : "
+	// Lire iCandidat4
+	iCandidat4=parseInt($("#iCandidat4").val());
+	
+	bBattu = iCandidat1&lt;12.5;
+	bElu = iCandidat1&gt;50;
+	bBallotage = iCandidat1&gt;=12.5 && iCandidat1&lt;=50
+
+	//Si iCandidat1 &lt;12.5
+	if (bBattu)
+	{
+		//Ecrire "Le candidat # 1 est battu dès le premier tour"
+		document.getElementById("sp_resultat_code").innerHTML= "Le candidat # 1 est battu dès le premier tour";
+	}
+
+	//Si iCandidat1 &gt;50
+	else if (bElu)
+	{
+		//Ecrire "Le candidat # 1 est élu au premier tour"
+		$("#sp_resultat_code").html("Le candidat # 1 est élu au premier tour");
+	}
+
+	//Si iCandidat1 &gt;=50 ET &lt;=12.5 OU &gt;iCandidat2 OU &gt;iCandidat3 OU &gt;iCandidat3
+	else if ((bBallotage) && (iCandidat1 &gt; iCandidat2) || (bBallotage) && (iCandidat1 &gt; iCandidat3) ||  (bBallotage) && (iCandidat1 &gt; iCandidat4))
+	{
+		//Ecrire "Le candidat # 1 est en ballotage défavorable au second tour"
+		$("#sp_resultat_code").html("Le candidat # 1 est en ballotage défavorable au 2nd tour");
+	}
+
+	//SiNON 
+	else 
+	{
+		//Ecrire "Le candidat # 1 est en ballotage favorable au second tour"
+		$("#sp_resultat_code").html("Le candidat # 1 est en ballotage favorable au second tour");
+	}
+//FIN
+}							</code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_6 PHP
+$sMessage= "";
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if ((isset($_POST["iCandidat1"])) && ($_POST["iCandidat2"] != ""))
+{
+	
+//Ecrire "Entrez le score (en %) de premier tour du candidat # 1 : "
+//Lire iCandidat1
+$iCandidat1 = $_POST["iCandidat1"] ;
+//Ecrire "Entrez le score (en %) de premier tour du candidat # 2 : "
+// Lire iCandidat2
+$iCandidat2 = $_POST["iCandidat2"] ;
+// Ecrire "Entrez le score (en %) de premier tour du candidat # 3 : "
+// Lire iCandidat3
+$iCandidat3 = $_POST["iCandidat3"] ;
+// Ecrire "Entrez le score (en %) de premier tour du candidat # 4 : "
+// Lire iCandidat4
+$iCandidat4 = $_POST["iCandidat4"] ;
+
+$bBallotage = (($iCandidat1>=12.5) && ($iCandidat1<=50));
+
+	
+	//Si iCandidat1 &lt;12.5
+	if ($iCandidat1&lt;12.5 || $iCandidat2>50 || $iCandidat3>50 || $iCandidat4>50)
+	{
+		//Ecrire "Le candidat # 1 est battu dès le premier tour"
+		$sMessage= "Le candidat # 1 est battu dès le premier tour";
+	}
+
+	//Si iCandidat1 >50
+	else if ($iCandidat1>50)
+	{
+		//Ecrire "Le candidat # 1 est élu au premier tour"
+		$sMessage= "Le candidat # 1 est élu au premier tour";
+	}
+
+	//Si iCandidat1 &gt;=50 ET &lt;=12.5 OU &gt;iCandidat2 OU &gt;iCandidat3 OU &gt;iCandidat3
+	else if (($bBallotage) && ($iCandidat1 > $iCandidat2) || ($bBallotage) && ($iCandidat1 > $iCandidat3) ||  ($bBallotage) && ($iCandidat1 > $iCandidat4))
+	{
+		//Ecrire "Le candidat # 1 est en ballotage favorable au second tour"
+		$sMessage= "Le candidat # 1 est en ballotage favorable au second tour";
+	}
+
+	//SINON
+	else
+	{
+		//Ecrire "Le candidat # 1 est en ballotage défavorable au second tour"
+		$sMessage= "Le candidat # 1 est en ballotage défavorable au second tour";
+	// FINSI
+	}
+//FIN	
+}
+
+
+require "exo_4_6.html";		</code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_6.php" method="POST" name="formPHP">
+								<p>Entrez le score (en %) de premier tour du candidat # 1 : </p>
+								<p><input type="number" name="iCandidat1" id="iCandidat1" value="25" min="1" max="100"></p>
+								<p>Entrez le score (en %) de premier tour du candidat # 2 : </p>
+								<p><input type="number" name="iCandidat2" id="iCandidat2" value="25" min="1" max="100"></p>
+								<p>Entrez le score (en %) de premier tour du candidat # 3 : </p>
+								<p><input type="number" name="iCandidat3" id="iCandidat3" value="25" min="1" max="100"></p>
+								<p>Entrez le score (en %) de premier tour du candidat # 4 : </p>
+								<p><input type="number" name="iCandidat4" id="iCandidat4" value="25" min="1" max="100"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_6_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_6_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_6_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

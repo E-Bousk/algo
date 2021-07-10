@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 3.6</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+
+
+	<script type="text/javascript">
+		// ALGORITHME Exo_3_6_php
+		function Exo_3_6_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+	
+	<style type="text/css">
+		.txt_pseudocode {
+			width: 100%;
+			height: 380px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 3.6</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Enoncé</h3>
+					<p class="p_blue">&laquo; Ecrire un algorithme qui demande l’âge d’un enfant à l’utilisateur. Ensuite, il l’informe de sa catégorie :
+                    </br></br>• "Poussin" de 6 à 7 ans
+                    </br>• "Pupille" de 8 à 9 ans
+                    </br>• "Minime" de 10 à 11 ans
+                    </br>• "Cadet" après 12 ans
+                    </br></br>Peut-on concevoir plusieurs algorithmes équivalents menant à ce résultat ? &raquo;</p>
+				</div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_3_6
+    Variables iAge en entier
+    Variable bA, bB, bC, bD en Booléen
+Début
+    Ecrire "Indique ton age :"
+    Lire iAge
+    bA &lt;- iAge&lt;6
+    bB &lt;- iAge=6 OU iAge=7
+    bC &lt;- iAge=8 OU iAge=9
+    bD &lt;- iAge=10 OU iAge=11
+
+    SI  bA Alors
+        Ecrire "Tu es trop jeune pour jouer en club"
+    SINON SI bB Alors               
+        Ecrire "Ta catégorie est : Poussin"
+    SINON SI bC Alors                    
+        Ecrire "Ta catégorie est : Pupille"
+    SINON SI bD Alors                   
+        Ecrire "Ta catégorie est : Minime"
+    SINON              
+        Ecrire "Ta catégorie est : Cadet"
+    FINSI
+Fin                 </textarea>
+                                                
+                    <textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_3_6
+    Variable iAge en Numerique
+Début
+    Ecrire "Entrez l’âge de l’enfant : "
+    Lire iAge
+    Si iAge >= 12 Alors
+        Ecrire "Catégorie Cadet"
+    SinonSi iAge >= 10 Alors
+        Ecrire "Catégorie Minime"
+    SinonSi iAge >= 8 Alors
+        Ecrire "Catégorie Pupille"
+    SinonSi iAge >= 6 Alors
+        Ecrire "Catégorie Poussin"
+    Finsi
+Fin
+
+On peut évidemment écrire cet algorithme de différentes façons, ne serait-ce qu’en commençant par la catégorie la plus jeune.
+                    </textarea>
+                </div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+						<section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_6 JSPROMPT
+function Exo_3_6()
+//Début
+{
+    var iAge;
+    var bA, bB, bC, bD;
+
+    //ECRIRE  "Veuillez saisir une valeur"
+    //LIRE iNombreUtilisateur
+    iAge=prompt("Indique ton age :");
+
+    bA=iAge&lt;6;
+    bB=iAge==6 || iAge==7;
+    bC=iAge==8 || iAge==9;
+    bD=iAge==10 || iAge==11;
+
+    //SI bA Alors
+    if (bA)
+    {
+        //Ecrire "Tu es trop jeune pour jouer en club"
+        alert("Tu es trop jeune pour jouer en club");
+    }
+    //SINON SI bB Alors
+    else if (bB)
+    {
+        //Ecrire "Ta catégorie est : Poussin"
+        alert("Ta catégorie est : Poussin");
+    }
+    //SINON SI bC Alors
+    else if (bC)
+    {
+        //Ecrire "Ta catégorie est : Pupille"
+        alert("Ta catégorie est : Pupille");
+    }
+    //SINON SI bD Alors
+    else if (bD)
+    {
+        //Ecrire "Ta catégorie est : Minime"
+        alert("Ta catégorie est : Minime");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ta catégorie est : Cadet"
+        alert("Ta catégorie est : Cadet");
+    }
+    //FINSI
+//FIN
+}                           </code></pre>
+                        </section>
+					</div>
+					<div id="div_jsform">
+						<section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_6 JSFORM
+function Exo_3_6_jsform()
+//Début
+{
+    var iAge;
+    var bA, bB, bC, bD;
+
+    //ECRIRE  "Veuillez saisir une valeur"
+    //LIRE iNombreUtilisateur
+    iAge=document.getElementById("iAge").value;
+
+    bA=iAge&lt;6;
+    bB=iAge==6 || iAge==7;
+    bC=iAge==8 || iAge==9;
+    bD=iAge==10 || iAge==11;
+
+    //SI bA Alors
+    if (bA)
+    {
+        //Ecrire "Tu es trop jeune pour jouer en club"
+        document.getElementById("sp_resultat_code").innerHTML=("Tu es trop jeune pour jouer en club");
+    }
+    //SINON SI bB Alors
+    else if (bB)
+    {
+        //Ecrire "Ta catégorie est : Poussin"
+        document.getElementById("sp_resultat_code").innerHTML=("Ta catégorie est : Poussin");
+    }
+    //SINON SI bC Alors
+    else if (bC)
+    {
+        //Ecrire "Ta catégorie est : Pupille"
+        document.getElementById("sp_resultat_code").innerHTML=("Ta catégorie est : Pupille");
+    }
+    //SINON SI bD Alors
+    else if (bD)
+    {
+        //Ecrire "Ta catégorie est : Minime"
+        document.getElementById("sp_resultat_code").innerHTML=("Ta catégorie est : Minime");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ta catégorie est : Cadet"
+        document.getElementById("sp_resultat_code").innerHTML=("Ta catégorie est : Cadet");
+    }
+    //FINSI
+//FIN
+}                           </code></pre>
+                        </section>
+					</div>
+
+					<div id="div_jquery">
+						<section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_3_6 JQUERY
+function Exo_3_6_jquery()
+//Début
+{
+    var iAge;
+    var bA, bB, bC, bD;
+
+    //ECRIRE  "Veuillez saisir une valeur"
+    //LIRE iNombreUtilisateur
+    iAge=$("#iAge").val();
+
+    bA=iAge&lt;6;
+    bB=iAge==6 || iAge==7;
+    bC=iAge==8 || iAge==9;
+    bD=iAge==10 || iAge==11;
+
+    //SI bA Alors
+    if (bA)
+    {
+        //Ecrire "Tu es trop jeune pour jouer en club"
+        $("#sp_resultat_code").html("Tu es trop jeune pour jouer en club");
+    }
+    //SINON SI bB Alors
+    else if (bB)
+    {
+        //Ecrire "Ta catégorie est : Poussin"
+        $("#sp_resultat_code").html("Ta catégorie est : Poussin");
+    }
+    //SINON SI bC Alors
+    else if (bC)
+    {
+        //Ecrire "Ta catégorie est : Pupille"
+        $("#sp_resultat_code").html("Ta catégorie est : Pupille");
+    }
+    //SINON SI bD Alors
+    else if (bD)
+    {
+        //Ecrire "Ta catégorie est : Minime"
+        $("#sp_resultat_code").html("Ta catégorie est : Minime");
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ta catégorie est : Cadet"
+        $("#sp_resultat_code").html("Ta catégorie est : Cadet");
+    }
+    //FINSI
+//FIN
+}                           </code></pre>
+                        </section>
+					</div>
+
+					<div id="div_php">
+						<section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_3_6 PHP
+$sMessage= "";
+
+
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iAge"]))
+{
+    //Ecrire "Entrez le 1er nombre :"
+    //Lire iAge 
+    $iAge = intval($_POST["iAge"]);
+
+    $bA= ($iAge &lt; 6);
+    $bB= (($iAge == 6) || ($iAge == 7));
+    $bC= (($iAge == 8) || ($iAge == 9));
+    $bD= (($iAge == 10) || ($iAge == 11));
+
+
+    //SI $bA
+    if ($bA)
+    {
+        //Ecrire "Tu es trop jeune pour jouer en club"
+        $sMessage= "&lt;b>Tu es trop jeune pour jouer en club&lt;/b>";
+    }
+    //SINON SI 
+    else if ($bB)
+    {
+        //Ecrire "Ta catégorie est : Poussin"
+        $sMessage= "&lt;b>Ta catégorie est : Poussin&lt;/b>";
+    }
+    //SINON SI 
+    else if ($bC)
+    {
+            //Ecrire "Ta catégorie est : Pupille"
+        $sMessage= "&lt;b>Ta catégorie est : Pupille&lt;/b>";
+    }
+    //SINON SI
+    else if ($bD)
+    {
+            //Ecrire "Ta catégorie est : Minime"
+        $sMessage= "&lt;b>Ta catégorie est : Minime&lt;/b>";
+    }
+    //SINON
+    else
+    {
+        //Ecrire "Ta catégorie est : Cadet"
+        $sMessage= "&lt;b>Ta catégorie est : Cadet&lt;/b>";
+        
+    // FINSI
+    }
+//FIN	
+}
+
+require "exo_3_6.html";     </code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_3_6.php" method="POST" name="formPHP">
+								<p>Indique ton age :</p>
+								<p><input type="number" name="iAge" id="iAge" min="1" max="99" value="6"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_3_6(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_3_6_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_3_6_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_3_6_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison3.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

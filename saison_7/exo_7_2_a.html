@@ -1,0 +1,417 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 7.2 a)</title>
+	<?php include "../commun/head.html" ?>
+	
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 231px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--section start -->
+			<section>
+				<div>
+					<div class="type-wrap">
+						<div id="typed-strings">
+							<h2>Exercice 7.2 a)</h2>
+						</div>
+						<span id="typed" style="white-space:pre;"></span>
+					</div>
+					<h3>Énoncé</h3>
+					<p>&laquo; Ecrivez un algorithme qui trie un tableau dans l’ordre décroissant.
+                    Vous écrirez bien entendu deux versions de cet algorithme, l'une employant le <mark><strong>tri par insertion</strong></mark>, l'autre le tri à bulles &raquo;</p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection()">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_7_2_a
+	Variables aTab(), iPlusGrand, iTemp, i, j en entier
+Début
+	Pour i de 0 à aTab.length -1
+		iPlusgrand  ← i
+		Pour j de i+1 à aTab.length
+			SI aTab(j) > aTab(iPlusgrand) ALORS
+				iPlusGrand  ← j
+			FINSI
+		j SUIVANT
+		iTemp  ← aTab(iPlusgrand)
+		aTab(iPlusgrand)  ← aTab(i)
+		aTab(i)  ← iTemp
+	i SUIVANT
+Fin				</textarea>
+					<textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_7_2_a
+	Variables posmaxi, i, j, temp, N en Entier , Tableau T() en Entier
+Debut
+	Pour i ← 0 à N - 2
+		posmaxi = i
+		Pour j ← i + 1 à N - 1
+			Si t(j) > t(posmaxi) alors
+				posmaxi ← j
+			Finsi
+		j suivant
+		temp ← t(posmaxi)
+		t(posmaxi) ← t(i)
+		t(i) ← temp
+	i suivant
+Fin					</textarea>
+				</div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode_noPrompt('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode_noPrompt('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode_noPrompt('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+
+					<div id="div_jsform">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_2_a JSFORM
+function inputDynamiqueExo_7_2()
+{	
+	//Si nombre demandé dans imput iNbreDyn > 50
+	if ($('#iNbreDyn').val() >50)
+	{
+		//Ecrire "Pas plus de 50 !! Merci."
+		$("#sp_result").html("Pas plus de 50 !!<br> Merci.");
+	}
+	// Sinon
+	else
+	{
+		// Efface message précedent (au cas où il est présent)
+		$("#sp_result").html("");
+
+		var iID;
+		var sHTML= "";
+
+		// Boucle de 1 à iNbreDyn (nombre d'imput à créer)
+		for (iID=1; iID<=$('#iNbreDyn').val(); iID++)	
+		{
+			// génère un chiffre aléatoire
+			var iRandom= Math.floor(Math.random() * 999) + 1;
+			// Concatène liste de champs dans variable sHTML
+			sHTML+= "<p>" + iID + ".) <input type=\"number\" name=\"iNombre" + iID + "\" id=\"iNombre" + iID + "\" value=\"" + iRandom + "\"></p>";
+		}
+		// Crée les imputs dans la div ID div_formDyn
+		$('#div_formDyn').html(sHTML);
+	}
+}
+
+function Exo_7_2_a_jsform()
+
+//Début
+{ 
+	var aTab, sTD, iNbreDyn, i, iNombre;
+
+	aTab=[];
+	sTD="";
+
+	// Lire combien de valeur à inserer
+	iNbreDyn=document.getElementById("iNbreDyn").value;
+
+	// Boucle de 1 à iNbreDyn
+	for (i=1; i<=iNbreDyn; i++)
+	{
+		//récupère les valeurs des imputs
+		iNombre=+document.getElementById("iNombre"+i).value;
+		//Range les valeurs dans les indexes du tableau
+		aTab[i-1]=iNombre;
+		//Concatène les indexes du tableau pour les afficher plus tard
+		sTD +=aTab[i-1] + " | ";
+	}
+
+	//Afficher le tableau non trié
+	document.getElementById("sp_result").innerHTML="Tableau non trié :<br>" +sTD+"<br><br>";
+
+	var iPlusGrand, iTemp, j;
+
+	//Boucle de 0 à longueur du tableau pour faire verifier dans l'index i
+	for (i=0; i<=aTab.length-1; i++)
+	{
+		//On marque la position du plus grand nombre ici
+		iPlusGrand = i;
+
+		//Boucle pour comparer les nombre suivant avec celui définit par i
+		for (j=i+1; j<aTab.length; j++)
+		{
+			//si j (le nombre suivant) est plus grand que celui marqué alors
+			if (aTab[j] > aTab[iPlusGrand])
+			{
+				//La position du plus grand devient celle-ci
+				iPlusGrand = j;
+			// Fin si
+			}
+		//j suivant
+		}
+		//On intervertit les positions
+		iTemp = aTab[iPlusGrand];
+		aTab[iPlusGrand] = aTab[i];
+		aTab[i] = iTemp;
+	// i suivant
+	}
+	
+	//Afficher le tableau trié
+	document.getElementById("sp_result").innerHTML+="Tableau trié : <br>"+ aTab.join(" | ")+"<br><br>";
+
+//fin
+} 	                 		</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_jquery">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-javascript"><script type="prism-html-markup">// ALGORITHME Exo_7_2_a JQUERY
+function inputDynamiqueExo_7_2()
+{	
+	//Si nombre demandé dans imput iNbreDyn > 50
+	if ($('#iNbreDyn').val() >50)
+	{
+		//Ecrire "Pas plus de 50 !! Merci."
+		$("#sp_result").html("Pas plus de 50 !!<br> Merci.");
+	}
+	// Sinon
+	else
+	{
+		// Efface message précedent (au cas où il est présent)
+		$("#sp_result").html("");
+
+		var iID;
+		var sHTML= "";
+
+		// Boucle de 1 à iNbreDyn (nombre d'imput à créer)
+		for (iID=1; iID<=$('#iNbreDyn').val(); iID++)	
+		{
+			// génère un chiffre aléatoire
+			var iRandom= Math.floor(Math.random() * 999) + 1;
+			// Concatène liste de champs dans variable sHTML
+			sHTML+= "<p>" + iID + ".) <input type=\"number\" name=\"iNombre" + iID + "\" id=\"iNombre" + iID + "\" value=\"" + iRandom + "\"></p>";
+		}
+		// Crée les imputs dans la div ID div_formDyn
+		$('#div_formDyn').html(sHTML);
+	}
+}
+
+function Exo_7_2_a_jquery()
+
+//Début
+{ 
+	var aTab, sTD, iNbreDyn, i, iNombre;
+
+	aTab=[];
+	sTD="";
+
+	// Lire combien de valeur à inserer
+	iNbreDyn=$('#iNbreDyn').val();
+
+	// Boucle de 1 à iNbreDyn
+	for (i=1; i<=iNbreDyn; i++)
+	{
+		//récupère les valeurs des imputs
+		iNombre=+$("#iNombre"+i).val();
+		//Range les valeurs dans les indexes du tableau
+		aTab[i-1]=iNombre;
+		//Concatène les indexes du tableau pour les afficher plus tard
+		sTD +=aTab[i-1] + " | ";
+	}
+
+	//Afficher le tableau non trié
+	$("#sp_result").html("Tableau non trié : <br>"+sTD+"<br><br>");
+
+	var iPlusGrand, iTemp, j;
+
+	//Boucle de 0 à longueur du tableau pour faire verifier dans l'index i
+	for (i=0; i<=aTab.length-1; i++)
+	{
+		//On marque la position du plus grand nombre ici
+		iPlusGrand = i;
+
+		//Boucle pour comparer les nombre suivant avec celui définit par i
+		for (j=i+1; j<aTab.length; j++)
+		{
+			//si j (le nombre suivant) est plus grand que celui marqué alors
+			if (aTab[j] > aTab[iPlusGrand])
+			{
+				//La position du plus grand devient celle-ci
+				iPlusGrand = j;
+			// Fin si
+			}
+		//j suivant
+		}
+		//On intervertit les positions
+		iTemp = aTab[iPlusGrand];
+		aTab[iPlusGrand] = aTab[i];
+		aTab[i] = iTemp;
+	// i suivant
+	}
+	
+	//Afficher le tableau trié
+	$("#sp_result").append("Tableau trié : <br>"+ aTab.join(" | ")+"<br><br>");
+
+//fin	
+} 							</script></code></pre>
+                        </section>	
+					</div>
+
+					<div id="div_php">
+                        <section class="language-markup">
+                            <pre class="line-numbers"><code class="language-php"><script type="prism-html-markup">// ALGORITHME Exo_7_2_a PHP
+
+function inputDynamiqueExo_7_2()
+{	
+	//Si nombre demandé dans imput iNbreDyn > 50
+	if ($('#iNbreDyn').val() >50)
+	{
+		//Ecrire "Pas plus de 50 !! Merci."
+		$("#sp_result").html("Pas plus de 50 !!<br> Merci.");
+	}
+	// Sinon
+	else
+	{
+		// Efface message précedent (au cas où il est présent)
+		$("#sp_result").html("");
+
+		var iID;
+		var sHTML= "";
+
+		// Boucle de 1 à iNbreDyn (nombre d'imput à créer)
+		for (iID=1; iID<=$('#iNbreDyn').val(); iID++)	
+		{
+			// génère un chiffre aléatoire
+			var iRandom= Math.floor(Math.random() * 999) + 1;
+			// Concatène liste de champs dans variable sHTML
+			sHTML+= "<p>" + iID + ".) <input type=\"number\" name=\"iNombre" + iID + "\" id=\"iNombre" + iID + "\" value=\"" + iRandom + "\"></p>";
+		}
+		// Crée les imputs dans la div ID div_formDyn
+		$('#div_formDyn').html(sHTML);
+	}
+}
+
+// ----------------------------------------
+// ---------------- PHP -------------------
+// ----------------------------------------
+
+if (isset($_POST["btn_php"]) and isset($_POST["iNbreDyn"]))
+//Début
+{
+    // Lire combien de valeur à inserer
+    $iNbreDyn=$_POST["iNbreDyn"];
+
+    // Boucle de 1 à iNbreDyn
+	for ($i=1; $i<=$iNbreDyn; $i++)
+	{
+		//récupère les valeurs des imputs
+		$iNombre=$_POST["iNombre".$i];
+		//Range les valeurs dans les indexes du tableau
+		$aTab[$i-1]=$iNombre;
+	}
+
+    //Afficher le tableau non trié
+    $sMessage="Tableau non trié : <br>". implode(" | ",$aTab)."<br><br>";
+
+    
+    //Boucle de 0 à longueur du tableau pour faire verifier l'index i
+	for ($i=0; $i<count($aTab)-1; $i++)
+	{
+        //On marque la position du plus grand nombre ici
+		$iPlusGrand = $i;
+        
+		//Boucle pour comparer les nombre suivant avec celui définit par i
+		for ($j=$i+1; $j<count($aTab); $j++)
+		{
+			//si j (le nombre suivant) est plus grand que celui marqué alors
+			if ($aTab[$j] > $aTab[$iPlusGrand])
+			{
+				//La position du plus grand devient celle-ci
+				$iPlusGrand = $j;
+			// Fin si
+			}
+		//j suivant
+		}
+		//On intervertit les positions
+		$iTemp = $aTab[$iPlusGrand];
+		$aTab[$iPlusGrand] = $aTab[$i];
+		$aTab[$i] = $iTemp;
+	// i suivant
+	}
+	
+	//Afficher le tableau trié
+	// $sMessage.="Tableau trié : <br>". $aTab.join(" | ")."<br><br>";
+    $sMessage.="Tableau trié : <br>". implode(" | ",$aTab)."<br><br>";
+    // $sMessage.="Tableau trié : <br>". print_r ($aTab)."<br><br>";
+//Fin  
+}
+
+else
+{
+$sMessage= "";
+}
+
+require "exo_7_2_a.html";		</script></code></pre>
+                        </section>
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_7_2_a.php" method="POST" name="formPHP">
+								<p>Nombre de valeurs à inserer ?</p>
+								<p><input type="text" name="iNbreDyn" id="iNbreDyn" onKeyUp="inputDynamiqueExo_7_2()"></p>
+								<div class="div_formDyn" id="div_formDyn"></div>
+								<p>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_7_2_a_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_7_2_a_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" name="btn_php" type="submit">Cliquez ici !</button>								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_result"></span>
+                           	<span id="sp_result_php"><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison7.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>

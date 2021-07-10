@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Exercice 4.4</title>
+	<?php include "../commun/head_with_prompt.html" ?>
+	
+	<script type="text/javascript">
+		// ALGORITHME Exo_4_4_php
+		function Exo_4_4_php()
+		// DEBUT
+		{
+			document.formPHP.submit();
+		}
+	</script>
+
+	<style type="text/css">     
+		.txt_pseudocode {
+			width: 100%;
+			height: 276px;
+		}
+	</style>
+</head>
+
+<body>
+    <div id="page">
+		<?php include "../commun/video.html" ?>
+
+        <!--header start -->
+        <header>
+			<?php include "../commun/header.html" ?>
+        </header>
+        <!--header end-->
+
+		<main>
+			<!--nav start -->
+			<nav>
+				<?php include "../commun/nav.html" ?>
+			</nav>
+			<!--nav end-->
+
+			<!--aside start -->
+			<aside>
+			</aside>
+			<!--aside end-->
+
+			<!--section start -->
+			<section>
+				<div>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <h2>Exercice 4.4</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+					<h3>Énoncé</h3>
+					<p class="p_blue">&laquo; Un magasin de reprographie facture 0,10 E les dix premières photocopies, 0,09 E les vingt suivantes et 0,08 E au-delà. Ecrivez un algorithme qui demande à l’utilisateur le nombre de photocopies effectuées et qui affiche la facture correspondante. &raquo; </p>
+                </div>
+				<div class="titre_et_boutton">
+					<h3>PSEUDO-CODE</h3>
+                    <button onClick="showCorrection('correction')">CORRECTION</button>
+                </div>
+                <div class="pseudo_et_correction">
+					<textarea class="txt_pseudocode">
+ALGORITHME Exo_4_4
+    Variable iNombre en entier
+Début
+    Ecrire "Entrez le nombre de photocopies réalisées :"
+    Lire iNombre
+
+    Si iNombre<=10 ALORS
+    Ecrire "Votre facture s'élève à :" + iNombre*0.1 + "€"
+
+    Si iNombre >10 & <=30 alors
+    iNombre=iNombre-10
+    Ecrire "Votre facture s'élève à :" + (1+iNombre*0.09) + "€"
+
+    Si iNombre >30
+    iNombre=iNombre-30;
+    Ecrire "Votre facture s'élève à :" + (2.8+iNombre*0.08) + "€"
+
+FIN                 </textarea>
+                            
+                    <textarea id ="to_hide" class="txt_correction">
+ALGORITHME Exo_4_4
+    Variables n, p en Numérique
+Début
+    Ecrire "Nombre de photocopies : "
+    Lire n
+    Si n <= 10 Alors
+        p ← n * 0,1
+    SinonSi n <= 30 Alors
+        p ← 10 * 0,1 + (n – 10) * 0,09
+    Sinon
+        p ← 10 * 0,1 + 20 * 0,09 + (n – 30) * 0,08
+    FinSi
+    Ecrire "Le prix total est: ", p
+Finsi               </textarea>
+                </div>
+				<div>
+					<div class="choix_langage">
+						<div><button class="btn_choix btn_choix_1" onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')"></button></div>
+						<div><button class="btn_choix btn_choix_2" onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')"></button></div>
+						<div><button class="btn_choix btn_choix_3" onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')"></button></div>
+						<div><button class="btn_choix btn_choix_4" onClick="showCode('div_php', 'btn_php', 'img_php')"></button></div>
+						<div><button onClick="showCode('div_jsprompt', 'btn_jsprompt', 'img_jsprompt')">CODE JavaScript <br>(via Prompt)</button></div>
+						<div><button onClick="showCode('div_jsform', 'btn_jsform', 'img_jsform')">CODE JavaScript <br>(via Formulaire)</button></div>
+						<div><button onClick="showCode('div_jquery', 'btn_jquery', 'img_jquery')">CODE JQuery</button></div>
+						<div><button onClick="showCode('div_php', 'btn_php', 'img_php')">CODE PHP</button></div>						
+					</div>
+					<div id="div_jsprompt">
+						<!-- <textarea class="txt_jsprompt tarea_blue"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_4 JSPROMPT
+function Exo_4_4() 
+// DEBUT
+{ 
+    var iNombre;
+
+    //Ecrire "Entrez le nombre de photocopies réalisées :"
+    //Lire iNombre
+    iNombre=prompt("Entrez le nombre de photocopies réalisées :");
+    
+    //Si iNombre&lt;=10 alors
+    //Ecrire "Votre facture s'élève à :" + iNombre*0.1 + "€"
+    if (iNombre&lt;=10){
+        alert("Votre facture s'élève à : " + iNombre*0.1 + "€");
+    }
+
+    //Si iNombre >10 & &lt;=30 alors
+    //Ecrire "Votre facture s'élève à :" + (1+iNombre*0.09) + "€"
+    if (iNombre>10 && iNombre&lt;=30){
+        iNombre=iNombre-10;
+        alert("Votre facture s'élève à : " + (1+iNombre*0.09) + "€");
+    }
+    
+    //Si iNombre >30
+    //Ecrire "Votre facture s'élève à :" + (2.8+iNombre*0.08) + "€"
+    if (iNombre>30){
+        iNombre=iNombre-30;
+        alert("Votre facture s'élève à : " + (2.8+iNombre*0.08) + "€");
+    }
+//FIN
+}                          </code></pre>
+                        </section>		
+                        <!-- </textarea> -->
+					</div>
+					<div id="div_jsform">
+						<!-- <textarea class="txt_jsform tarea_green"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_4 JSFORM
+function Exo_4_4_jsform() 
+// DEBUT
+{ 
+    var iNombre;
+
+    //Ecrire "Entrez le nombre de photocopies réalisées :"
+    //Lire iNombre
+    iNombre=document.getElementById("iNombre").value;
+    
+
+    //Si iNombre&lt;=10 alors
+    //Ecrire "Votre facture s'élève à :" + iNombre*0.1 + "€"
+    if (iNombre&lt;=10){
+        document.getElementById("sp_resultat_code").innerHTML="Votre facture s'élève à : " + (iNombre*0.1).toFixed(2) + " €";
+    }
+
+    //Si iNombre >10 & &lt;=30 alors
+    //Ecrire "Votre facture s'élève à :" + (1+iNombre*0.09) + "€"
+        if (iNombre>10 && iNombre&lt;=30){
+        iNombre=iNombre-10;
+        document.getElementById("sp_resultat_code").innerHTML="Votre facture s'élève à : " + (1+iNombre*0.09).toFixed(2) + " €";
+    }
+
+    //Si iNombre >30
+    //Ecrire "Votre facture s'élève à :" + (2.8+iNombre*0.08) + "€"
+    if (iNombre>30){
+        iNombre=iNombre-30;
+        document.getElementById("sp_resultat_code").innerHTML="Votre facture s'élève à : " + (2.8+iNombre*0.08).toFixed(2) + " €";
+    }
+//FIN
+}                          </code></pre>
+                        </section>	
+						<!-- </textarea> -->
+					</div>
+
+					<div id="div_jquery">
+						<!-- <textarea class="txt_jquery tarea_pink"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-javascript">// ALGORITHME Exo_4_4 JQUERY
+function Exo_4_4_jquery() 
+// DEBUT
+{ 
+    var iNombre;
+
+    //Ecrire "Entrez le nombre de photocopies réalisées :"
+    //Lire iNombre
+    iNombre=$("#iNombre").val();
+    
+
+    //Si iNombre&lt;=10 alors
+    //Ecrire "Votre facture s'élève à :" + iNombre*0.1 + "€"
+    if (iNombre&lt;=10){
+        $("#sp_resultat_code").html("Votre facture s'élève à : " + (iNombre*0.1).toFixed(2) + " €");
+    }
+
+    //Si iNombre >10 & &lt;=30 alors
+    //Ecrire "Votre facture s'élève à :" + (1+iNombre*0.09) + "€"
+        if (iNombre>10 && iNombre&lt;=30){
+        iNombre=iNombre-10;
+        $("#sp_resultat_code").html("Votre facture s'élève à : " + (1+iNombre*0.09).toFixed(2) + " €");
+    }
+
+    //Si iNombre >30
+    //Ecrire "Votre facture s'élève à :" + (2.8+iNombre*0.08) + "€"
+    if (iNombre>30){
+        iNombre=iNombre-30;
+        $("#sp_resultat_code").html("Votre facture s'élève à : " + (2.8+iNombre*0.08).toFixed(2) + " €");
+    }
+//FIN
+}                        </code></pre>
+                        </section>	
+                        <!-- </textarea> -->
+					</div>
+
+					<div id="div_php">
+						<!-- <textarea class="txt_php tarea_black"> -->
+                        <section class="language-markup ">
+                            <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_4_4 PHP
+// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iNombre"]))
+{
+    //Ecrire "Entrez le nombre de photocopies réalisées :"
+    //Lire iNombre
+    $iNombre= intval($_POST["iNombre"]) ;
+
+    
+    //Si iNombre<=10 alors
+    if ($iNombre<=10)
+    {
+        //Ecrire "Votre facture s'élève à :" + iNombre*0.1 + "€"
+        $sMessage= "Votre facture s'élève à : " . $iNombre*0.1 . "€";
+    }
+
+    //Si iNombre >10 & <=30 alors
+    if ($iNombre>10 && $iNombre<=30)
+    {
+        $iNombre=$iNombre-10;
+        //Ecrire "Votre facture s'élève à : " + (1+iNombre*0.09) + "€"
+        $sMessage= "Votre facture s'élève à : " . (1+$iNombre*0.09) . "€";
+    }
+
+    //Si iNombre >30
+    if ($iNombre>30)
+    {
+        $iNombre=$iNombre-30;
+        //Ecrire "Votre facture s'élève à :" + (2.8+iNombre*0.08) + "€"
+        $sMessage= "Votre facture s'élève à :" . (2.8+$iNombre*0.08) . "€";
+        
+    // FINSI
+    }
+//FIN	
+}                            </code></pre>
+                        </section>
+                        <!-- </textarea> -->
+					</div>
+				</div>
+				
+				<div id="div_form_resultat">
+					<div class="align_formulaire_resultat">
+						<div class="div_formulaire">
+							<form action="exo_4_4.php" method="POST" name="formPHP">
+								<p>Entrez le nombre de photocopies réalisées :</p>
+								<p><input type="number" name="iNombre" id="iNombre"></p>
+								<p>
+									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_4_4(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jsform" onClick="Exo_4_4_jsform(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_jquery" onClick="Exo_4_4_jquery(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php" onClick="Exo_4_4_php(); return false;">Cliquez ici !</button>
+								</p>
+							</form>
+						</div>
+						<div class="div_resultat">
+							<p>Résultat :</p>
+							<span id="sp_resultat_code"></span>
+                           	<span><?php echo $sMessage; ?></span>
+                            <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
+                            <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
+                            <img class="logo_resultat" id="img_php" src="../img/logo-php.png">
+						</div>
+					</div>	
+				</div>
+			</section>		
+			<!--section end-->
+		</main>
+
+        <!--footer start-->
+        <footer>
+<?php include "../commun/footer.html" ?>
+			<script src="../js/saison4.js"></script>
+        </footer>
+        <!--footer end-->
+    </div>
+
+</body>
+
+</html>
