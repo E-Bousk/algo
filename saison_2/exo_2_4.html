@@ -151,7 +151,47 @@ function Exo_2_4_jquery()
 					<div id="div_php">
 						<section class="language-markup ">
 							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_2_4 PHP
+$sV1 = "belle Marquise";
+$sV2 = "vos beaux yeux";
+$sV3 = "me font";
+$sV4 = "mourir d’amour";
 
+$array_res= array('sV1' => $sV1, 'sV2' => $sV2,'sV3' => $sV3,'sV4' => $sV4);
+echo json_encode($array_res);
+/////////////////////////////////////////////////////
+
+FICHIER JS :
+// ALGORITHME Exo_2_3 PHP - Appel AJAX
+
+function Exo_2_4_phpAjax()
+{
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_4_Ajax.php", 
+		async: true, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+		$("#sp_resultat_code").html(
+					(result["sV4"] + ' ' + result["sV1"] + ' ' + result["sV3"] + ' ' + result["sV2"])
+		 + "&lt;br/&gt;" + (result["sV1"] + ' ' + result["sV2"] + ' ' + result["sV4"] + ' ' + result["sV3"])
+		 + "&lt;br/&gt;" + (result["sV2"] + ' ' + result["sV3"] + ' ' + result["sV1"] + ' ' + result["sV4"])
+		 + "&lt;br/&gt;" + (result["sV3"] + ' ' + result["sV4"] + ' ' + result["sV2"] + ' ' + result["sV1"])
+		 ) ;
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
 							</code></pre>
 						</section>	
 					</div>
@@ -166,14 +206,13 @@ function Exo_2_4_jquery()
 									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_2_4(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jsform" onClick="Exo_2_4_jsform(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jquery" onClick="Exo_2_4_jquery(); return false;">Cliquez ici !</button>
-									<button class="btn_resultat" id="btn_php" onClick="return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php"  onClick="Exo_2_4_phpAjax(); return false;">Cliquez ici !</button>
 								</p>
 							</form>
 						</div>
 						<div class="div_resultat">
 							<p>Résultat :</p>
 							<span id="sp_resultat_code"></span>
-                           	<span><?php echo $sMessage; ?></span>
                             <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">

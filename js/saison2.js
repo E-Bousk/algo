@@ -66,6 +66,47 @@
 		}
 // ----------
 // ----------
+// ALGORITHME Exo_2_1 PHP - Appel AJAX
+function Exo_2_1_phpAjax()
+{
+
+	var datas = 
+    {
+        iNombreUtilisateur: $("#iNombreUtilisateur").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_1_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Le double de " + result[1]["iNombreUtilisateur"] + " est " + result[1]["iDouble"]);
+		}
+        else 
+        {
+            // affiche un message d'erreur
+            $("#sp_resultat_code").html("Veuillez saisir tous les champs !");
+        }
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
 
 // --------------------
 // --------------------
@@ -87,9 +128,12 @@
 			// iCarre= iNombreUtilisateur * iNombreUtilisateur
 			iCarre= iNombreUtilisateur * iNombreUtilisateur;
 			
+			if (iNombreUtilisateur === "" || typeof(iNombreUtilisateur) !== Number) {
+				alert("Veuillez entrer un nombre"); 
+			} else {
 			// ECRIRE "Le carré de " + iNombreUtilisateur + " est " + iCarre
 			alert("Le carré de " + iNombreUtilisateur + " est " + iCarre);
-
+			}
 		// FIN
 		}
 // ----------
@@ -109,9 +153,12 @@
 			// iCarre= iNombreUtilisateur * iNombreUtilisateur
 			iCarre= iNombreUtilisateur * iNombreUtilisateur;
 			
+			if (iNombreUtilisateur === "" || typeof(iNombreUtilisateur) !== Number) {
+				document.getElementById("sp_resultat_code").innerHTML= "Veuillez entrer un nombre"; 
+			} else {
 			// ECRIRE "Le carré de " + iNombreUtilisateur + " est " + iCarre
 			document.getElementById("sp_resultat_code").innerHTML= "Le carré de " + iNombreUtilisateur + " est " + iCarre;
-
+			}
 		// FIN
 		}
 // ----------
@@ -131,11 +178,61 @@
 			// iCarre= iNombreUtilisateur * iNombreUtilisateur
 			iCarre= iNombreUtilisateur * iNombreUtilisateur;
 			
+			if (iNombreUtilisateur === "" || typeof(iNombreUtilisateur) !== Number) {
+				$("#sp_resultat_code").html("Veuillez entrer un nombre"); 
+			} else {
 			// ECRIRE "Le carré de " + iNombreUtilisateur + " est " + iCarre
 			$("#sp_resultat_code").html("Le carré de " + iNombreUtilisateur + " est " + iCarre);
-
+			}
 		// FIN
 		}
+// ----------
+// ----------
+
+// ALGORITHME Exo_2_2 PHP - Appel AJAX
+function Exo_2_2_phpAjax()
+{
+
+	var datas = 
+    {
+        iNombreUtilisateur: $("#iNombreUtilisateur").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_2_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Le carré de " + result[1]["iNombreUtilisateur"] + " est " + result[1]["iCarre"]);
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir un nombre !");
+		} 
+		else 
+        {
+            // affiche un message d'erreur
+            $("#sp_resultat_code").html("Veuillez saisir un nombre pas des lettres !");
+        }
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
 // ----------
 // ----------
 
@@ -232,6 +329,54 @@
 
 		// FIN
 		}
+// ----------
+// ----------
+
+// ALGORITHME Exo_2_3 PHP - Appel AJAX
+function Exo_2_3_phpAjax()
+{
+
+	var datas = 
+    {
+		iPrixArticle: $("#iPrixArticle").val(),
+		iNombreArticle: $("#iNombreArticle").val(),
+		iTauxTVA: $("#iTauxTVA").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_3_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Le montant TTC est de " + result[1]["iTTC"] + " €");
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir un nombre !");
+		} 
+
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 4   --
@@ -286,3 +431,35 @@
 			$("#sp_resultat_code").html((sV4 + ' ' + sV1 + ' ' + sV3 + ' ' + sV2) + "<br/>" + (sV1 + ' ' + sV2 + ' ' + sV4 + ' ' + sV3) + "<br/>" + (sV2 + ' ' + sV3 + ' ' + sV1 + ' ' + sV4) + "<br/>" + (sV3 + ' ' + sV4 + ' ' + sV2 + ' ' + sV1)) ;
 		// FIN
 		}
+
+// ALGORITHME Exo_2_4 PHP - Appel AJAX
+function Exo_2_4_phpAjax()
+{
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_4_Ajax.php", 
+		async: true, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+		$("#sp_resultat_code").html((result["sV4"] + ' ' + result["sV1"] + ' ' + result["sV3"] + ' ' + result["sV2"])
+		 + "<br/>" + (result["sV1"] + ' ' + result["sV2"] + ' ' + result["sV4"] + ' ' + result["sV3"])
+		 + "<br/>" + (result["sV2"] + ' ' + result["sV3"] + ' ' + result["sV1"] + ' ' + result["sV4"])
+		 + "<br/>" + (result["sV3"] + ' ' + result["sV4"] + ' ' + result["sV2"] + ' ' + result["sV1"])
+		 ) ;
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------

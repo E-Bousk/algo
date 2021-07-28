@@ -59,6 +59,34 @@ function Exo_1_1_jquery()
 	}
 // ----------
 // ----------
+
+// ALGORITHME Exo_1_1 PHP - Appel AJAX
+function Exo_1_1_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_1_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 2   --
@@ -128,6 +156,34 @@ function Exo_1_2_jquery()
 	}
 // ----------
 // ----------
+
+// ALGORITHME Exo_1_2 PHP - Appel AJAX
+function Exo_1_2_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_2_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B'] + "<br> C = "+ result['C']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 3   --
@@ -193,6 +249,33 @@ function Exo_1_3_jquery()
 	}
 // ----------
 // ----------
+// ALGORITHME Exo_1_3 PHP - Appel AJAX
+function Exo_1_3_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_3_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 4   --
@@ -261,6 +344,33 @@ function Exo_1_4_jquery()
 }
 // ----------
 // ----------
+// ALGORITHME Exo_1_4 PHP - Appel AJAX
+function Exo_1_4_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_4_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B'] + "<br> C = "+ result['C']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 5   --
@@ -326,6 +436,33 @@ function Exo_1_5_jquery()
 }
 // ----------
 // ----------
+// ALGORITHME Exo_1_5 PHP - Appel AJAX
+function Exo_1_5_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_5_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 6   --
@@ -413,6 +550,49 @@ function Exo_1_6_jquery()
     }
 // ----------
 // ----------
+// ALGORITHME Exo_1_6 PHP - Appel AJAX
+function Exo_1_6_phpAjax()
+{
+
+	var datas = 
+    {
+        sVarA: $("#sVarA").val(),
+        sVarB: $("#sVarB").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_1_6_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Inversion des valeurs :</br>A = " + result[1]['sVarA'] + "</br>B = " + result[1]['sVarB']);
+		}
+        else 
+        {
+            // affiche un message d'erreur
+            $("#sp_resultat_code").html("Veuillez saisir tous les champs !");
+        }
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 7   --
@@ -511,6 +691,49 @@ function Exo_1_7_jquery()
 	//Ecrire valeur A, B, C
 	$("#sp_resultat_code").html("Inversion des valeurs :" + "</br>" + "A = " + sVarA + "</br>" + "B = " + sVarB + "</br>" + "C = " + sVarC);
 //Fin
+}
+// ----------
+// ----------
+// ALGORITHME Exo_1_7 PHP - Appel AJAX
+function Exo_1_7_phpAjax()
+{
+
+	var datas = 
+    {
+        sVarA: $("#sVarA").val(),
+        sVarB: $("#sVarB").val(),
+		sVarC: $("#sVarC").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_1_7_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Inversion des valeurs :</br>A = " + result[1]['sVarA'] + "</br>B = " + result[1]['sVarB'] + "</br>C = " + result[1]['sVarC']);
+		}
+        else 
+        {
+            // affiche un message d'erreur
+            $("#sp_resultat_code").html("Veuillez saisir tous les champs !");
+        }
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
 }
 // ----------
 // ----------

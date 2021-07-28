@@ -194,7 +194,79 @@ function Exo_2_3_jquery()
 					<div id="div_php">
 						<section class="language-markup ">
 							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_2_3 PHP
-							</code></pre>
+if ((isset($_POST["iPrixArticle"]) && $_POST["iPrixArticle"] !== "") 
+&& (isset($_POST["iNombreArticle"]) && $_POST["iNombreArticle"] !== "") 
+&& (isset($_POST["iTauxTVA"]) && $_POST["iTauxTVA"] !== "")
+) {
+	// indique pas d'erreur
+	$array_res[0] = array(
+		'error' => 0
+	);
+
+	$iPrixArticle= $_POST["iPrixArticle"];
+	$iNombreArticle= $_POST["iNombreArticle"];
+	$iTauxTVA= $_POST["iTauxTVA"];
+	$iTTC= $iPrixArticle * $iNombreArticle * (1+ $iTauxTVA/100 );
+
+	$array_res[1]= array('iTTC' => $iTTC);
+	echo json_encode($array_res);
+} 
+// sinon (s'il manque un(des) champ(s) et/ou pas reçu(s))
+else
+{
+// indique erreur
+$array_res[0] = array(
+	'error' => 1
+);
+
+// renvoie à la page JS le tableau avec erreur=1
+echo json_encode ($array_res);
+}
+/////////////////////////////////////////////////////
+
+FICHIER JS :
+// ALGORITHME Exo_2_3 PHP - Appel AJAX
+function Exo_2_3_phpAjax()
+{
+
+	var datas = 
+    {
+		iPrixArticle: $("#iPrixArticle").val(),
+		iNombreArticle: $("#iNombreArticle").val(),
+		iTauxTVA: $("#iTauxTVA").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_2_3_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+        if (result[0]["error"] === 0)
+        {
+			$("#sp_resultat_code").html("Le montant TTC est de " + result[1]["iTTC"] + " €");
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir un nombre !");
+		} 
+
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}							</code></pre>
 						</section>	
 					</div>
 				</div>
@@ -204,23 +276,22 @@ function Exo_2_3_jquery()
 						<div class="div_formulaire">
 							<form action="exo_2_3.php" method="POST" name="formPHP">
 								<p>Entrez le prix de l'article en €</p>
-								<p><input type="text" name="iPrixArticle" id="iPrixArticle"></p>
+								<p><input type="number" name="iPrixArticle" id="iPrixArticle"></p>
 								<p>Entrez le nombre d'article</p>
-								<p><input type="text" name="iNombreArticle" id="iNombreArticle"></p>
+								<p><input type="number" name="iNombreArticle" id="iNombreArticle"></p>
 								<p>Entrez le montant de la TVA en %</p>
-								<p><input type="text" name="iTauxTVA" id="iTauxTVA"></p>								
+								<p><input type="number" name="iTauxTVA" id="iTauxTVA"></p>								
 								<p>
 									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_2_3(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jsform" onClick="Exo_2_3_jsform(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jquery" onClick="Exo_2_3_jquery(); return false;">Cliquez ici !</button>
-									<button class="btn_resultat" id="btn_php" onClick="return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php"  onClick="Exo_2_3_phpAjax(); return false;">Cliquez ici !</button>
 								</p>
 							</form>
 						</div>
 						<div class="div_resultat">
 							<p>Résultat :</p>
 							<span id="sp_resultat_code"></span>
-                           	<span><?php echo $sMessage; ?></span>
                             <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">

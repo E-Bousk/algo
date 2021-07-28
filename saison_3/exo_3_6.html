@@ -287,58 +287,131 @@ function Exo_3_6_jquery()
 					<div id="div_php">
 						<section class="language-markup">
                             <pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_3_6 PHP
-$sMessage= "";
-
-
-// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
-if (isset($_POST["iAge"]))
+// SI LE CHAMP iNombre1 et iNombre2 EXISTENT ET QU'ILS NE SONT PAS VIDES ALORS EXECUTE LE CODE PHP
+if ((isset($_POST["iAge"]) && $_POST["iAge"] !==""))
 {
-    //Ecrire "Entrez le 1er nombre :"
+
+    // indique pas d'erreur
+    $array_res[0] = array(
+        'error' => 0
+    );
+
     //Lire iAge 
     $iAge = intval($_POST["iAge"]);
 
-    $bA= ($iAge &lt; 6);
-    $bB= (($iAge == 6) || ($iAge == 7));
-    $bC= (($iAge == 8) || ($iAge == 9));
-    $bD= (($iAge == 10) || ($iAge == 11));
-
-
-    //SI $bA
-    if ($bA)
-    {
-        //Ecrire "Tu es trop jeune pour jouer en club"
-        $sMessage= "&lt;b>Tu es trop jeune pour jouer en club&lt;/b>";
+    switch ($iAge) {
+        case $iAge &lt; 6:
+            //Envoyer "1" dans tableau de resultat
+            $array_res[1]= array(
+                'resultat' =&gt; 1
+            );
+            break;
+        case ($iAge === 6) || ($iAge === 7):
+            //Envoyer "2" dans tableau de resultat
+            $array_res[1]= array(
+                'resultat' =&gt; 2
+            );
+            break;
+        case ($iAge == 8) || ($iAge == 9):
+             //Envoyer "3" dans tableau de resultat
+            $array_res[1]= array(
+                'resultat' =&gt; 3
+            );
+            break;
+        case ($iAge == 10) || ($iAge == 11):
+            //Envoyer "4" dans tableau de resultat
+            $array_res[1]= array(
+                'resultat' =&gt; 4
+            );
+            break;
+        default:
+            //Envoyer "5" dans tableau de resultat
+            $array_res[1]= array(
+                'resultat' =&gt; 5
+            );
     }
-    //SINON SI 
-    else if ($bB)
-    {
-        //Ecrire "Ta catégorie est : Poussin"
-        $sMessage= "&lt;b>Ta catégorie est : Poussin&lt;/b>";
-    }
-    //SINON SI 
-    else if ($bC)
-    {
-            //Ecrire "Ta catégorie est : Pupille"
-        $sMessage= "&lt;b>Ta catégorie est : Pupille&lt;/b>";
-    }
-    //SINON SI
-    else if ($bD)
-    {
-            //Ecrire "Ta catégorie est : Minime"
-        $sMessage= "&lt;b>Ta catégorie est : Minime&lt;/b>";
-    }
-    //SINON
-    else
-    {
-        //Ecrire "Ta catégorie est : Cadet"
-        $sMessage= "&lt;b>Ta catégorie est : Cadet&lt;/b>";
-        
-    // FINSI
-    }
-//FIN	
+    echo json_encode($array_res);
 }
 
-require "exo_3_6.html";     </code></pre>
+// sinon (s'il manque un(des) champ(s) et/ou pas reçu(s))
+else
+{
+    // indique erreur
+    $array_res[0] = array(
+        'error' => 1
+    );
+
+    // renvoie à la page JS le tableau avec erreur=1
+    echo json_encode ($array_res);
+}
+/////////////////////////////////////////////////////
+
+FICHIER JS : 
+// ALGORITHME Exo_3_6 PHP - Appel AJAX
+function Exo_3_6_phpAjax()
+{
+
+	var datas = 
+    {
+	//LIRE iNombreUtilisateur
+	iAge: $("#iAge").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_6_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === 1)
+			{
+				//Ecrire "Tu es trop jeune pour jouer en club"
+				$("#sp_resultat_code").html("Tu es trop jeune pour jouer en club");
+			}
+			else if (result[1]["resultat"] === 2)
+			{
+				//Ecrire "Ta catégorie est : Poussin"
+				$("#sp_resultat_code").html("Ta catégorie est : Poussin");
+			} 
+			else if (result[1]["resultat"] === 3)
+			{
+				//Ecrire "Ta catégorie est : Pupille"
+				$("#sp_resultat_code").html("Ta catégorie est : Pupille");
+			}
+			else if (result[1]["resultat"] === 4)
+			{
+				//Ecrire "Ta catégorie est : Minime"
+				$("#sp_resultat_code").html("Ta catégorie est : Minime");
+			} 
+			else if (result[1]["resultat"] === 5)
+			{
+				//Ecrire "Ta catégorie est : Cadet"
+				$("#sp_resultat_code").html("Ta catégorie est : Cadet");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez entrer un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}                           </code></pre>
                         </section>
 					</div>
 				</div>
@@ -353,14 +426,13 @@ require "exo_3_6.html";     </code></pre>
 									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_3_6(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jsform" onClick="Exo_3_6_jsform(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jquery" onClick="Exo_3_6_jquery(); return false;">Cliquez ici !</button>
-									<button class="btn_resultat" id="btn_php" onClick="Exo_3_6_php(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php"  onClick="Exo_3_6_phpAjax(); return false;">Cliquez ici !</button>
 								</p>
 							</form>
 						</div>
 						<div class="div_resultat">
 							<p>Résultat :</p>
 							<span id="sp_resultat_code"></span>
-                           	<span><?php echo $sMessage; ?></span>
                             <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">

@@ -155,8 +155,41 @@ function Exo_1_4_jquery()
 						<!-- <textarea class="txt_php tarea_black"> -->
 							<section class="language-markup ">
 								<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_1_4 PHP
+$A=13;
+$B=19;
+$C=$A+$B;
+$B=$A+$B;
+$A=$C;
 
-								</code></pre>
+$array= array('A' => $A, 'B' => $B, 'C' => $C);
+echo json_encode($array);
+/////////////////////////////////////////////////////
+
+FICHIER JS :
+// ALGORITHME Exo_1_4 PHP - Appel AJAX
+function Exo_1_4_phpAjax() {
+	$.ajax(
+		{
+			type: "POST", 
+			url: "exo_1_4_Ajax.php", 
+			async: true, 
+			// data: datas, 
+			dataType: "json", 
+			cache: false, 
+		})
+	
+		.done(function(result) 
+		{
+			$("#sp_resultat_code").html("A = " + result['A'] + "<br> B = "+ result['B'] + "<br> C = "+ result['C']);
+		})
+	
+		.fail(function(err) 
+		{
+			// Affichage d'erreur
+			console.log("fail");
+			alert("error : " + err.status);
+		});
+}								</code></pre>
 							</section>
 							<!-- </textarea> -->
 					</div>
@@ -171,14 +204,13 @@ function Exo_1_4_jquery()
 									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_1_4(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jsform" onClick="Exo_1_4_jsform(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jquery" onClick="Exo_1_4_jquery(); return false;">Cliquez ici !</button>
-									<button class="btn_resultat" id="btn_php" onClick="return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php"  onClick="Exo_1_4_phpAjax(); return false;">Cliquez ici !</button>
 								</p>
 							</form>
 						</div>
 						<div class="div_resultat">
 							<p>Résultat :</p>
 							<span id="sp_resultat_code"></span>
-                           	<span><?php echo $sMessage; ?></span>
                             <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">

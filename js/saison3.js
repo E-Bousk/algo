@@ -96,6 +96,56 @@
 		}
 // ----------
 // ----------
+// ALGORITHME Exo_3_1 PHP - Appel AJAX
+function Exo_3_1_phpAjax()
+{
+
+	var datas = 
+    {
+		iNombre: $("#iNombre").val(),
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_1_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === "positif")
+			{
+				$("#sp_resultat_code").html("Ce nombre est positif");
+			}
+			else if (result[1]["resultat"] === "negatif")
+			{
+				$("#sp_resultat_code").html("Ce nombre est négatif");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 2   --
@@ -195,6 +245,57 @@
 
 // ----------
 // ----------
+// ALGORITHME Exo_3_2 PHP - Appel AJAX
+function Exo_3_2_phpAjax()
+{
+
+	var datas = 
+    {
+		iNombre1: $("#iNombre1").val(),
+		iNombre2: $("#iNombre2").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_2_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === "positif")
+			{
+				$("#sp_resultat_code").html("Leur produit est positif");
+			}
+			else if (result[1]["resultat"] === "negatif")
+			{
+				$("#sp_resultat_code").html("<span style='color: red'>Leur produit est négatif</span>");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir deux nombres !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 3   --
@@ -302,6 +403,67 @@
 		}
 // ----------
 // ----------
+
+// ALGORITHME Exo_3_3 PHP - Appel AJAX
+function Exo_3_3_phpAjax()
+{
+
+	var datas = 
+    {
+		//Ecrire "Entrez le 1er nom :"
+		//Lire sNom1
+		sNom1: $("#sNom1").val(),
+		//Ecrire "Entrez le 2eme nom :"
+		//Lire sNom2
+		sNom2: $("#sNom2").val(),
+		//Ecrire "Entrez le 3eme nom :"
+		//Lire sNom3
+		sNom3: $("#sNom3").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_3_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === "1")
+			{
+				//Ecrire "Ils sont rangés par ordre alphabétique"
+				$("#sp_resultat_code").html("<b>Ils sont rangés par ordre alphabétique</b>");
+			}
+			else if (result[1]["resultat"] === "0")
+			{
+				//Ecrire "Ils ne sont pas rangés par ordre alphabétique"
+				$("#sp_resultat_code").html("<span style='color: red'>Ils ne sont pas rangés par ordre alphabétique</span>");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez remplir tous les champs !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 4   --
@@ -420,6 +582,65 @@
 		}
 // ----------
 // ----------
+// ALGORITHME Exo_3_4 PHP - Appel AJAX
+function Exo_3_4_phpAjax()
+{
+
+	var datas = 
+    {
+		// ECRIRE "entrez un nombre"
+		// LIRE iNombre
+		iNombre: $("#iNombre").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_4_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === 0)
+			{
+				//Ecrire "Ce nombre vaut zéro"
+				$("#sp_resultat_code").html("<b>Ce nombre vaut zéro</b>");
+			}
+			else if (result[1]["resultat"] === -1)
+			{
+				//Ecrire "Ce nombre est négatif"
+				$("#sp_resultat_code").html("<span style='color: red'>Ce nombre est négatif</span>");
+			} 
+			else if (result[1]["resultat"] === 1)
+			{
+				//Ecrire "Ce nombre est positif"
+				$("#sp_resultat_code").html("<span style='color: yellow'>Ce nombre est positif</span>");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez entrer un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 5   --
@@ -537,6 +758,67 @@
 	}
 // ----------
 // ----------
+
+// ALGORITHME Exo_3_5 PHP - Appel AJAX
+function Exo_3_5_phpAjax()
+{
+
+	var datas = 
+    {
+		//Lire iNombre1
+		iNombre1: $("#iNombre1").val(),
+		//Lire iNombre2
+		iNombre2: $("#iNombre2").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_5_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === 0)
+			{
+				//Ecrire "Leur produit est nul"
+				$("#sp_resultat_code").html("<b>Leur produit est nul</b>");
+			}
+			else if (result[1]["resultat"] === -1)
+			{
+				//Ecrire "Ce nombre est négatif"
+				$("#sp_resultat_code").html("<span style='color: red'>leur produit est négatif</span>");
+			} 
+			else if (result[1]["resultat"] === 1)
+			{
+				//Ecrire "Ce nombre est positif"
+				$("#sp_resultat_code").html("<span style='color: yellow'>Leur produit est positif</span>");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez entrer un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}
+// ----------
+// ----------
+
 // --------------------
 // --------------------
 // --   EXERCICE 6   --
@@ -695,4 +977,72 @@ function Exo_3_6_jquery()
 	}
 	//FINSI
 //FIN
-}	
+}
+// ----------
+// ----------
+
+// ALGORITHME Exo_3_6 PHP - Appel AJAX
+function Exo_3_6_phpAjax()
+{
+
+	var datas = 
+    {
+	//LIRE iNombreUtilisateur
+	iAge: $("#iAge").val()
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_6_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === 1)
+			{
+				//Ecrire "Tu es trop jeune pour jouer en club"
+				$("#sp_resultat_code").html("Tu es trop jeune pour jouer en club");
+			}
+			else if (result[1]["resultat"] === 2)
+			{
+				//Ecrire "Ta catégorie est : Poussin"
+				$("#sp_resultat_code").html("Ta catégorie est : Poussin");
+			} 
+			else if (result[1]["resultat"] === 3)
+			{
+				//Ecrire "Ta catégorie est : Pupille"
+				$("#sp_resultat_code").html("Ta catégorie est : Pupille");
+			}
+			else if (result[1]["resultat"] === 4)
+			{
+				//Ecrire "Ta catégorie est : Minime"
+				$("#sp_resultat_code").html("Ta catégorie est : Minime");
+			} 
+			else if (result[1]["resultat"] === 5)
+			{
+				//Ecrire "Ta catégorie est : Cadet"
+				$("#sp_resultat_code").html("Ta catégorie est : Cadet");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez entrer un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}

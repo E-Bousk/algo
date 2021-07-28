@@ -199,15 +199,15 @@ function Exo_3_1_jquery()
 					<div id="div_php">
 						<section class="language-markup">
 							<pre class="line-numbers"><code class="language-php">// ALGORITHME Exo_3_1 PHP
-$sMessage= "";
-
-// SI LE CHAMP iNombre EXISTE ALORS EXECUTE LE CODE PHP
-if (isset($_POST["iNombre"]))
+// SI LE CHAMP iNombre EXISTE ET QU'IL N'EST PAS VIDE ALORS EXECUTE LE CODE PHP
+if (isset($_POST["iNombre"]) && $_POST["iNombre"] !=="")
 {
-	// VARIABLE iNombre en NUMERIQUE
-	// INUTILE, ON NE DECLARE PAS LES VARIABLES.
-	// var iNombre;
-	
+
+	// indique pas d'erreur
+	$array_res[0] = array(
+		'error' => 0
+	);
+
 	// ECRIRE "Entrez un nombre :"
 	// LIRE iNombre
 	$iNombre= $_POST["iNombre"];
@@ -217,19 +217,84 @@ if (isset($_POST["iNombre"]))
 	if ($iNombre >= 0)
 	{
 		// ECRIRE "Votre nombre est positif"
-		$sMessage= "&lt;b>PHP Votre nombre est positif&lt;/b>";
+		$array_res[1]= array(
+			'resultat' => 'positif'
+		);
 	}
 	// SINON
 	else
 	{
 		// ECRIRE "Votre nombre est négatif"
-		$sMessage= "&lt;span style='color: red'>PHP Votre nombre est négatif&lt;/span>";
+		$array_res[1]= array(
+			'resultat' => 'negatif'
+		);
 	// FINSI
 	}
+
+	echo json_encode($array_res);
 }
 
+// sinon (s'il manque un(des) champ(s) et/ou pas reçu(s))
+else
+{
+	// indique erreur
+	$array_res[0] = array(
+		'error' => 1
+	);
 
-require "exo_3_1.html";		</code></pre>
+	// renvoie à la page JS le tableau avec erreur=1
+	echo json_encode ($array_res);
+}						
+/////////////////////////////////////////////////////
+
+FICHIER JS :
+// ALGORITHME Exo_3_1 PHP - Appel AJAX
+function Exo_3_1_phpAjax()
+{
+
+	var datas = 
+    {
+		iNombre: $("#iNombre").val(),
+    }
+
+	$.ajax(
+	{
+		type: "POST", 
+		url: "exo_3_1_Ajax.php", 
+		async: true, 
+		data: datas, 
+		dataType: "json", 
+		cache: false
+	})
+
+	.done(function(result)
+	{
+
+		if (result[0]["error"] === 0)
+        {
+			if (result[1]["resultat"] === "positif")
+			{
+				$("#sp_resultat_code").html("Ce nombre est positif");
+			}
+			else if (result[1]["resultat"] === "negatif")
+			{
+				$("#sp_resultat_code").html("Ce nombre est négatif");
+			} 
+		}
+        else if (result[0]["error"] === 1)
+        {
+			// affiche un message d'erreur
+			$("#sp_resultat_code").html("Veuillez saisir un nombre !");
+		}
+	})
+	
+	.fail(function(err) 
+	{
+		// Affichage d'erreur
+		console.log("fail");
+		alert("error : " + err.status);
+	});
+}							</code></pre>
                         </section>	
 					</div>
 				</div>
@@ -244,14 +309,13 @@ require "exo_3_1.html";		</code></pre>
 									<button class="btn_resultat" id="btn_jsprompt" onClick="Exo_3_1(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jsform" onClick="Exo_3_1_jsform(); return false;">Cliquez ici !</button>
 									<button class="btn_resultat" id="btn_jquery" onClick="Exo_3_1_jquery(); return false;">Cliquez ici !</button>
-									<button class="btn_resultat" id="btn_php" onClick="Exo_3_1_php(); return false;">Cliquez ici !</button>
+									<button class="btn_resultat" id="btn_php"  onClick="Exo_3_1_phpAjax(); return false;">Cliquez ici !</button>
 								</p>
 							</form>
 						</div>
 						<div class="div_resultat">
 							<p>Résultat :</p>
 							<span id="sp_resultat_code"></span>
-                           	<span><?php echo $sMessage; ?></span>
                             <img class="logo_resultat" id="img_jsprompt" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jsform" src="../img/logo-javascript.png">
                             <img class="logo_resultat" id="img_jquery" src="../img/logo-jquery.png">
